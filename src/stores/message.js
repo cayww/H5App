@@ -1,18 +1,20 @@
-import { defineStore } from 'pinia'
 import messagesData from '../data/message.json'
 import { sendMessagesToIOS } from '@/utils/iosBridge'
+import { create } from 'zustand'
 
-export const useMessagesStore = defineStore('message', {
-    state: () => ({
-        message: window.messageList || messagesData,  // 初始化为本地 JSON
-    }),
-    actions: {
-        getMessagesByChatId(chatId) {
-            return this.message.filter(msg => msg.chatId === chatId)
-        },
-        addMessage(newMessage) {
-            this.message.push(newMessage)
-            sendMessagesToIOS(this.message)  // 发送给 iOS
-        },
-    }
-})
+export const useMessagesStore = create((set, get) => ({
+  message: window.messageList || messagesData,
+
+  getMessagesByChatId: (chatId) => {
+    const { message } = get()
+    return message.filter((m) => m.chatId === chatId)
+  },
+
+  addMessage: (newMessage) => {
+    const { message } = get()
+    const next = [...message, newMessage]
+    set({ message: next })
+    window.messageList = next
+    sendMessagesToIOS(next)
+  },
+}))

@@ -1,37 +1,37 @@
-import { defineStore } from 'pinia'
 import usersData from '../data/users.json'
 import { useCurrentUserStore } from './currentUser'
 import { sendUsersToIOS } from '@/utils/iosBridge'
+import { create } from 'zustand'
 
-export const useUserStore = defineStore('user', {
-  state: () => ({
-    users: window.userList || usersData,  // 初始化为本地 JSON
-  }),
-  actions: {
-    getUserById(id) {
-      return this.users.find(user => user.userId === id)
-    },
-    getOtherUserInChat(chatUserIds) {
-      const currentUserStore = useCurrentUserStore()
-      const myId = currentUserStore.currentUser.userId
-      const otherId = chatUserIds.find(id => id !== myId)
-      return this.getUserById(otherId)
-    },
-    // 公共方法：更新用户信息并通知iOS
-    updateUser(userId, newData) {
-      const user = this.users.find(u => u.userId === userId)
-      if (user) {
-        Object.assign(user, newData)
+export const useUserStore = create((set, get) => ({
+  users: window.userList || usersData,
 
-        // 如果是当前登录用户，同步更新 currentUserStore
-        const currentUserStore = useCurrentUserStore()
-        if (userId === currentUserStore.currentUser.userId) {
-          Object.assign(currentUserStore.currentUser, newData)
-        }
+  getUserById: (id) => {
+    const { users } = get()
+    return users.find((u) => u.userId === id)
+  },
 
-        // 通知iOS
-        sendUsersToIOS(this.users)
-      }
-    },
-  }
-})
+  getOtherUserInChat: (chatUserIds) => {
+    const { currentUser } = useCurrentUserStore.getState()
+    const myId = currentUser?.userId
+    const otherId = (chatUserIds || []).find((id) => id !== myId)
+    return get().getUserById(otherId)
+  },
+
+  updateUser: (userId, newData) => {
+    const { users } = get()
+    const next = users.map((u) =>
+      u.userId === userId ? { ...u, ...newData } : u,
+    )
+    set({ users: next })
+    window.userList = next
+
+    // 同步 currentUser
+    const { currentUser, setCurrentUser } = useCurrentUserStore.getState()
+    if (currentUser?.userId === userId) {
+      setCurrentUser({ ...currentUser, ...newData })
+    }
+
+    sendUsersToIOS(next)
+  },
+}))

@@ -1,29 +1,27 @@
-import { defineStore } from 'pinia'
 import commentsData from '../data/comments.json'
 import { useCurrentUserStore } from './currentUser'
 import { sendCommentsToIOS } from '@/utils/iosBridge'
+import { create } from 'zustand'
 
-export const useCommentsStore = defineStore('comment', {
-    state: () => ({
-        comment: window.commentList || commentsData,  // 初始化为本地 JSON
-    }),
-    actions: {
-        getCommentsById(postId) {
-            const currentUserStore = useCurrentUserStore()
-            const blockList = currentUserStore.currentUser.blockList || []
+export const useCommentsStore = create((set, get) => ({
+  comment: window.commentList || commentsData,
 
-            // 过滤 dynamicId 匹配的评论，并排除被屏蔽的用户
-            const filtered = this.comment.filter(
-                c => c.dynamicId == postId && !blockList.includes(c.userId)
-            )
+  getCommentsById: (postId) => {
+    const { comment } = get()
+    const { currentUser } = useCurrentUserStore.getState()
+    const blockList = currentUser?.blockList || []
 
-            // 倒序返回
-            return filtered.reverse();
-        },
+    const filtered = comment.filter(
+      (c) => c.dynamicId == postId && !blockList.includes(c.userId),
+    )
+    return filtered.reverse()
+  },
 
-        addComment(comment) {
-            this.comment.push(comment)
-            sendCommentsToIOS(this.comment)
-        }
-    }
-})
+  addComment: (newComment) => {
+    const { comment } = get()
+    const next = [...comment, newComment]
+    set({ comment: next })
+    window.commentList = next
+    sendCommentsToIOS(next)
+  },
+}))

@@ -1,0 +1,110 @@
+.setting-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.setting-header {
+  display: flex;
+  align-items: center;
+  gap: calc(100vw * 16 / 375);
+  padding: calc(100vh * 58 / 812) calc(100vw * 20 / 375) 0;
+}
+
+.setting-title {
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 400;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 159, 142, 1) 0%,
+    rgba(241, 213, 160, 1) 32.13%,
+    rgba(201, 255, 221, 1) 67.84%,
+    rgba(157, 255, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.setting-options-list {
+  flex: 1;
+  padding: calc(100vh * 20 / 812) calc(100vw * 20 / 375) 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(100vh * 16 / 812);
+}
+
+.setting-option {
+  height: calc(100vh * 52 / 812);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: calc(100vw * 20 / 375);
+  box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 calc(100vw * 10 / 375);
+  cursor: pointer;
+}
+
+.setting-option-text {
+  font-family: 'Archivo', sans-serif;
+  color: #fff;
+  font-size: calc(100vw * 14 / 375);
+  font-weight: 400;
+}
+
+.setting-arrow-placeholder {
+  width: calc(100vw * 24 / 375);
+  height: calc(100vw * 24 / 375);
+  border-right: 2px solid rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+  transform: rotate(-45deg);
+  margin-right: calc(100vw * 6 / 375);
+}
+
+.setting-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(100vh * 20 / 812);
+  padding-bottom: calc(100vh * 83 / 812);
+}
+
+.setting-btn {
+  width: calc(100vw * 229 / 375);
+  height: calc(100vh * 62 / 812);
+  border-radius: calc(100vw * 40 / 375);
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 400;
+  border: none;
+  box-shadow:
+    inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375)
+      rgba(255, 255, 255, 0.6),
+    inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375)
+      rgba(255, 255, 255, 0.5);
+}
+
+.setting-delete-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 159, 142, 1) 0%,
+    rgba(241, 213, 160, 1) 32.13%,
+    rgba(201, 255, 221, 1) 67.84%,
+    rgba(157, 255, 255, 1) 100%
+  );
+  color: rgba(74, 32, 25, 1);
+}
+
+.setting-logout-btn {
+  background: rgba(74, 32, 25, 1);
+  color: #fff;
+}
+

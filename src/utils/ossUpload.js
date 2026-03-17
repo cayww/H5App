@@ -18,7 +18,7 @@ async function getOssSts() {
  */
 async function initOssClient() {
     const sts = await getOssSts()
-    const [https, endpoint] = sts.host.split(`${sts.bucket}.`)
+    const [, endpoint] = sts.host.split(`${sts.bucket}.`)
     cdnUrl = sts.cdnUrl
     ossClient = new OSS({
         accessKeyId: sts.AccessKeyId,
@@ -49,7 +49,7 @@ export async function uploadSingleImage(file, folder = 'posts') {
     if (!ossClient) await initOssClient()
 
     const filename = `${folder}/${Date.now()}-${file.name}`
-    const result = await ossClient.put(filename, file)
+    await ossClient.put(filename, file)
 
     return `${cdnUrl}/template_development/${filename.split('/').pop()}`
 }
@@ -75,7 +75,7 @@ export async function uploadVideo(file, folder = 'videos') {
     if (!ossClient) await initOssClient()
 
     const filename = `${folder}/${Date.now()}-${file.name}`
-    const result = await ossClient.put(filename, file)
+    await ossClient.put(filename, file)
 
     return `${cdnUrl}/template_development/${filename.split('/').pop()}`
 }

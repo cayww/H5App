@@ -1,20 +1,16 @@
-import { defineStore } from 'pinia'
+import { create } from 'zustand'
 import currentUserData from '../data/currentUser.json'
 
-export const useCurrentUserStore = defineStore('currentUser', {
-    state: () => ({
-        currentUser: window.currentUser || currentUserData
-    }),
-    actions: {
-        setCurrentUser(user) {
-            this.currentUser = user
-            window.currentUser = user
-        }
-    }
-})
+export const useCurrentUserStore = create((set) => ({
+  currentUser: window.currentUser || currentUserData,
+  setCurrentUser: (user) => {
+    set({ currentUser: user })
+    window.currentUser = user
+  },
+}))
 
-// ⭐️ 关键：挂到 window
+// 兼容 iOS 侧通过 JS 回调更新当前用户
 window.updateCurrentUser = function (user) {
-    const currentUserStore = useCurrentUserStore()
-    currentUserStore.setCurrentUser(user)
+  const { setCurrentUser } = useCurrentUserStore.getState()
+  setCurrentUser(user)
 }

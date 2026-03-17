@@ -1,25 +1,30 @@
-import { defineStore } from 'pinia'
 import chatsData from '../data/chat.json'
 import { sendChatsToIOS } from '@/utils/iosBridge'
+import { create } from 'zustand'
 
-export const useChatsStore = defineStore('chat', {
-    state: () => ({
-        chat: window.chatList || chatsData,  // 初始化为本地 JSON
-    }),
-    actions: {
-        getChatById(chatId) {
-            return this.chat.find(c => c.chatId === chatId)
-        },
-        updateChat(chatId, updatedData) {
-            const chat = this.chat.find(c => c.chatId === chatId)
-            if (chat) {
-                Object.assign(chat, updatedData)
-                sendChatsToIOS(this.chat)  // 发送给 iOS
-            }
-        },
-        addChat(newChat) {
-            this.chat.push(newChat)
-            sendChatsToIOS(this.chat)  // 发送给 iOS
-        },
-    }
-})
+export const useChatsStore = create((set, get) => ({
+  chat: window.chatList || chatsData,
+
+  getChatById: (chatId) => {
+    const { chat } = get()
+    return chat.find((c) => c.chatId === chatId)
+  },
+
+  updateChat: (chatId, updatedData) => {
+    const { chat } = get()
+    const next = chat.map((c) =>
+      c.chatId === chatId ? { ...c, ...updatedData } : c,
+    )
+    set({ chat: next })
+    window.chatList = next
+    sendChatsToIOS(next)
+  },
+
+  addChat: (newChat) => {
+    const { chat } = get()
+    const next = [...chat, newChat]
+    set({ chat: next })
+    window.chatList = next
+    sendChatsToIOS(next)
+  },
+}))

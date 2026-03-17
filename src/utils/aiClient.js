@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { encryptAES, decryptAES } from '@/utils/aes'
+import { encryptAES } from '@/utils/aes'
 
 const aiClient = axios.create({
     baseURL: 'https://opi.3o2g4cpj.link',

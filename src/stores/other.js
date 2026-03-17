@@ -1,13 +1,7 @@
-import { defineStore } from 'pinia'
 import otherData from '../data/other.json'
+import { create } from 'zustand'
 
-export const useOtherStore = defineStore('other', {
-    state: () => ({
-        other: window.other || otherData,  // 初始化为本地 JSON
-    }),
-    actions: {
-        getTagByIndex(index) {
-            return otherData.postTheme[index]
-        }
-    }
-})
+export const useOtherStore = create(() => ({
+  other: window.other || otherData,
+  getTagByIndex: (index) => otherData.postTheme[index],
+}))
