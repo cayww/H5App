@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import { useUIStore } from '@/stores/ui'
 import { usePostStore } from '@/stores/post'
 import { useCurrentUserStore } from '@/stores/currentUser'

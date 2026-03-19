@@ -1,5 +1,5 @@
 import React from 'react'
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import './agreement.css'
 
 export default function PrivacyPolicy() {

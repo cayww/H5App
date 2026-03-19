@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
+import MoreButton from '@/components/MoreButton/index.jsx'
 import ReportDialog from '@/components/ReportDialog.jsx'
 import Empty from '@/components/Empty.jsx'
 
@@ -127,7 +127,7 @@ export default function OtherHome() {
       <div
         className="other-home-avatar-bg"
         style={{
-          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.14)), url(${profile.avator || ''})`,
+          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.14)), url(${profile.avatar || ''})`,
         }}
       />
 
@@ -136,7 +136,7 @@ export default function OtherHome() {
           <div
             className="other-home-avatar"
             style={{
-              ['--avatar-url']: profile.avator ? `url(${profile.avator})` : 'none',
+              ['--avatar-url']: profile.avatar ? `url(${profile.avatar})` : 'none',
             }}
           >
             {canFollow ? (

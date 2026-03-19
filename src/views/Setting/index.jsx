@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import { useUIStore } from '@/stores/ui'
 import { useUserStore } from '@/stores/user'
 import { useCurrentUserStore } from '@/stores/currentUser'

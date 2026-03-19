@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { aiChat } from '@/utils/ai'
@@ -300,7 +300,7 @@ export default function AiChat() {
                       }}
                     >
                       <img
-                        src={currentUser.avator}
+                        src={currentUser.avatar}
                         alt="me"
                         style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                       />

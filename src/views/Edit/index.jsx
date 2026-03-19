@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import { goBackOrClose } from '@/utils/iosBridge'
 import { uploadSingleImage } from '@/utils/ossUpload'
 import { useCurrentUserStore } from '@/stores/currentUser'
@@ -27,7 +27,7 @@ export default function Edit() {
     if (!currentUser) return
     setName(currentUser.name || '')
     setAboutMe(currentUser.about || '')
-    setTopBlockImage(currentUser.avator || avatarIcon)
+    setTopBlockImage(currentUser.avatar || avatarIcon)
   }, [currentUser])
 
   function chooseAvatar() {
@@ -69,7 +69,7 @@ export default function Edit() {
       const delay = avatarFile ? 0 : Math.floor(Math.random() * 1500) + 500
       setTimeout(() => {
         updateUser(currentUser.userId, {
-          avator: avatarUrl,
+          avatar: avatarUrl,
           name,
           about: aboutMe,
         })

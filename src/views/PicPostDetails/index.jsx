@@ -2,11 +2,9 @@ import React, { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Swiper } from 'antd-mobile'
 
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
 import ReportDialog from '@/components/ReportDialog.jsx'
 import Empty from '@/components/Empty.jsx'
-
+import NavBar from '@/components/NavBar'
 import { usePostStore } from '@/stores/post'
 import { useUserStore } from '@/stores/user'
 import { useOtherStore } from '@/stores/other'
@@ -15,7 +13,7 @@ import { useUIStore } from '@/stores/ui'
 import { useCommentsStore } from '@/stores/comment'
 import { goBackOrClose } from '@/utils/iosBridge'
 
-import './picPostDetails.css'
+import './index.css'
 import likeImage from '@/assets/likepic.png'
 import disLikeImage from '@/assets/dislikepic.png'
 import commentMoreImage from '@/assets/postpiccommentreport.png'
@@ -45,12 +43,14 @@ export default function PicPostDetails() {
   const [showCommentReport, setShowCommentReport] = useState(false)
   const [reportCommentUserId, setReportCommentUserId] = useState(null)
 
-  const blockListKey = (currentUser?.blockList || []).join('|')
-  const comments = useMemo(() => getCommentsById(postId) || [], [getCommentsById, postId])
-
+  const comments = getCommentsById(postId) || []
   if (!post) {
     return (
       <div className="ppd-page">
+        <NavBar
+          showMore={post.userId !== currentUser.userId}
+          onMoreClick={() => setShowPostReport(true)}
+        />
         <div className="ppd-not-found">The post was not found.</div>
       </div>
     )
@@ -149,6 +149,10 @@ export default function PicPostDetails() {
 
   return (
     <div className="ppd-page">
+      <NavBar
+        showMore={post.userId !== currentUser.userId}
+        onMoreClick={() => setShowPostReport(true)}
+      />
       <div className="ppd-page-content">
         <div className="ppd-swipe-wrapper">
           {images.length ? (
@@ -170,11 +174,6 @@ export default function PicPostDetails() {
           ) : (
             <div className="ppd-swipe-empty" />
           )}
-
-          <div className="ppd-top-btn">
-            <BackButton />
-            {post.userId !== currentUser.userId ? <MoreButton onClick={() => setShowPostReport(true)} /> : <div />}
-          </div>
         </div>
 
         <div className="ppd-post-content">
@@ -185,7 +184,7 @@ export default function PicPostDetails() {
                   <div
                     className="ppd-avatar-img"
                     style={{
-                      backgroundImage: postUser?.avator ? `url(${postUser.avator})` : undefined,
+                      backgroundImage: postUser?.avatar ? `url(${postUser.avatar})` : undefined,
                     }}
                   />
                 </div>
@@ -231,7 +230,7 @@ export default function PicPostDetails() {
                         style={{
                           backgroundImage: (() => {
                             const u = getUserById(comment.userId)
-                            return u?.avator ? `url(${u.avator})` : undefined
+                            return u?.avatar ? `url(${u.avatar})` : undefined
                           })(),
                         }}
                       />

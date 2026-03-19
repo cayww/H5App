@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react'
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import { useOtherStore } from '@/stores/other'
 import { useUIStore } from '@/stores/ui'
 import { usePostStore } from '@/stores/post'

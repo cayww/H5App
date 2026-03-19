@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import Empty from '@/components/Empty.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
@@ -64,8 +64,8 @@ export default function Follow() {
                           className="follow-avatar-fallback"
                           style={{
                             background:
-                              item.avator && item.avator.startsWith('http')
-                                ? `url(${item.avator}) center/cover no-repeat`
+                              item.avatar && item.avatar.startsWith('http')
+                                ? `url(${item.avatar}) center/cover no-repeat`
                                 : undefined,
                           }}
                           aria-hidden="true"

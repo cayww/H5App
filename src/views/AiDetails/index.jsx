@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import CoinNotDialog from '@/components/CoinNotDialog.jsx'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUserStore } from '@/stores/currentUser'

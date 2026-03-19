@@ -1,8 +1,8 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
+import MoreButton from '@/components/MoreButton/index.jsx'
 import ReportDialog from '@/components/ReportDialog.jsx'
 
 import { useChatsStore } from '@/stores/chat'
@@ -47,7 +47,7 @@ export default function Chat() {
   const messages = useMemo(() => getMessagesByChatId(chatId) || [], [getMessagesByChatId, chatId, message])
 
   function getUserAvatar(userId) {
-    return getUserById(userId)?.avator || ''
+    return getUserById(userId)?.avatar || ''
   }
 
   function formatTime(timeStr) {
@@ -170,7 +170,7 @@ export default function Chat() {
               <div
                 className="chat-avatar"
                 style={{
-                  backgroundImage: otherUser?.avator ? `url(${otherUser.avator})` : undefined,
+                  backgroundImage: otherUser?.avatar ? `url(${otherUser.avatar})` : undefined,
                 }}
                 aria-hidden="true"
               />

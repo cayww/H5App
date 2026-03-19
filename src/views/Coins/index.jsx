@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 
-import BackButton from '@/components/BackButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
 import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { sendPaymentToIOS } from '@/utils/iosBridge'

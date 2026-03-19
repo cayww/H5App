@@ -1,0 +1,24 @@
+.nav-bar {
+    position: fixed;
+    top: calc(100vh * 56 / 812);
+    left: calc(100vw * 20 / 375);
+    right: calc(100vw * 20 / 375);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.nav-bar-placeholder {
+    width: calc(100vw * 24 / 375);
+    height: calc(100vw * 24 / 375);
+}
+
+.nav-bar-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-family: 'YesevaOne', sans-serif;
+    font-size: calc(100vw * 16 / 375);
+}

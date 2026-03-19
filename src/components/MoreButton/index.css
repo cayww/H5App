@@ -1,0 +1,23 @@
+.more-button {
+    width: calc(100vw * 40 / 375);
+    height: calc(100vw * 40 / 375);
+    /* border-radius: calc(100vw * 14 / 375); */
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 1);
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.more-button-icon {
+    width: calc(100vw * 22 / 375);
+    height: calc(100vw * 22 / 375);
+    background-image: url('@/assets/more.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: block;
+}

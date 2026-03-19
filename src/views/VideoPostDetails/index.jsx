@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Popup } from 'antd-mobile'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
+import BackButton from '@/components/BackButton/index.jsx'
+import MoreButton from '@/components/MoreButton/index.jsx'
 import ReportDialog from '@/components/ReportDialog.jsx'
 import Empty from '@/components/Empty.jsx'
 
@@ -188,7 +188,7 @@ export default function VideoPostDetails() {
                 <div
                   className="vpd-avatar-img"
                   style={{
-                    backgroundImage: postUser?.avator ? `url(${postUser.avator})` : undefined,
+                    backgroundImage: postUser?.avatar ? `url(${postUser.avatar})` : undefined,
                   }}
                 />
               </div>

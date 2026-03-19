@@ -26,7 +26,7 @@
 .ppd-swipe-wrapper {
   position: relative;
   height: calc(100vh * 379 / 812);
-  border-radius: 0 0 calc(100vw * 20 / 375) calc(100vw * 20 / 375);
+  /* border-radius: 0 0 calc(100vw * 20 / 375) calc(100vw * 20 / 375); */
   overflow: hidden;
 }
 
@@ -70,17 +70,6 @@
 .ppd-indicator.active {
   width: calc(100vw * 32 / 375);
   background: #fff;
-}
-
-.ppd-top-btn {
-  position: absolute;
-  top: calc(100vh * 56 / 812);
-  left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
 }
 
 .ppd-post-content {
@@ -160,6 +149,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
   text-align: left;
 }
