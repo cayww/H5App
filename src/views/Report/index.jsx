@@ -28,7 +28,6 @@ export default function Report() {
       ui.hideLoading()
       ui.showToast('Report successful')
 
-      // 这里目前不落库，保持与原 Vue 一致
       void selectedLabel
       void inputText
       goBackOrClose()

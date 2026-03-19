@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { useRoutes } from 'react-router-dom'
 import { SpinLoading } from 'antd-mobile'
-
+import "ress"
 import { routes } from '@/router.jsx'
 import { useUIStore } from '@/stores/uiStore.js'
 

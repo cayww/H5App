@@ -125,7 +125,7 @@ export default function AiDetails() {
                 marginBottom: 'calc(100vh * 20 / 812)',
               }}
             >
-              Luvie AI
+              Tenao AI
             </div>
             <div
               style={{

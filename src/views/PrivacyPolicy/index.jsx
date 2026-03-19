@@ -11,12 +11,12 @@ export default function PrivacyPolicy() {
       </div>
 
       <div className="agreement-content">
-        <h1>Luvie Privacy Policy</h1>
+        <h1>Tenao Privacy Policy</h1>
         <p className="update-time">Last updated: 2026</p>
 
         <p>
-          Welcome to <strong>Luvie</strong>. Your privacy is very important to us.
-          This Privacy Policy explains how Luvie collects, uses, and protects your information
+          Welcome to <strong>Tenao</strong>. Your privacy is very important to us.
+          This Privacy Policy explains how Tenao collects, uses, and protects your information
           when you use our application and services.
         </p>
 
@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
         <h2>2. How We Use Information</h2>
         <p>The information we collect may be used to:</p>
         <ul>
-          <li>Provide and improve Luvie services</li>
+          <li>Provide and improve Tenao services</li>
           <li>Personalize user experience</li>
           <li>Ensure platform safety and prevent fraud</li>
           <li>Process payments and virtual item purchases</li>
@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
 
         <h2>3. Information Sharing</h2>
         <p>
-          Luvie does not sell or rent your personal information. We may share information only in
+          Tenao does not sell or rent your personal information. We may share information only in
           the following situations:
         </p>
         <ul>
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
 
         <h2>6. Children&apos;s Privacy</h2>
         <p>
-          Luvie is not intended for individuals under the age required by applicable law. We do
+          Tenao is not intended for individuals under the age required by applicable law. We do
           not knowingly collect personal information from children.
         </p>
 
@@ -78,14 +78,14 @@ export default function PrivacyPolicy() {
 
         <h2>8. Changes to This Policy</h2>
         <p>
-          Luvie may update this Privacy Policy from time to time. Continued use of the service
+          Tenao may update this Privacy Policy from time to time. Continued use of the service
           after changes indicates acceptance of the updated policy.
         </p>
 
         <h2>9. Contact Us</h2>
         <p>
           If you have questions about this Privacy Policy, please contact us through the support
-          channel provided within the Luvie application.
+          channel provided within the Tenao application.
         </p>
       </div>
     </div>

@@ -46,7 +46,7 @@ export default function PicPostDetails() {
   const [reportCommentUserId, setReportCommentUserId] = useState(null)
 
   const blockListKey = (currentUser?.blockList || []).join('|')
-  const comments = useMemo(() => getCommentsById(postId) || [], [getCommentsById, postId, blockListKey])
+  const comments = useMemo(() => getCommentsById(postId) || [], [getCommentsById, postId])
 
   if (!post) {
     return (
