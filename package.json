@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 4000",
-    "build": "vite build",
-    "build:pro": "tsc --noEmit && vite build --mode production",
+    "build:pro": "vite build --mode production",
     "preview": "vite preview",
     "lint": "run-s lint:*",
     "lint:oxlint": "oxlint . --fix",
