@@ -86,7 +86,7 @@ export default function Edit() {
   }
 
   return (
-    <div className="edit-page" style={{ backgroundImage: `url(${pageBg})` }}>
+    <div className="edit-page" style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}>
       <div className="edit-top-header">
         <BackButton />
         <span className="edit-title">Edit</span>

@@ -25,7 +25,7 @@ export default function Coins() {
   }
 
   return (
-    <div className="coins-page" style={{ backgroundImage: `url(${pageBg})` }}>
+    <div className="coins-page" style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}>
       <div className="coins-top-header">
         <BackButton />
         <span className="coins-title">My diamonds</span>

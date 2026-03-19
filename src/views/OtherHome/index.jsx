@@ -123,7 +123,7 @@ export default function OtherHome() {
     !(currentUser.follow || []).includes(userId)
 
   return (
-    <div className="other-home-page" style={{ backgroundImage: `url(${pageBg})` }}>
+    <div className="other-home-page" style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}>
       <div
         className="other-home-avatar-bg"
         style={{

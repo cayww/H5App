@@ -4,7 +4,7 @@
     /* border-radius: calc(100vw * 14 / 375); */
     border-radius: 50%;
     background: #000;
-    border: none;
+    border: 1px solid #fff;
 
     display: flex;
     align-items: center;

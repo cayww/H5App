@@ -43,7 +43,7 @@ export default function Setting() {
   }
 
   return (
-    <div className="setting-page" style={{ backgroundImage: `url(${pageBg})` }}>
+    <div className="setting-page" style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}>
       <div className="setting-header">
         <BackButton />
         <h1 className="setting-title">Setting</h1>

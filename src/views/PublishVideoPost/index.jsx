@@ -110,7 +110,7 @@ export default function PublishVideoPost() {
         width: '100%',
         height: '100vh',
         backgroundColor: '#000',
-        backgroundImage: `url(${pageBg})`,
+        backgroundImage: `url(${pageBg}) no-repeat top center / cover`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
