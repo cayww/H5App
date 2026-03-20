@@ -1,11 +1,10 @@
 import React, { useRef, useState } from 'react'
-import BackButton from '@/components/BackButton/index.jsx'
 import { useUIStore } from '@/stores/ui'
 import { usePostStore } from '@/stores/post'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { uploadSingleImage, uploadVideo } from '@/utils/ossUpload'
 import { goBackOrClose } from '@/utils/iosBridge'
-
+import NavBar from '@/components/NavBar'
 import pageBg from '@/assets/pagebgc.png'
 import uploadIcon from '@/assets/uploadpic.png'
 
@@ -99,10 +98,7 @@ export default function PublishVideoPost() {
 
   return (
     <div className="publish" style={{ backgroundImage: `url(${pageBg})` }}>
-      <div className="publish-header">
-        <BackButton />
-      </div>
-
+      <NavBar />
       <div className="publish-scroll">
         <div className="publish-text-box">
           <textarea
