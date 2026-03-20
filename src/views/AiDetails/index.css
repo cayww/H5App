@@ -1,0 +1,135 @@
+.ai-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* 背景人物 */
+.ai-user-img {
+  position: absolute;
+  left: 20px;
+  top: calc(env(safe-area-inset-top) + calc(100vh * 20 / 812) + calc(100vw * 40 / 375));
+  width: calc(100vw * 183 / 375);
+  height: calc(100vh * 145 / 812);
+  background-size: cover;
+  background-position: center;
+}
+
+/* 右上角模型 */
+.ai-chat-img {
+  position: absolute;
+  right: 0;
+  top: calc(env(safe-area-inset-top) + calc(100vh * 20 / 812));
+  width: calc(100vw * 338 / 375);
+  height: calc(100vh * 343 / 812);
+  background-size: cover;
+  background-position: center;
+}
+
+.ai-content {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + calc(100vh * 24 / 812));
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* 底部卡片 */
+
+.ai-card {
+  border-radius: calc(100vw * 40 / 375) calc(100vw * 40 / 375) 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(100vh * 24 / 812);
+}
+
+/* 描述 */
+.ai-desc {
+  font-family: Archivo, sans-serif;
+  font-size: calc(100vw * 14 / 375);
+  line-height: calc(100vw * 24 / 375);
+  color: #000;
+  text-align: center;
+  margin: 0 calc(100vw * 20 / 375);
+
+  padding: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box;
+}
+
+/* 按钮 */
+.ai-btn {
+  margin-top: calc(100vh * 20 / 812);
+  width: calc(100vw * 281 / 375);
+  height: calc(100vh * 62 / 812);
+
+  border-radius: calc(100vw * 40 / 375);
+  border: 2px solid transparent;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: calc(100vw * 11 / 375);
+  cursor: pointer;
+}
+
+.ai-btn-left {
+  display: flex;
+  align-items: center;
+  gap: calc(100vw * 8 / 375);
+}
+
+.ai-coin {
+  width: calc(100vw * 38 / 375);
+  height: calc(100vw * 38 / 375);
+  background-size: cover;
+}
+
+.ai-btn-left span {
+  font-family: YesevaOne;
+  font-size: calc(100vw * 20 / 375);
+  color: #fff;
+  font-weight: 700;
+}
+
+.ai-btn-right {
+  color: #fff;
+  font-family: Archivo;
+  margin-left: 18px;
+  font-size: calc(100vw * 16 / 375);
+}
+
+/* 弹窗 */
+.ai-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}

@@ -223,7 +223,11 @@ export default function PublishVideoPost() {
                 style={{ display: 'none' }}
                 onChange={handleAddVideo}
               />
-              <img src={uploadIcon} alt="add" style={{ width: 'calc(100vw * 21 / 375)', height: 'calc(100vw * 21 / 375)' }} />
+              <img
+                src={uploadIcon}
+                alt="add"
+                style={{ width: 'calc(100vw * 21 / 375)', height: 'calc(100vw * 21 / 375)' }}
+              />
             </label>
           ) : (
             <div
@@ -241,7 +245,12 @@ export default function PublishVideoPost() {
               <img
                 src={videoFirstFrame}
                 alt="video preview"
-                style={{ width: '100%', height: '100%', borderRadius: 'inherit', objectFit: 'cover' }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 'inherit',
+                  objectFit: 'cover',
+                }}
               />
               <button
                 type="button"
@@ -299,4 +308,3 @@ export default function PublishVideoPost() {
     </div>
   )
 }
-

@@ -36,7 +36,10 @@ export default function PicPostDetails() {
 
   const postUser = useMemo(() => (post ? getUserById(post.userId) : null), [getUserById, post])
   const images = useMemo(() => (post?.dynamicPic || []).filter(Boolean), [post])
-  const postTag = useMemo(() => (post ? getTagByIndex(post.dynamicTitleType) : ''), [getTagByIndex, post])
+  const postTag = useMemo(
+    () => (post ? getTagByIndex(post.dynamicTitleType) : ''),
+    [getTagByIndex, post],
+  )
 
   const [commentInput, setCommentInput] = useState('')
   const [showPostReport, setShowPostReport] = useState(false)
@@ -44,6 +47,9 @@ export default function PicPostDetails() {
   const [reportCommentUserId, setReportCommentUserId] = useState(null)
 
   const comments = getCommentsById(postId) || []
+  const blockSet = new Set(currentUser?.blockList || [])
+  const filteredComments = comments.filter((item) => !blockSet.has(item.userId))
+
   if (!post) {
     return (
       <div className="ppd-page">
@@ -156,13 +162,16 @@ export default function PicPostDetails() {
       <div className="ppd-page-content">
         <div className="ppd-swipe-wrapper">
           {images.length ? (
-            <Swiper loop={false} indicator={(total, current) => (
-              <div className="ppd-indicator-wrapper">
-                {Array.from({ length: total }).map((_, i) => (
-                  <span key={i} className={`ppd-indicator ${i === current ? 'active' : ''}`} />
-                ))}
-              </div>
-            )}>
+            <Swiper
+              loop={false}
+              indicator={(total, current) => (
+                <div className="ppd-indicator-wrapper">
+                  {Array.from({ length: total }).map((_, i) => (
+                    <span key={i} className={`ppd-indicator ${i === current ? 'active' : ''}`} />
+                  ))}
+                </div>
+              )}
+            >
               {images.map((src, idx) => (
                 <Swiper.Item key={idx}>
                   <div className="ppd-swipe-item">
@@ -174,13 +183,22 @@ export default function PicPostDetails() {
           ) : (
             <div className="ppd-swipe-empty" />
           )}
+          <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
+            <img src={liked ? likeImage : disLikeImage} alt="like" className="ppd-like-icon-img" />
+            <div className="ppd-like-count">{likeCount}</div>
+          </div>
         </div>
 
         <div className="ppd-post-content">
           <div className="ppd-post-row">
             <div className="ppd-post-content-row">
               <div className="ppd-user-box">
-                <div className="ppd-avatar" onClick={() => goOtherHome(postUser?.userId)} role="button" tabIndex={0}>
+                <div
+                  className="ppd-avatar"
+                  onClick={() => goOtherHome(postUser?.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
                   <div
                     className="ppd-avatar-img"
                     style={{
@@ -188,11 +206,15 @@ export default function PicPostDetails() {
                     }}
                   />
                 </div>
-                <div className="ppd-user-name" onClick={() => goOtherHome(postUser?.userId)} role="button" tabIndex={0}>
+                <div
+                  className="ppd-user-name"
+                  onClick={() => goOtherHome(postUser?.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
                   {postUser?.name}
                 </div>
               </div>
-
               <div className="ppd-second-box">
                 <div className="ppd-post-desc">{post.dynamicDesc}</div>
                 <div className="ppd-tag-box">
@@ -200,30 +222,23 @@ export default function PicPostDetails() {
                 </div>
               </div>
             </div>
-
-            <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
-              <img
-                src={liked ? likeImage : disLikeImage}
-                alt="like"
-                className="ppd-like-icon-img"
-              />
-              <div className="ppd-like-count">{likeCount}</div>
-            </div>
           </div>
         </div>
 
-        <div className="ppd-comments-title">
-          <div className="ppd-comments-box1" />
-          <div className="ppd-comments-title-text">Comments</div>
-          <div className="ppd-comments-box2" />
-        </div>
+        <div className="ppd-comments-line" />
+        <div className="ppd-comments-title-text">Comments</div>
 
         <div className="ppd-comments-list">
           {comments.length ? (
-            comments.map((comment) => (
+            filteredComments.map((comment) => (
               <div key={comment.commentId} className="ppd-comment-item">
                 <div className="ppd-comment-list-top">
-                  <div className="ppd-comment-list-user" onClick={() => goOtherHome(comment.userId)} role="button" tabIndex={0}>
+                  <div
+                    className="ppd-comment-list-user"
+                    onClick={() => goOtherHome(comment.userId)}
+                    role="button"
+                    tabIndex={0}
+                  >
                     <div className="ppd-comment-avatar">
                       <div
                         className="ppd-comment-avatar-img"
@@ -270,9 +285,16 @@ export default function PicPostDetails() {
         </div>
       </div>
 
-      <ReportDialog open={showPostReport} onClose={() => setShowPostReport(false)} onSelect={postReportSelect} />
-      <ReportDialog open={showCommentReport} onClose={() => setShowCommentReport(false)} onSelect={commentReportSelect} />
+      <ReportDialog
+        open={showPostReport}
+        onClose={() => setShowPostReport(false)}
+        onSelect={postReportSelect}
+      />
+      <ReportDialog
+        open={showCommentReport}
+        onClose={() => setShowCommentReport(false)}
+        onSelect={commentReportSelect}
+      />
     </div>
   )
 }
-
