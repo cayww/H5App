@@ -19,7 +19,6 @@ const PublishPicPost = lazy(() => import('@/views/PublishPicPost/index.jsx'))
 const PublishVideoPost = lazy(() => import('@/views/PublishVideoPost/index.jsx'))
 const AiDetails = lazy(() => import('@/views/AiDetails/index.jsx'))
 const AiChat = lazy(() => import('@/views/AiChat/index.jsx'))
-const CallVideo = lazy(() => import('@/views/CallVideo/index.jsx'))
 export const routes = [
   { path: '/', element: <Home /> },
 
@@ -29,7 +28,6 @@ export const routes = [
   { path: '/publishVideoPost', element: <PublishVideoPost /> },
 
   { path: '/chat/:chatId', element: <Chat /> },
-  { path: '/callVideo/:userId', element: <CallVideo /> },
   { path: '/otherHome/:userId', element: <OtherHome /> },
   { path: '/report', element: <Report /> },
 

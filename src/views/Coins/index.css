@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: #000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,42 +9,32 @@
   box-sizing: border-box;
 }
 
-.coins-top-header {
-  display: flex;
-  align-items: center;
-  gap: calc(100vw * 16 / 375);
-  padding: calc(100vh * 58 / 812) calc(100vw * 20 / 375) 0;
-}
-
 .coins-title {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  flex: 1;
+  align-items: start;
+  color: rgba(36, 24, 24, 1);
+  margin-left: calc(100vw * 16 / 375);
 }
 
 .coins-box {
   width: auto;
-  height: calc(100vh * 103 / 812);
+  height: calc(100vh * 98 / 812);
   border-radius: calc(100vw * 20 / 375);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin: calc(100vh * 20 / 812) calc(100vw * 20 / 375) 0;
+  margin: 0 calc(100vw * 20 / 375);
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   gap: calc(100vh * 10 / 812);
   padding-left: calc(100vw * 13 / 375);
   box-sizing: border-box;
+  margin-top: calc(env(safe-area-inset-top) + calc(100vh * 25 / 812) + calc(100vw * 40 / 375));
 }
 
 .coins-box-header {
@@ -53,33 +42,29 @@
   font-size: calc(100vw * 18 / 375);
   font-weight: 400;
   line-height: calc(100vw * 20.79 / 375);
-  color: rgba(74, 32, 25, 1);
+  color: #000;
 }
 
 .coins-box-content {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  border-radius: calc(100vw * 40 / 375);
-  background: rgba(74, 32, 25, 1);
-  border: calc(100vw * 2 / 375) solid rgba(201, 255, 221, 1);
-  padding: calc(100vh * 10 / 812) calc(100vw * 22 / 375);
-  gap: calc(100vw * 8 / 375);
+  gap: calc(100vw * 6 / 375);
   width: fit-content;
   max-width: 100%;
 }
 
 .coins-icon-img {
-  width: calc(100vw * 20 / 375);
-  height: calc(100vh * 24 / 812);
+  width: calc(100vw * 38 / 375);
+  height: calc(100vw * 38 / 375);
 }
 
 .coins-bgc {
   position: absolute;
-  top: calc(100vh * 16 / 812);
-  right: calc(100vh * 27 / 812);
-  width: calc(100vw * 167 / 375);
-  height: calc(100vh * 297 / 812);
+  top: 0;
+  right: calc(100vh * 7 / 812);
+  width: calc(100vw * 127 / 375);
+  height: calc(100vh * 99 / 812);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -88,14 +73,14 @@
 
 .coins-number {
   font-family: 'Archivo', sans-serif;
-  font-size: calc(100vw * 16 / 375);
+  font-size: calc(100vw * 22 / 375);
   font-weight: 400;
   line-height: calc(100vw * 17.41 / 375);
-  color: #fff;
+  color: rgba(36, 24, 24, 1);
 }
 
 .coins-list-wrap {
-  height: calc(100% - calc(100vh * 285 / 812));
+  height: calc(100% - calc(100vh * 350 / 812));
   margin-top: calc(100vh * 30 / 812);
   padding: 0 calc(100vw * 20 / 375) calc(100vh * 34 / 812);
   overflow-y: auto;
@@ -110,20 +95,21 @@
 
 .coins-item {
   height: calc(100vh * 64 / 812);
-  border-radius: calc(100vw * 20 / 375);
-  background: #fff;
-  box-shadow: 0 calc(100vw * 2 / 375) calc(100vw * 4 / 375) rgba(0, 0, 0, 0.06);
+  border-radius: calc(100vw * 16 / 375);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%) padding-box,
+    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 calc(100vw * 10 / 375);
   box-sizing: border-box;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .coins-item-selected {
-  background: rgba(255, 159, 142, 1);
-  border: calc(100vw * 2 / 375) solid rgba(201, 255, 221, 1);
+  background: linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%);
 }
 
 .coins-left {
@@ -133,8 +119,8 @@
 }
 
 .coins-item-icon-img {
-  width: calc(100vw * 28 / 375);
-  height: calc(100vh * 34 / 812);
+  width: calc(100vw * 38 / 375);
+  height: calc(100vw * 38 / 375);
 }
 
 .coins-count {
@@ -146,7 +132,7 @@
 }
 
 .coins-count-selected {
-  color: #fff;
+  color: #000;
 }
 
 .coins-right {
@@ -154,35 +140,54 @@
   align-items: center;
   gap: calc(100vw * 10 / 375);
 }
+.coins-recharge-wrap {
+  margin: calc(100vh * 143 / 812) 0 calc(100vh * 34 / 812);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.coins-recharge-btn {
+  width: calc(100vw * 229 / 375);
+  height: calc(100vh * 62 / 812);
+  border-radius: calc(100vw * 40 / 375);
+  background:
+    linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%) padding-box,
+    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 400;
+  line-height: calc(100vw * 23.1 / 375);
+  color: #fff;
+  border: 2px solid transparent;
+}
 
 .coins-price {
   font-family: 'Archivo', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
   line-height: calc(100vw * 15.23 / 375);
-  color: rgba(105, 71, 65, 1);
+  color: #000;
 }
 
 .coins-price-selected {
-  color: #fff;
+  color: #000;
 }
 
 .coins-radio {
   width: calc(100vw * 15 / 375);
   height: calc(100vw * 15 / 375);
   border-radius: 50%;
-  background: rgba(105, 71, 65, 1);
+  background: rgba(0, 0, 0, 1);
 }
 
 .coins-radio-selected {
-  width: calc(100vw * 14 / 375);
-  height: calc(100vw * 14 / 375);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
+  width: calc(100vw * 15 / 375);
+  height: calc(100vw * 15 / 375);
+  background: rgba(252, 71, 178, 1);
   border: calc(100vw * 1 / 375) solid #fff;
 }

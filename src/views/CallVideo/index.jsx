@@ -32,24 +32,18 @@ export default function VideoCall({ userId, onHangup }) {
       }}
     >
       <div className="bg-gradient" />
-
       {/* Avatar */}
       <div className="avatar-outer">
         <div className="avatar-inner">
           <img src={userInfo?.avatar} alt="avatar" />
         </div>
       </div>
-
-      {/* Bottom Panel */}
       <div className="call-panel">
-        <div className="call-left">
-          <div className="user-name">{userInfo?.name}</div>
-          <div className="calling-text">{callingText}</div>
-        </div>
-
-        <div className="hangup-btn" onClick={handleHangup}>
-          <img src={hangupIcon} alt="hangup" />
-        </div>
+        <div className="user-name">{userInfo?.name}</div>
+        <div className="calling-text">{callingText}</div>
+      </div>
+      <div className="hangup-btn" onClick={handleHangup}>
+        <img src={hangupIcon} alt="hangup" />
       </div>
     </div>
   )

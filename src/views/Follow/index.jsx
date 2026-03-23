@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 
-import BackButton from '@/components/BackButton/index.jsx'
+import NavBar from '@/components/NavBar'
 import Empty from '@/components/Empty.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
 import { useUIStore } from '@/stores/ui'
 
-import './follow.css'
+import './index.css'
 
 export default function Follow() {
   const currentUser = useCurrentUserStore((s) => s.currentUser)
@@ -46,10 +46,9 @@ export default function Follow() {
 
   return (
     <div className="follow-page">
-      <div className="follow-top-header">
-        <BackButton />
-        <span className="follow-title">Follow</span>
-      </div>
+      <NavBar>
+        <h1 className="follow-title">Follow</h1>
+      </NavBar>
 
       <div className="follow-container">
         {follows.length > 0 ? (
@@ -77,8 +76,13 @@ export default function Follow() {
                   <div className="follow-user-intro">{item.about}</div>
                 </div>
 
-                <div className="follow-right" onClick={() => cancelFollow(item.userId)} role="button" tabIndex={0}>
-                  Cancel
+                <div
+                  className="follow-right"
+                  onClick={() => cancelFollow(item.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  Remove
                 </div>
               </div>
             ))}
@@ -92,4 +96,3 @@ export default function Follow() {
     </div>
   )
 }
-

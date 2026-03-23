@@ -11,10 +11,7 @@ export default function BackButton({ className = '', style }) {
       onClick={goBackOrClose}
       aria-label="Back"
     >
-      <span
-        className="back-button-icon"
-        aria-hidden="true"
-      />
+      <span className="back-button-icon" aria-hidden="true" />
     </button>
   )
 }

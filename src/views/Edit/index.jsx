@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import BackButton from '@/components/BackButton/index.jsx'
+import NavBar from '@/components/NavBar'
 import { goBackOrClose } from '@/utils/iosBridge'
 import { uploadSingleImage } from '@/utils/ossUpload'
 import { useCurrentUserStore } from '@/stores/currentUser'
@@ -10,7 +10,7 @@ import pageBg from '@/assets/pagebgc.png'
 import avatarIcon from '@/assets/avataricon.png'
 import cameraIcon from '@/assets/cameraicon.png'
 
-import './edit.css'
+import './index.css'
 
 export default function Edit() {
   const fileInputRef = useRef(null)
@@ -86,12 +86,13 @@ export default function Edit() {
   }
 
   return (
-    <div className="edit-page" style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}>
-      <div className="edit-top-header">
-        <BackButton />
-        <span className="edit-title">Edit</span>
-      </div>
-
+    <div
+      className="edit-page"
+      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
+    >
+      <NavBar>
+        <h1 className="edit-title">Edit</h1>
+      </NavBar>
       <div className="edit-content">
         <div className="edit-top">
           <div
@@ -106,7 +107,11 @@ export default function Edit() {
             tabIndex={0}
           >
             <div className="edit-camera-corner" aria-hidden="true">
-              <img src={cameraIcon} alt="camera" style={{ width: 'calc(100vw * 14 / 375)', height: 'calc(100vw * 14 / 375)' }} />
+              <img
+                src={cameraIcon}
+                alt="camera"
+                style={{ width: 'calc(100vw * 14 / 375)', height: 'calc(100vw * 14 / 375)' }}
+              />
             </div>
           </div>
         </div>
@@ -123,7 +128,11 @@ export default function Edit() {
           <div className="edit-section">
             <div className="edit-label">Name</div>
             <div className="edit-input-box">
-              <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Please enter" />
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Please enter"
+              />
             </div>
           </div>
         </div>
@@ -132,7 +141,11 @@ export default function Edit() {
           <div className="edit-section">
             <div className="edit-label">About me</div>
             <div className="edit-input-box edit-about-me-box">
-              <textarea value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder="Please enter" />
+              <textarea
+                value={aboutMe}
+                onChange={(e) => setAboutMe(e.target.value)}
+                placeholder="Please enter"
+              />
             </div>
           </div>
         </div>
@@ -146,4 +159,3 @@ export default function Edit() {
     </div>
   )
 }
-

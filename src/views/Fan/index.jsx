@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 
-import BackButton from '@/components/BackButton/index.jsx'
+import NavBar from '@/components/NavBar'
 import Empty from '@/components/Empty.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
 import { useUIStore } from '@/stores/ui'
 
-import './fan.css'
+import './index.css'
 
 export default function Fan() {
   const currentUser = useCurrentUserStore((s) => s.currentUser)
@@ -49,10 +49,9 @@ export default function Fan() {
 
   return (
     <div className="fan-page">
-      <div className="fan-top-header">
-        <BackButton />
-        <span className="fan-title">Fans</span>
-      </div>
+      <NavBar>
+        <h1 className="fan-title">Fans</h1>
+      </NavBar>
 
       <div className="fan-container">
         {fans.length > 0 ? (
@@ -79,8 +78,12 @@ export default function Fan() {
                   </div>
                   <div className="fan-user-intro">{item.about}</div>
                 </div>
-
-                <div className="fan-right" onClick={() => addFollow(item.userId)} role="button" tabIndex={0}>
+                <div
+                  className="fan-right"
+                  onClick={() => addFollow(item.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
                   Follow
                 </div>
               </div>
@@ -95,4 +98,3 @@ export default function Fan() {
     </div>
   )
 }
-

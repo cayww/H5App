@@ -5,10 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   background-size: cover;
   background-position: center;
   overflow: hidden;
+  gap: calc(100vh * 20 / 812);
 }
 
 .video-call > *:not(.bg-gradient) {
@@ -19,35 +19,30 @@
 .bg-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(255, 159, 142, 1) 0%, rgba(255, 255, 255, 0) 99.84%);
+  background: linear-gradient(0deg, rgba(48, 234, 255, 1) 0.47%, rgba(255, 132, 123, 0) 100%);
   z-index: 0;
 }
 
 /* Avatar */
 .avatar-outer {
-  margin-top: calc(100vh * 257 / 812);
-  width: calc(100vw * 166 / 375);
-  height: calc(100vw * 166 / 375);
-  border-radius: calc(100vw * 50 / 375);
-  background: rgba(255, 255, 255, 0.3);
+  margin-top: calc(100vh * 406 / 812);
+  width: calc(100vw * 104 / 375);
+  height: calc(100vw * 104 / 375);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .avatar-inner {
-  width: calc(100vw * 144 / 375);
-  height: calc(100vw * 144 / 375);
-  border-radius: calc(100vw * 40 / 375);
-  padding: calc(100vw * 3 / 375);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
+  width: calc(100vw * 104 / 375);
+  height: calc(100vw * 104 / 375);
+  border-radius: 50%;
+  background:
+    linear-gradient(rgba(255, 159, 142, 0) 0%, rgba(157, 255, 255, 0) 100%) padding-box,
+    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
   box-sizing: border-box;
+  border: 4px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,34 +58,20 @@
 
 /* Bottom panel */
 .call-panel {
-  position: absolute;
-  bottom: calc(100vh * 40 / 812);
-  width: calc(100% - (calc(100vw * 50 / 375)));
-  height: calc(100vh * 80 / 812);
-  border-radius: calc(100vw * 40 / 375);
-  background: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 calc(100vw * 20 / 375);
-  box-sizing: border-box;
-}
-
-.call-left {
-  display: flex;
   flex-direction: column;
-  gap: calc(100vh * 10 / 812);
+  gap: 10px;
+  color: rgba(36, 24, 24, 1);
 }
 
 .user-name {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 20 / 375);
-  color: rgba(74, 32, 25, 1);
 }
 
 .calling-text {
   font-size: calc(100vw * 14 / 375);
-  color: rgba(74, 32, 25, 1);
 }
 
 .hangup-btn {
@@ -101,6 +82,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: calc(100vh * 15 / 812);
 }
 
 .hangup-btn img {

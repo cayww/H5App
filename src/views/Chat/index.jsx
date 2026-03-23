@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import BackButton from '@/components/BackButton/index.jsx'
 import ReportDialog from '@/components/ReportDialog/index.jsx'
 import NavBar from '@/components/NavBar'
+import CallVideo from '@/views/CallVideo'
 import { useChatsStore } from '@/stores/chat'
 import { useUserStore } from '@/stores/user'
 import { useMessagesStore } from '@/stores/message'
@@ -38,7 +39,7 @@ export default function Chat() {
   )
 
   const currentUserId = currentUser?.userId
-
+  const [showCall, setShowCall] = useState(false)
   const [inputText, setInputText] = useState('')
   const [showReport, setShowReport] = useState(false)
   const fileInputRef = useRef(null)
@@ -203,11 +204,7 @@ export default function Chat() {
                 style={{ display: 'none' }}
                 onChange={handleImageChange}
               />
-              <button
-                type="button"
-                className="chat-icon-btn"
-                onClick={() => nav(`/callVideo/${otherUser?.userId}`)}
-              >
+              <button type="button" className="chat-icon-btn" onClick={() => setShowCall(true)}>
                 <img src={videoIcon} alt="video" />
               </button>
             </div>
@@ -263,6 +260,11 @@ export default function Chat() {
         onClose={() => setShowReport(false)}
         onSelect={reportSelect}
       />
+      {showCall && (
+        <div className={`call-wrapper ${showCall ? 'show' : ''}`}>
+          <CallVideo userId={otherUser?.userId} onHangup={() => setShowCall(false)} />
+        </div>
+      )}
     </div>
   )
 }
