@@ -206,7 +206,7 @@ export default function Chat() {
               <button
                 type="button"
                 className="chat-icon-btn"
-                onClick={() => ui.showToast('VideoCall (todo)')}
+                onClick={() => nav(`/callVideo/${otherUser?.userId}`)}
               >
                 <img src={videoIcon} alt="video" />
               </button>
