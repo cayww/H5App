@@ -1,9 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-
-import BackButton from '@/components/BackButton/index.jsx'
-import MoreButton from '@/components/MoreButton/index.jsx'
-import ReportDialog from '@/components/ReportDialog.jsx'
+import NavBar from '@/components/NavBar'
+import ReportDialog from '@/components/ReportDialog/index.jsx'
 import Empty from '@/components/Empty.jsx'
 
 import { useUserStore } from '@/stores/user'
@@ -14,7 +12,7 @@ import { useUIStore } from '@/stores/ui'
 import { useChatsStore } from '@/stores/chat'
 import { goBackOrClose } from '@/utils/iosBridge'
 
-import './otherHome.css'
+import './index.css'
 import pageBg from '@/assets/pagebgc.png'
 import followIcon from '@/assets/follow.png'
 import chatIcon from '@/assets/chaticon.png'
@@ -118,19 +116,22 @@ export default function OtherHome() {
   }
 
   const canFollow =
-    userId &&
-    userId !== currentUser.userId &&
-    !(currentUser.follow || []).includes(userId)
+    userId && userId !== currentUser.userId && !(currentUser.follow || []).includes(userId)
 
   return (
-    <div className="other-home-page" style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}>
+    <div
+      className="other-home-page"
+      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
+    >
+      <NavBar showMore={userId !== currentUser.userId} onMoreClick={() => setShowReport(true)} />
+      {/* 
       <div
         className="other-home-avatar-bg"
         style={{
           backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.14)), url(${profile.avatar || ''})`,
         }}
-      />
-
+      /> 
+      */}
       <div className="other-home-scroll">
         <div className="other-home-top">
           <div
@@ -140,7 +141,12 @@ export default function OtherHome() {
             }}
           >
             {canFollow ? (
-              <div className="other-home-follow-btn" onClick={handleFollow} role="button" tabIndex={0}>
+              <div
+                className="other-home-follow-btn"
+                onClick={handleFollow}
+                role="button"
+                tabIndex={0}
+              >
                 <img src={followIcon} alt="follow" />
               </div>
             ) : null}
@@ -207,7 +213,9 @@ export default function OtherHome() {
                 <div
                   className="other-home-post-image"
                   style={{
-                    backgroundImage: post.dynamicPic?.[0] ? `url(${post.dynamicPic[0]})` : undefined,
+                    backgroundImage: post.dynamicPic?.[0]
+                      ? `url(${post.dynamicPic[0]})`
+                      : undefined,
                   }}
                 >
                   <div className="other-home-post-overlay">
@@ -222,7 +230,7 @@ export default function OtherHome() {
                   </div>
                 </div>
 
-                <div className="other-home-post-type"># {getTagByIndex(post.dynamicTitleType)}</div>
+                <div className="other-home-post-type">{post.dynamicDesc}</div>
               </div>
             ))
           ) : (
@@ -231,13 +239,11 @@ export default function OtherHome() {
         </div>
       </div>
 
-      <div className="other-home-top-btn">
-        <BackButton />
-        {userId !== currentUser.userId ? <MoreButton onClick={() => setShowReport(true)} /> : <div />}
-      </div>
-
-      <ReportDialog open={showReport} onClose={() => setShowReport(false)} onSelect={reportSelect} />
+      <ReportDialog
+        open={showReport}
+        onClose={() => setShowReport(false)}
+        onSelect={reportSelect}
+      />
     </div>
   )
 }
-

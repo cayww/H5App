@@ -1,11 +1,10 @@
 import React, { useMemo, useState } from 'react'
-
-import BackButton from '@/components/BackButton/index.jsx'
+import NavBar from '@/components/NavBar'
 import { useOtherStore } from '@/stores/other'
 import { useUIStore } from '@/stores/ui'
 import { goBackOrClose } from '@/utils/iosBridge'
-
-import './report.css'
+import pageBg from '@/assets/pagebgc.png'
+import './index.css'
 
 export default function Report() {
   const reportContent = useOtherStore((s) => s.other?.reportContent || [])
@@ -35,11 +34,11 @@ export default function Report() {
   }
 
   return (
-    <div className="report-page">
-      <div className="report-back">
-        <BackButton />
-      </div>
-
+    <div
+      className="report-page"
+      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
+    >
+      <NavBar />
       <div className="report-content-wrap">
         <div className="report-grid">
           {reportContent.map((item, index) => (
@@ -77,4 +76,3 @@ export default function Report() {
     </div>
   )
 }
-

@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import BackButton from '@/components/BackButton/index.jsx'
 import MoreButton from '@/components/MoreButton/index.jsx'
-import ReportDialog from '@/components/ReportDialog.jsx'
-
+import ReportDialog from '@/components/ReportDialog/index.jsx'
+import NavBar from '@/components/NavBar'
 import { useChatsStore } from '@/stores/chat'
 import { useUserStore } from '@/stores/user'
 import { useMessagesStore } from '@/stores/message'
@@ -12,8 +12,8 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { uploadSingleImage } from '@/utils/ossUpload'
 import { goBackOrClose } from '@/utils/iosBridge'
-
-import './chat.css'
+import pageBg from '@/assets/pagebgc.png'
+import './index.css'
 import picIcon from '@/assets/chatpicicon.png'
 import videoIcon from '@/assets/chatvideoicon.png'
 import sendIcon from '@/assets/commentsend.png'
@@ -44,7 +44,10 @@ export default function Chat() {
   const [showReport, setShowReport] = useState(false)
   const fileInputRef = useRef(null)
 
-  const messages = useMemo(() => getMessagesByChatId(chatId) || [], [getMessagesByChatId, chatId, message])
+  const messages = useMemo(
+    () => getMessagesByChatId(chatId) || [],
+    [getMessagesByChatId, chatId, message],
+  )
 
   function getUserAvatar(userId) {
     return getUserById(userId)?.avatar || ''
@@ -149,7 +152,10 @@ export default function Chat() {
 
   if (!currentChat) {
     return (
-      <div className="chat-page">
+      <div
+        className="chat-page"
+        style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
+      >
         <div className="chat-top-content">
           <BackButton />
           <div className="chat-username">Chat not found</div>
@@ -159,14 +165,22 @@ export default function Chat() {
   }
 
   return (
-    <div className="chat-page">
-      <div className="chat-top-background" />
-
-      <div className="chat-content-wrap">
+    <div
+      className="chat-page"
+      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
+    >
+      <NavBar
+        showMore={otherUser.userId !== currentUser.userId}
+        onMoreClick={() => setShowReport(true)}
+      >
         <div className="chat-top-content">
           <div className="chat-left-part">
-            <BackButton />
-            <div className="chat-user-info" onClick={() => goOtherHome(otherUser?.userId)} role="button" tabIndex={0}>
+            <div
+              className="chat-user-info"
+              onClick={() => goOtherHome(otherUser?.userId)}
+              role="button"
+              tabIndex={0}
+            >
               <div
                 className="chat-avatar"
                 style={{
@@ -183,57 +197,73 @@ export default function Chat() {
               <button type="button" className="chat-icon-btn" onClick={selectImage}>
                 <img src={picIcon} alt="image" />
               </button>
-              <input ref={fileInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />
-              <button type="button" className="chat-icon-btn" onClick={() => ui.showToast('VideoCall (todo)')}>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                style={{ display: 'none' }}
+                onChange={handleImageChange}
+              />
+              <button
+                type="button"
+                className="chat-icon-btn"
+                onClick={() => ui.showToast('VideoCall (todo)')}
+              >
                 <img src={videoIcon} alt="video" />
               </button>
             </div>
-            <MoreButton onClick={() => setShowReport(true)} />
           </div>
         </div>
+      </NavBar>
+      <div className="chat-messages">
+        {messages.map((msg) => {
+          const own = msg.userId === currentUserId
+          return (
+            <div key={msg.msgId} className={`chat-item ${own ? 'own-message' : ''}`}>
+              <div
+                className="chat-msg-avatar"
+                onClick={() => goOtherHome(msg.userId)}
+                role="button"
+                tabIndex={0}
+                style={{
+                  backgroundImage: getUserAvatar(msg.userId)
+                    ? `url(${getUserAvatar(msg.userId)})`
+                    : undefined,
+                }}
+              />
 
-        <div className="chat-messages">
-          {messages.map((msg) => {
-            const own = msg.userId === currentUserId
-            return (
-              <div key={msg.msgId} className={`chat-item ${own ? 'own-message' : ''}`}>
-                <div
-                  className="chat-msg-avatar"
-                  onClick={() => goOtherHome(msg.userId)}
-                  role="button"
-                  tabIndex={0}
-                  style={{
-                    backgroundImage: getUserAvatar(msg.userId) ? `url(${getUserAvatar(msg.userId)})` : undefined,
-                  }}
-                />
-
-                <div className="chat-right">
-                  {own && msg.sendPicUrl ? (
-                    <div className="chat-message-image">
-                      <div className="image-container">
-                        <img src={msg.sendPicUrl} alt="send" />
-                      </div>
+              <div className="chat-right">
+                {own && msg.sendPicUrl ? (
+                  <div className="chat-message-image">
+                    <div className="image-container">
+                      <img src={msg.sendPicUrl} alt="send" />
                     </div>
-                  ) : (
-                    <div className="chat-message">{msg.sendContent}</div>
-                  )}
-                  <div className="chat-time">{formatTime(msg.sendTime)}</div>
-                </div>
+                  </div>
+                ) : (
+                  <div className="chat-message">{msg.sendContent}</div>
+                )}
+                <div className="chat-time">{formatTime(msg.sendTime)}</div>
               </div>
-            )
-          })}
-        </div>
+            </div>
+          )
+        })}
       </div>
-
       <div className="chat-bottom-input">
-        <input value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Say something" />
+        <input
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="Say something"
+        />
         <button type="button" className="chat-send-btn" onClick={sendMessage}>
           <img src={sendIcon} alt="send" />
         </button>
       </div>
 
-      <ReportDialog open={showReport} onClose={() => setShowReport(false)} onSelect={reportSelect} />
+      <ReportDialog
+        open={showReport}
+        onClose={() => setShowReport(false)}
+        onSelect={reportSelect}
+      />
     </div>
   )
 }
-

@@ -174,7 +174,7 @@
   cursor: pointer;
   bottom: 10px;
   right: 10px;
-  padding:6px 10px;
+  padding: 6px 10px;
   background: #000;
   border-radius: 12px;
 }
@@ -209,7 +209,6 @@
   margin-left: 20px;
   margin-bottom: 16px;
 }
-
 
 .ppd-comments-list {
   padding: 0 20px 100px;
@@ -338,4 +337,3 @@
   width: 77%;
   height: 77%;
 }
-

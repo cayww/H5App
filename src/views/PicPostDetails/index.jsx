@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Swiper } from 'antd-mobile'
 
-import ReportDialog from '@/components/ReportDialog.jsx'
+import ReportDialog from '@/components/ReportDialog/index.jsx'
 import Empty from '@/components/Empty.jsx'
 import NavBar from '@/components/NavBar'
 import { usePostStore } from '@/stores/post'
