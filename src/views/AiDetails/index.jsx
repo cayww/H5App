@@ -47,7 +47,7 @@ export default function AiDetails() {
       <div className="ai-content">
         <div className="ai-card">
           <div className="ai-desc">
-            Hello! I’m Tenao AI, your yoga companion, here to guide you on your journey toward
+            Hello! I’m Saze AI, your yoga companion, here to guide you on your journey toward
             mind-body balance and strength. Whether you enjoy gentle flows, challenging poses, or
             deep stretches, I’m here to share tips, plan sessions, and keep your yoga practice fun
             and motivating. Ready to relax, find your center, and grow stronger in both body and

@@ -10,34 +10,34 @@ export default function UserAgreement() {
       </NavBar>
 
       <div className="agreement-content">
-        <h1>Tenao User Agreement</h1>
+        <h1>Saze User Agreement</h1>
         <p className="update-time">Last updated: 2026</p>
 
         <p>
-          Welcome to <strong>Tenao</strong>. Please read this User Agreement carefully before using
-          the Tenao application and services. By accessing or using the service, you agree to be
+          Welcome to <strong>Saze</strong>. Please read this User Agreement carefully before using
+          the Saze application and services. By accessing or using the service, you agree to be
           bound by this agreement.
         </p>
 
         <h2>1. Acceptance of Terms</h2>
         <p>
-          By creating an account or using Tenao, you confirm that you have read, understood, and
+          By creating an account or using Saze, you confirm that you have read, understood, and
           agreed to comply with this User Agreement and all applicable laws.
         </p>
 
         <h2>2. Description of Services</h2>
         <p>
-          Tenao provides online social interaction services including but not limited to messaging,
+          Saze provides online social interaction services including but not limited to messaging,
           video interaction, profile creation, and virtual item purchases.
         </p>
         <p>
-          Tenao reserves the right to modify, suspend, or discontinue any part of the services at
-          any time without prior notice.
+          Saze reserves the right to modify, suspend, or discontinue any part of the services at any
+          time without prior notice.
         </p>
 
         <h2>3. User Accounts</h2>
         <p>
-          You may be required to create an account to access certain features of Tenao. You agree to
+          You may be required to create an account to access certain features of Saze. You agree to
           provide accurate and complete information and keep your account credentials secure.
         </p>
         <p>You are responsible for all activities that occur under your account.</p>
@@ -53,7 +53,7 @@ export default function UserAgreement() {
 
         <h2>5. Virtual Items and Purchases</h2>
         <p>
-          Tenao may offer virtual items such as diamonds or coins which can be used within the
+          Saze may offer virtual items such as diamonds or coins which can be used within the
           platform. These items have no real-world monetary value and cannot be redeemed for cash.
         </p>
         <p>All purchases are final unless required otherwise by applicable law.</p>
@@ -66,19 +66,19 @@ export default function UserAgreement() {
 
         <h2>7. Termination</h2>
         <p>
-          Tenao reserves the right to suspend or terminate your account if you violate this
-          agreement or engage in harmful activities.
+          Saze reserves the right to suspend or terminate your account if you violate this agreement
+          or engage in harmful activities.
         </p>
 
         <h2>8. Disclaimer</h2>
         <p>
-          The Tenao service is provided on an &quot;as is&quot; and &quot;as available&quot; basis
+          The Saze service is provided on an &quot;as is&quot; and &quot;as available&quot; basis
           without warranties of any kind.
         </p>
 
         <h2>9. Changes to This Agreement</h2>
         <p>
-          Tenao may update this agreement from time to time. Continued use of the service after
+          Saze may update this agreement from time to time. Continued use of the service after
           changes indicates acceptance of the updated terms.
         </p>
 
