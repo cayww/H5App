@@ -2,7 +2,6 @@ import React, { useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import BackButton from '@/components/BackButton/index.jsx'
-import MoreButton from '@/components/MoreButton/index.jsx'
 import ReportDialog from '@/components/ReportDialog/index.jsx'
 import NavBar from '@/components/NavBar'
 import { useChatsStore } from '@/stores/chat'
