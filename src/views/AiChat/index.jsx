@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import BackButton from '@/components/BackButton/index.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { aiChat } from '@/utils/ai'
