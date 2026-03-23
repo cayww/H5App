@@ -1,23 +1,21 @@
 import React from 'react'
-import BackButton from '@/components/BackButton/index.jsx'
-import './agreement.css'
+import NavBar from '@/components/NavBar'
+import './index.css'
 
 export default function PrivacyPolicy() {
   return (
     <div className="agreement-page">
-      <div className="agreement-header">
-        <BackButton />
-        <div className="agreement-title">Privacy Policy</div>
-      </div>
-
+      <NavBar>
+        <h1 className="agreement-title">Privacy Policy</h1>
+      </NavBar>
       <div className="agreement-content">
         <h1>Tenao Privacy Policy</h1>
         <p className="update-time">Last updated: 2026</p>
 
         <p>
-          Welcome to <strong>Tenao</strong>. Your privacy is very important to us.
-          This Privacy Policy explains how Tenao collects, uses, and protects your information
-          when you use our application and services.
+          Welcome to <strong>Tenao</strong>. Your privacy is very important to us. This Privacy
+          Policy explains how Tenao collects, uses, and protects your information when you use our
+          application and services.
         </p>
 
         <h2>1. Information We Collect</h2>
@@ -52,8 +50,8 @@ export default function PrivacyPolicy() {
 
         <h2>4. Data Security</h2>
         <p>
-          We implement reasonable technical and organizational measures to protect your
-          information from unauthorized access, alteration, disclosure, or destruction.
+          We implement reasonable technical and organizational measures to protect your information
+          from unauthorized access, alteration, disclosure, or destruction.
         </p>
 
         <h2>5. Data Retention</h2>
@@ -64,8 +62,8 @@ export default function PrivacyPolicy() {
 
         <h2>6. Children&apos;s Privacy</h2>
         <p>
-          Tenao is not intended for individuals under the age required by applicable law. We do
-          not knowingly collect personal information from children.
+          Tenao is not intended for individuals under the age required by applicable law. We do not
+          knowingly collect personal information from children.
         </p>
 
         <h2>7. User Rights</h2>
@@ -78,8 +76,8 @@ export default function PrivacyPolicy() {
 
         <h2>8. Changes to This Policy</h2>
         <p>
-          Tenao may update this Privacy Policy from time to time. Continued use of the service
-          after changes indicates acceptance of the updated policy.
+          Tenao may update this Privacy Policy from time to time. Continued use of the service after
+          changes indicates acceptance of the updated policy.
         </p>
 
         <h2>9. Contact Us</h2>
@@ -91,4 +89,3 @@ export default function PrivacyPolicy() {
     </div>
   )
 }
-

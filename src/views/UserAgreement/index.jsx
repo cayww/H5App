@@ -1,23 +1,22 @@
 import React from 'react'
-import BackButton from '@/components/BackButton/index.jsx'
-import './agreement.css'
+import NavBar from '@/components/NavBar'
+import './index.css'
 
 export default function UserAgreement() {
   return (
     <div className="agreement-page">
-      <div className="agreement-header">
-        <BackButton />
-        <div className="agreement-title">User Agreement</div>
-      </div>
+      <NavBar>
+        <h1 className="agreement-title">User Agreement</h1>
+      </NavBar>
 
       <div className="agreement-content">
         <h1>Tenao User Agreement</h1>
         <p className="update-time">Last updated: 2026</p>
 
         <p>
-          Welcome to <strong>Tenao</strong>. Please read this User Agreement carefully before
-          using the Tenao application and services. By accessing or using the service, you agree
-          to be bound by this agreement.
+          Welcome to <strong>Tenao</strong>. Please read this User Agreement carefully before using
+          the Tenao application and services. By accessing or using the service, you agree to be
+          bound by this agreement.
         </p>
 
         <h2>1. Acceptance of Terms</h2>
@@ -28,8 +27,8 @@ export default function UserAgreement() {
 
         <h2>2. Description of Services</h2>
         <p>
-          Tenao provides online social interaction services including but not limited to
-          messaging, video interaction, profile creation, and virtual item purchases.
+          Tenao provides online social interaction services including but not limited to messaging,
+          video interaction, profile creation, and virtual item purchases.
         </p>
         <p>
           Tenao reserves the right to modify, suspend, or discontinue any part of the services at
@@ -38,8 +37,8 @@ export default function UserAgreement() {
 
         <h2>3. User Accounts</h2>
         <p>
-          You may be required to create an account to access certain features of Tenao. You agree
-          to provide accurate and complete information and keep your account credentials secure.
+          You may be required to create an account to access certain features of Tenao. You agree to
+          provide accurate and complete information and keep your account credentials secure.
         </p>
         <p>You are responsible for all activities that occur under your account.</p>
 
@@ -55,8 +54,7 @@ export default function UserAgreement() {
         <h2>5. Virtual Items and Purchases</h2>
         <p>
           Tenao may offer virtual items such as diamonds or coins which can be used within the
-          platform. These items have no real-world monetary value and cannot be redeemed for
-          cash.
+          platform. These items have no real-world monetary value and cannot be redeemed for cash.
         </p>
         <p>All purchases are final unless required otherwise by applicable law.</p>
 
@@ -93,4 +91,3 @@ export default function UserAgreement() {
     </div>
   )
 }
-
