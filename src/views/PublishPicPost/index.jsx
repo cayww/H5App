@@ -91,7 +91,12 @@ export default function PublishPicPost() {
       <NavBar />
       <div className="content">
         <div className="textarea-box">
-          <textarea placeholder='Please enter' className="textarea" value={text} onChange={(e) => setText(e.target.value)} />
+          <textarea
+            placeholder="Please enter"
+            className="textarea"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
           <div className="text-count">{text.length}/150</div>
         </div>
 
