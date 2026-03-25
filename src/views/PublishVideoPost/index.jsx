@@ -21,37 +21,53 @@ export default function PublishVideoPost() {
   const [text, setText] = useState('')
   const [uploadedVideo, setUploadedVideo] = useState(null)
   const [videoFirstFrame, setVideoFirstFrame] = useState('')
+  const getVideoInfo = async (videoUrl) => {
+    return new Promise((resolve) => {
+      let video = document.createElement('video')
 
-  async function handleAddVideo(e) {
-    const file = e.target.files?.[0]
+      video.src = videoUrl
+      video.currentTime = 0.1
+      video.preload = 'metadata'
+
+      video.addEventListener('loadeddata', async () => {
+        let canvas = document.createElement('canvas'),
+          width = video.videoWidth,
+          height = video.videoHeight
+
+        canvas.width = width
+        canvas.height = height
+
+        await new Promise((r) => setTimeout(r, 100))
+
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+
+        const thumb = canvas.toDataURL('image/jpeg')
+
+        canvas.width = 0
+        canvas.height = 0
+        video.src = ''
+        video.load()
+        video.remove()
+        video = null
+        canvas = null
+
+        resolve(thumb)
+      })
+    })
+  }
+
+  const handleAddVideo = async (e) => {
+    const file = e.target.files[0]
     if (!file) return
+
     setUploadedVideo(file)
 
-    const video = document.createElement('video')
-    video.src = URL.createObjectURL(file)
-    video.muted = true
-    video.playsInline = true
+    const videoUrl = URL.createObjectURL(file)
 
-    video.addEventListener(
-      'loadeddata',
-      () => {
-        video.currentTime = 0
-      },
-      { once: true },
-    )
+    console.log(videoUrl)
 
-    video.addEventListener(
-      'seeked',
-      () => {
-        const canvas = document.createElement('canvas')
-        canvas.width = video.videoWidth
-        canvas.height = video.videoHeight
-        const ctx = canvas.getContext('2d')
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
-        setVideoFirstFrame(canvas.toDataURL('image/png'))
-      },
-      { once: true },
-    )
+    const thumb = await getVideoInfo(videoUrl)
+    setVideoFirstFrame(thumb)
 
     e.target.value = ''
   }
@@ -115,7 +131,13 @@ export default function PublishVideoPost() {
         <div className="publish-upload">
           {!uploadedVideo ? (
             <label className="upload-box">
-              <input ref={fileInputRef} type="file" accept="video/*" onChange={handleAddVideo} />
+              <input
+                ref={fileInputRef}
+                hidden
+                type="file"
+                accept="video/*"
+                onChange={handleAddVideo}
+              />
               <img src={uploadIcon} alt="add" className="upload-icon" />
             </label>
           ) : (
