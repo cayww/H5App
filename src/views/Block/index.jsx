@@ -70,7 +70,7 @@ export default function Block() {
                   role="button"
                   tabIndex={0}
                 >
-                  Remove
+                  Cancel
                 </div>
               </div>
             ))}

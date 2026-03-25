@@ -11,7 +11,7 @@ import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useCommentsStore } from '@/stores/comment'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 
 import './index.css'
 import likeImage from '@/assets/likepic.png'
@@ -23,7 +23,7 @@ export default function PicPostDetails() {
   const { postId: rawPostId } = useParams()
   const postId = String(rawPostId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const ui = useUIStore()
   const post = usePostStore((s) => s.getPostById(postId))
   const updatePostById = usePostStore((s) => s.updatePostById)
@@ -97,7 +97,7 @@ export default function PicPostDetails() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }

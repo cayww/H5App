@@ -40,7 +40,10 @@ export default function Coins() {
   }
 
   return (
-    <div className="coins-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
+    <div
+      className="coins-page"
+      style={{ background: `url(${pageBg}) no-repeat top center / cover` }}
+    >
       <NavBar>
         <span className="coins-title">My diamonds</span>
       </NavBar>
@@ -48,10 +51,10 @@ export default function Coins() {
       {/* 顶部余额 */}
       <div
         className="coins-box"
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%)',
-        }}
+        // style={{
+        //   background:
+        //     'linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%)',
+        // }}
       >
         <div className="coins-box-header">Wallet Balance:</div>
         <div className="coins-box-content">

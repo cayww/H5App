@@ -3,7 +3,7 @@ import { useUIStore } from '@/stores/ui'
 import { usePostStore } from '@/stores/post'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { uploadSingleImage, uploadVideo } from '@/utils/ossUpload'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 import NavBar from '@/components/NavBar'
 import pageBg from '@/assets/pagebgc.png'
 import uploadIcon from '@/assets/uploadvid.png'
@@ -15,7 +15,7 @@ export default function PublishVideoPost() {
   const addPost = usePostStore((s) => s.addPost)
   const posts = usePostStore((s) => s.posts)
   const currentUser = useCurrentUserStore((s) => s.currentUser)
-
+  const goBack = useBack()
   const fileInputRef = useRef(null)
 
   const [text, setText] = useState('')
@@ -88,7 +88,7 @@ export default function PublishVideoPost() {
       })
 
       ui.showToast('Post released successfully')
-      goBackOrClose()
+      goBack()
     } catch {
       ui.showToast('Upload failed, please check your network.')
     } finally {

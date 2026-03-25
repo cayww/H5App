@@ -15,8 +15,10 @@
   font-weight: 700;
   flex: 1;
   align-items: start;
-  color: rgba(36, 24, 24, 1);
+  color: rgba(211, 238, 241, 1);
   margin-left: calc(100vw * 16 / 375);
+  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
+  text-transform: uppercase;
 }
 
 .coins-box {
@@ -39,10 +41,11 @@
 
 .coins-box-header {
   font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 18 / 375);
-  font-weight: 400;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 700;
   line-height: calc(100vw * 20.79 / 375);
   color: #000;
+  text-transform: uppercase;
 }
 
 .coins-box-content {
@@ -61,10 +64,10 @@
 
 .coins-bgc {
   position: absolute;
-  top: 0;
-  right: calc(100vh * 7 / 812);
-  width: calc(100vw * 127 / 375);
-  height: calc(100vh * 99 / 812);
+  top: calc(-100vh * 65 / 812);
+  right: calc(100vh * 2 / 812);
+  width: calc(100vw * 149 / 375);
+  height: calc(100vh * 193 / 812);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -74,8 +77,8 @@
 .coins-number {
   font-family: 'Archivo', sans-serif;
   font-size: calc(100vw * 22 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 17.41 / 375);
+  font-weight: 700;
+  line-height: calc(100vw * 23.25 / 375);
   color: rgba(36, 24, 24, 1);
 }
 
@@ -95,21 +98,18 @@
 
 .coins-item {
   height: calc(100vh * 64 / 812);
-  border-radius: calc(100vw * 16 / 375);
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
+  border-radius: calc(100vw * 20 / 375);
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 calc(100vw * 10 / 375);
   box-sizing: border-box;
   cursor: pointer;
-  border: 2px solid transparent;
 }
 
 .coins-item-selected {
-  background: linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%);
+  background: rgba(25, 44, 65, 1);
 }
 
 .coins-left {
@@ -119,20 +119,20 @@
 }
 
 .coins-item-icon-img {
-  width: calc(100vw * 38 / 375);
-  height: calc(100vw * 38 / 375);
+  width: calc(100vw * 44 / 375);
+  height: calc(100vw * 44 / 375);
 }
 
 .coins-count {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
+  font-weight: 700;
   line-height: calc(100vw * 18.48 / 375);
-  color: rgba(74, 32, 25, 1);
+  color: rgba(36, 24, 24, 1);
 }
 
 .coins-count-selected {
-  color: #000;
+  color: #fff;
 }
 
 .coins-right {
@@ -149,12 +149,10 @@
   bottom: 0;
 }
 .coins-recharge-btn {
-  width: calc(100vw * 229 / 375);
-  height: calc(100vh * 62 / 812);
+  width: calc(100vw * 198 / 375);
+  height: calc(100vh * 53 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background:
-    linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
+  background: rgba(25, 44, 65, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,31 +161,32 @@
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
   color: #fff;
-  border: 2px solid transparent;
+  text-transform: uppercase;
+  /* border: 2px solid transparent; */
 }
 
 .coins-price {
   font-family: 'Archivo', sans-serif;
   font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
+  font-weight: 700;
   line-height: calc(100vw * 15.23 / 375);
-  color: #000;
+  color: rgba(36, 24, 24, 1);
 }
 
 .coins-price-selected {
-  color: #000;
+  color: #fff;
 }
 
 .coins-radio {
   width: calc(100vw * 15 / 375);
   height: calc(100vw * 15 / 375);
   border-radius: 50%;
-  background: rgba(0, 0, 0, 1);
+  background: rgba(232, 232, 232, 1);
 }
 
 .coins-radio-selected {
   width: calc(100vw * 15 / 375);
   height: calc(100vw * 15 / 375);
-  background: rgba(252, 71, 178, 1);
-  border: calc(100vw * 1 / 375) solid #fff;
+  background: rgba(255, 138, 122, 1);
+  border: calc(100vw * 2 / 375) solid #fff;
 }

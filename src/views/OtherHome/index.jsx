@@ -10,7 +10,7 @@ import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useChatsStore } from '@/stores/chat'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 
 import './index.css'
 import pageBg from '@/assets/pagebgcother.png'
@@ -24,7 +24,7 @@ export default function OtherHome() {
   const { userId: rawUserId } = useParams()
   const userId = String(rawUserId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const getUserById = useUserStore((s) => s.getUserById)
   const updateUser = useUserStore((s) => s.updateUser)
   const getPostsByUserId = usePostStore((s) => s.getPostsByUserId)
@@ -58,7 +58,7 @@ export default function OtherHome() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }
