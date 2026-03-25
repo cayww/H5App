@@ -34,7 +34,7 @@ export default function ReportDialog({ open, onClose, onSelect }) {
         <div className="report-gap" />
 
         <button className="report-cancel" onClick={onClose}>
-          Cancel
+          CANCEL
         </button>
       </div>
     </Popup>

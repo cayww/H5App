@@ -12,7 +12,7 @@
   flex: 1;
   justify-content: space-between;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 calc(100vw * 10 / 375);
 }
 
 .chat-left-part {
@@ -29,10 +29,10 @@
 }
 
 .chat-avatar {
-  width: calc(100vw * 40 / 375);
-  height: calc(100vw * 40 / 375);
+  width: calc(100vw * 38 / 375);
+  height: calc(100vw * 38 / 375);
   border-radius: 50%;
-  border: calc(100vw * 1 / 375) solid #fff;
+  border: 1px solid rgba(25, 44, 65, 1);
   background: rgba(255, 255, 255, 0.16);
   background-size: cover;
   background-position: center;
@@ -43,7 +43,8 @@
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
-  color: rgba(74, 32, 25, 1);
+  color: rgba(211, 238, 241, 1);
+  -webkit-text-stroke: #000 2px;
   max-width: calc(100vw * 180 / 375);
   white-space: nowrap;
   overflow: hidden;
@@ -53,6 +54,7 @@
 .chat-right-part {
   display: flex;
   align-items: center;
+
   gap: calc(100vw * 17 / 375);
 }
 
@@ -126,17 +128,16 @@
 .chat-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: calc(100vh * 8 / 812);
 }
 
 .chat-item.own-message .chat-right {
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .chat-message {
   font-family: 'Archivo', sans-serif;
-  font-size: calc(100vw * 16 / 375);
+  font-size: calc(100vw * 12 / 375);
   font-weight: 400;
   line-height: calc(100vw * 17.41 / 375);
   color: rgba(105, 71, 65, 1);
@@ -147,7 +148,7 @@
 
 .chat-item.own-message .chat-message {
   border-radius: calc(100vw * 10 / 375) 0 calc(100vw * 10 / 375) calc(100vw * 10 / 375);
-  background: rgba(252, 71, 178, 1);
+  background: rgba(255, 138, 122, 1);
   color: rgba(255, 255, 255, 1);
 }
 
@@ -177,13 +178,13 @@
   bottom: calc(100vh * 29 / 812);
   height: calc(100vh * 54 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 1);
+  background: rgba(169, 251, 194, 1);
   display: flex;
   align-items: center;
   padding: 0 calc(100vw * 16 / 375);
   gap: calc(100vw * 12 / 375);
   box-sizing: border-box;
-  box-shadow: 0px 0px 4px rgba(48, 234, 255, 1);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
 .chat-bottom-input input {
@@ -200,7 +201,8 @@
   width: calc(100vw * 36 / 375);
   height: calc(100vw * 36 / 375);
   border: none;
-  background: transparent;
+  background: rgba(25, 44, 65, 1);
+  border-radius: 50%;
   padding: 0;
   display: flex;
   align-items: center;
@@ -208,8 +210,8 @@
 }
 
 .chat-send-btn img {
-  width: 100%;
-  height: 100%;
+  width: 77%;
+  height: 77%;
 }
 
 .call-wrapper {

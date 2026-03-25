@@ -40,10 +40,7 @@ export default function Coins() {
   }
 
   return (
-    <div
-      className="coins-page"
-      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
-    >
+    <div className="coins-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
       <NavBar>
         <span className="coins-title">My diamonds</span>
       </NavBar>

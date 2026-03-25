@@ -8,17 +8,17 @@ export default function Empty({ text = 'No Data' }) {
         src={emptyImage}
         alt="empty"
         style={{
-          width: 'calc(100vw * 149 / 375)',
-          height: 'calc(100vw * 149 / 375)',
+          width: 'calc(100vw * 152 / 375)',
+          height: 'calc(100vw * 152 / 375)',
         }}
       />
       <div
         style={{
           fontFamily: 'Archivo, sans-serif',
-          fontSize: 'calc(100vw * 16 / 375)',
+          fontSize: 'calc(100vw * 18 / 375)',
           fontWeight: 400,
-          lineHeight: 'calc(100vw * 17.41 / 375)',
-          color: 'rgba(102, 102, 102, 1)',
+          lineHeight: 'calc(100vw * 19 / 375)',
+          color: 'rgba(25, 44, 65, 1)',
         }}
       >
         {text}

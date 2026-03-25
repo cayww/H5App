@@ -152,10 +152,7 @@ export default function Chat() {
 
   if (!currentChat) {
     return (
-      <div
-        className="chat-page"
-        style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
-      >
+      <div className="chat-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
         <div className="chat-top-content">
           <BackButton />
           <div className="chat-username">Chat not found</div>
@@ -165,10 +162,7 @@ export default function Chat() {
   }
 
   return (
-    <div
-      className="chat-page"
-      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
-    >
+    <div className="chat-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
       <NavBar
         showMore={otherUser.userId !== currentUser.userId}
         onMoreClick={() => setShowReport(true)}

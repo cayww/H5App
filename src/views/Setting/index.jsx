@@ -20,7 +20,7 @@ export default function Setting() {
       { text: 'Privacy Policy', path: '/privacyPolicy' },
       { text: 'User Agreement', path: '/userAgreement' },
       { text: 'Blacklist', path: '/block' },
-      { text: 'Wallet', path: '/coins' },
+      // { text: 'Wallet', path: '/coins' },
       { text: 'Edit personal information', path: '/edit' },
     ],
     [],
@@ -42,12 +42,9 @@ export default function Setting() {
   }
 
   return (
-    <div
-      className="setting-page"
-      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
-    >
+    <div className="setting-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
       <NavBar>
-        <h1 className="setting-title">Setting</h1>
+        <h1 className="setting-title">SETTING</h1>
       </NavBar>
       <main className="setting-options-list">
         {options.map((option, index) => (

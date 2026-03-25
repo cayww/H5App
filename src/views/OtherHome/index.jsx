@@ -13,9 +13,9 @@ import { useChatsStore } from '@/stores/chat'
 import { goBackOrClose } from '@/utils/iosBridge'
 
 import './index.css'
-import pageBg from '@/assets/pagebgc.png'
+import pageBg from '@/assets/pagebgcother.png'
 import followIcon from '@/assets/follow.png'
-import chatIcon from '@/assets/chaticon.png'
+import chatIcon from '@/assets/chaticonother.png'
 import likeIcon from '@/assets/likepic.png'
 import commentIcon from '@/assets/chaticon.png'
 import reportIcon from '@/assets/postpiccommentreport.png'
@@ -121,7 +121,7 @@ export default function OtherHome() {
   return (
     <div
       className="other-home-page"
-      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
+      style={{ background: `url(${pageBg}) no-repeat top center / cover` }}
     >
       <NavBar showMore={userId !== currentUser.userId} onMoreClick={() => setShowReport(true)} />
       {/* 
@@ -152,9 +152,7 @@ export default function OtherHome() {
             ) : null}
           </div>
         </div>
-
         <div className="other-home-name">{profile.name}</div>
-
         <div className="other-home-stats">
           <div className="other-home-stat">
             <div className="n">{userPosts.length || 0}</div>
@@ -169,7 +167,6 @@ export default function OtherHome() {
             <div className="l">Follow</div>
           </div>
         </div>
-
         <div className="other-home-intro-chat">
           <div className="other-home-intro">{profile.about}</div>
           {userId !== currentUser.userId ? (
@@ -181,61 +178,49 @@ export default function OtherHome() {
             <div className="other-home-chat-btn-hidden" />
           )}
         </div>
-
-        <div className="other-home-post-title">Post</div>
-
-        <div className="other-home-post-list">
-          {userPosts.length > 0 ? (
-            userPosts.map((post) => (
-              <div
-                key={post.dynamicId}
-                className="other-home-post-item"
-                onClick={() => toPostDetail(post.dynamicId, post.dynamicType)}
-                role="button"
-                tabIndex={0}
-              >
-                <div className="other-home-post-top">
-                  <div className="other-home-post-username">{profile.name}</div>
-                  {userId !== currentUser.userId ? (
-                    <button
-                      type="button"
-                      className="other-home-post-report"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setShowReport(true)
-                      }}
-                    >
-                      <img src={reportIcon} alt="more" />
-                    </button>
-                  ) : null}
-                </div>
-
+        <div className="other-home-post">
+          <div className="other-home-post-title">Post</div>
+          <div className="other-home-post-list">
+            {userPosts.length > 0 ? (
+              userPosts.map((post) => (
                 <div
-                  className="other-home-post-image"
-                  style={{
-                    backgroundImage: post.dynamicPic?.[0]
-                      ? `url(${post.dynamicPic[0]})`
-                      : undefined,
-                  }}
+                  key={post.dynamicId}
+                  className="other-home-post-item"
+                  onClick={() => toPostDetail(post.dynamicId, post.dynamicType)}
+                  role="button"
+                  tabIndex={0}
                 >
-                  <div className="other-home-post-overlay">
-                    <div className="other-home-overlay-pill">
-                      <img src={likeIcon} alt="like" className="other-home-overlay-icon" />
-                      <span>{post.dynamicLikeCount || 0}</span>
-                    </div>
-                    <div className="other-home-overlay-pill">
-                      <img src={commentIcon} alt="comment" className="other-home-overlay-icon" />
-                      <span>{post.dynamicCommentCount || 0}</span>
+                  <div className="other-home-post-top">
+                    <div className="other-home-post-username">{profile.name}</div>
+                  </div>
+
+                  <div
+                    className="other-home-post-image"
+                    style={{
+                      backgroundImage: post.dynamicPic?.[0]
+                        ? `url(${post.dynamicPic[0]})`
+                        : undefined,
+                    }}
+                  >
+                    <div className="other-home-post-overlay">
+                      <div className="other-home-overlay-pill">
+                        <img src={likeIcon} alt="like" className="other-home-overlay-icon" />
+                        <span>{post.dynamicLikeCount || 0}</span>
+                      </div>
+                      <div className="other-home-overlay-pill">
+                        <img src={commentIcon} alt="comment" className="other-home-overlay-icon" />
+                        <span>{post.dynamicCommentCount || 0}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="other-home-post-type">{post.dynamicDesc}</div>
-              </div>
-            ))
-          ) : (
-            <Empty />
-          )}
+                  <div className="other-home-post-type">{post.dynamicDesc}</div>
+                </div>
+              ))
+            ) : (
+              <Empty />
+            )}
+          </div>
         </div>
       </div>
 

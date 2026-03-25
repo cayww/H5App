@@ -86,10 +86,7 @@ export default function Edit() {
   }
 
   return (
-    <div
-      className="edit-page"
-      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
-    >
+    <div className="edit-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
       <NavBar>
         <h1 className="edit-title">Edit</h1>
       </NavBar>

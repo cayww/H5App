@@ -240,8 +240,7 @@ export default function VideoPostDetails() {
         bodyStyle={{
           height: '60vh',
           borderRadius: '40px 40px 0px 0px',
-          background:
-            'linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(48, 234, 255, 1) 99.84%)',
+          background: 'rgba(214, 223, 239, 1)',
         }}
       >
         <div className="vpd-comment-sheet">

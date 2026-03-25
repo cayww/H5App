@@ -39,19 +39,28 @@ export default function AiDetails() {
   }
 
   return (
-    <div className="ai-container" style={{ backgroundImage: `url(${aibgc})` }}>
+    <div
+      className="ai-container"
+      style={{ background: `url(${aibgc}) no-repeat top center / cover` }}
+    >
       <NavBar />
 
-      <div className="ai-chat-img" style={{ backgroundImage: `url(${aichatmodel})` }} />
+      {/* <div className="ai-chat-img" style={{ backgroundImage: `url(${aichatmodel})` }} /> */}
       <div className="ai-user-img" style={{ backgroundImage: `url(${aiusermodel})` }} />
+      <div className="ai-text-title">
+        AI Photo
+        <br />
+        Inspiration
+      </div>
       <div className="ai-content">
         <div className="ai-card">
           <div className="ai-desc">
-            Hello! I’m Saze AI, your yoga companion, here to guide you on your journey toward
-            mind-body balance and strength. Whether you enjoy gentle flows, challenging poses, or
-            deep stretches, I’m here to share tips, plan sessions, and keep your yoga practice fun
-            and motivating. Ready to relax, find your center, and grow stronger in both body and
-            mind? Let’s move, breathe, and transform together with every practice!
+            Hi! I’m Saze AI, your friendly travel companion here to chat about all things travel and
+            adventure. Whether you’re dreaming of exploring vibrant cities, relaxing on serene
+            beaches, hiking through breathtaking landscapes, or immersing yourself in new cultures,
+            I’m here to share tips, plan your trips, and keep your travel journey exciting and
+            unforgettable. Ready to explore the world and create amazing memories together? Let’s
+            travel, discover, and experience the beauty of life every step of the way!
           </div>
 
           <div className="ai-btn" onClick={handlePurchaseClick}>

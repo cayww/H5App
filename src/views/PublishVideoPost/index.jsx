@@ -6,7 +6,7 @@ import { uploadSingleImage, uploadVideo } from '@/utils/ossUpload'
 import { goBackOrClose } from '@/utils/iosBridge'
 import NavBar from '@/components/NavBar'
 import pageBg from '@/assets/pagebgc.png'
-import uploadIcon from '@/assets/uploadpic.png'
+import uploadIcon from '@/assets/uploadvid.png'
 
 import './index.css'
 
@@ -97,7 +97,7 @@ export default function PublishVideoPost() {
   }
 
   return (
-    <div className="publish" style={{ backgroundImage: `url(${pageBg})` }}>
+    <div className="publish" style={{ background: 'rgba(214, 223, 239, 1)' }}>
       <NavBar />
       <div className="publish-scroll">
         <div className="publish-text-box">
@@ -129,7 +129,7 @@ export default function PublishVideoPost() {
         </div>
 
         <div className="publish-btn" onClick={handleRelease}>
-          Release
+          RELEASE
         </div>
       </div>
     </div>

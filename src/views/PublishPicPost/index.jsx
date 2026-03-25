@@ -137,7 +137,7 @@ export default function PublishPicPost() {
         </div>
 
         <div className="release-btn" onClick={handleRelease}>
-          Release
+          RELEASE
         </div>
       </div>
     </div>

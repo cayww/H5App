@@ -19,18 +19,17 @@
 
 .publish-text-box {
   position: relative;
-  margin-top: calc(100vh * 20 / 812);
+  margin-top: calc(100vh * 18 / 812);
   margin-left: calc(100vw * 20 / 375);
   margin-right: calc(100vw * 20 / 375);
   height: calc(100vh * 174 / 812);
   background: #fff;
   padding: calc(100vw * 12 / 375);
   border: 2px solid transparent;
-  border-radius: calc(100vw * 16 / 375);
   box-sizing: border-box;
-  background:
-    linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
+  border-radius: calc(100vw * 16 / 375);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .publish-text-box textarea {
@@ -62,7 +61,8 @@
   font-family: YesevaOne, sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 700;
-  color: #000;
+  color: rgba(211, 238, 241, 1);
+  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
 }
 
 .publish-upload {
@@ -75,8 +75,8 @@
 }
 
 .upload-box {
-  width: calc(100vw * 108 / 375);
-  height: calc(100vw * 108 / 375);
+  width: calc(100vw * 106 / 375);
+  height: calc(100vw * 106 / 375);
   flex-shrink: 0;
   border-radius: calc(100vw * 20 / 375);
   background: rgba(255, 255, 255, 0.16);
@@ -89,9 +89,9 @@
   overflow: hidden;
   box-sizing: border-box;
   border: 2px solid transparent;
-  background:
-    linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
 }
 
 .upload-box input {
@@ -128,8 +128,8 @@
 }
 
 .publish-btn {
-  width: calc(100vw * 229 / 375);
-  height: calc(100vh * 62 / 812);
+  width: calc(100vw * 198 / 375);
+  height: calc(100vh * 53 / 812);
   border-radius: calc(100vw * 40 / 375);
   display: flex;
   justify-content: center;
@@ -144,7 +144,5 @@
   border: 2px solid transparent;
   box-sizing: border-box;
   font-weight: 700;
-  background:
-    linear-gradient(#000, #000) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box;
+  background: rgba(25, 44, 65, 1);
 }

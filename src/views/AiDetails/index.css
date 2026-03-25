@@ -8,14 +8,22 @@
   background-repeat: no-repeat;
   position: relative;
 }
-
+.ai-text-title {
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + calc(100vw * 40 / 375) + calc(100vh * 30 / 812));
+  font-size: calc(100vw * 24 / 375);
+  color: rgba(211, 238, 241, 1);
+  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
+  left: calc(100vw * 22 / 375);
+}
 /* 背景人物 */
 .ai-user-img {
   position: absolute;
-  left: 20px;
-  top: calc(env(safe-area-inset-top) + calc(100vh * 20 / 812) + calc(100vw * 40 / 375));
-  width: calc(100vw * 183 / 375);
-  height: calc(100vh * 145 / 812);
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(env(safe-area-inset-top));
+  width: calc(100vw * 121 / 375);
+  height: calc(100vh * 238 / 812);
   background-size: cover;
   background-position: center;
 }
@@ -33,13 +41,16 @@
 
 .ai-content {
   position: absolute;
-  bottom: calc(env(safe-area-inset-bottom) + calc(100vh * 24 / 812));
+  /* bottom: calc(env(safe-area-inset-bottom) + calc(100vh * 24 / 812)); */
+  bottom: 0;
   left: 0;
   right: 0;
+  height: calc(100vh * 527 / 812);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  background: white;
+  border-radius: calc(100vw * 40 / 375) calc(100vw * 40 / 375) 0px 0px;
 }
 
 /* 底部卡片 */
@@ -55,35 +66,32 @@
 /* 描述 */
 .ai-desc {
   font-family: Archivo, sans-serif;
-  font-size: calc(100vw * 14 / 375);
-  line-height: calc(100vw * 24 / 375);
-  color: #000;
+  font-size: calc(100vw * 18 / 375);
+  line-height: calc(100vw * 30 / 375);
+  color: rgba(25, 44, 65, 1);
   text-align: center;
   margin: 0 calc(100vw * 20 / 375);
 
-  padding: 10px;
+  /* padding: 10px;
   border-radius: 20px;
   box-sizing: border-box;
-
   border: 2px solid transparent;
   background:
     linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box;
+    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box; */
 }
 
 /* 按钮 */
 .ai-btn {
   margin-top: calc(100vh * 20 / 812);
-  width: calc(100vw * 281 / 375);
-  height: calc(100vh * 62 / 812);
+  width: calc(100vw * 189 / 375);
+  height: calc(100vh * 53 / 812);
 
   border-radius: calc(100vw * 40 / 375);
   border: 2px solid transparent;
   box-sizing: border-box;
 
-  background:
-    linear-gradient(#000, #000) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1), rgba(48, 234, 255, 1)) border-box;
+  background: rgba(25, 44, 65, 1);
 
   display: flex;
   justify-content: center;
@@ -95,7 +103,7 @@
 .ai-btn-left {
   display: flex;
   align-items: center;
-  gap: calc(100vw * 8 / 375);
+  gap: calc(100vw * 3 / 375);
 }
 
 .ai-coin {
@@ -116,6 +124,7 @@
   font-family: Archivo;
   margin-left: 18px;
   font-size: calc(100vw * 16 / 375);
+  font-weight: 700;
 }
 
 /* 弹窗 */

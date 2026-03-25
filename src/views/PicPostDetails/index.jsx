@@ -183,10 +183,6 @@ export default function PicPostDetails() {
           ) : (
             <div className="ppd-swipe-empty" />
           )}
-          <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
-            <img src={liked ? likeImage : disLikeImage} alt="like" className="ppd-like-icon-img" />
-            <div className="ppd-like-count">{likeCount}</div>
-          </div>
         </div>
 
         <div className="ppd-post-content">
@@ -221,12 +217,20 @@ export default function PicPostDetails() {
                   <div className="ppd-tag-text"># {postTag}</div>
                 </div>
               </div>
+              <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
+                <img
+                  src={liked ? likeImage : disLikeImage}
+                  alt="like"
+                  className="ppd-like-icon-img"
+                />
+                <div className="ppd-like-count">{likeCount}</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="ppd-comments-line" />
-        <div className="ppd-comments-title-text">Comments</div>
+        {/* <div className="ppd-comments-line" /> */}
+        <div className="ppd-comments-title-text">COMMENTS</div>
 
         <div className="ppd-comments-list">
           {comments.length ? (

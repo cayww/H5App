@@ -82,11 +82,16 @@ export default function AiChat() {
   }
 
   return (
-    <div className="ai-chat" style={{ backgroundImage: `url(${aibgc})` }}>
+    <div className="ai-chat" style={{ background: `url(${aibgc}) no-repeat top center / cover` }}>
       <NavBar />
-      <div className="ai-chat-model" style={{ backgroundImage: `url(${aichatmodel})` }} />
+      {/* <div className="ai-chat-model" style={{ backgroundImage: `url(${aichatmodel})` }} /> */}
+      {/* <div className="ai-chat-user" style={{ backgroundImage: `url(${aiusermodel})` }} /> */}
       <div className="ai-chat-user" style={{ backgroundImage: `url(${aiusermodel})` }} />
-
+      <div className="ai-text-title">
+        AI Photo
+        <br />
+        Inspiration
+      </div>
       {/* <div className="ai-chat-quick">
         {messages.map((item, i) => (
           <div key={i} className="quick-item" onClick={() => sendMessage(item)}>
@@ -126,7 +131,9 @@ export default function AiChat() {
           onChange={(e) => setChatInput(e.target.value)}
           placeholder="Say something"
         />
-        <img src={sendIcon} onClick={sendMessage} />
+        <button type="button" className="chat-send-btn" onClick={sendMessage}>
+          <img src={sendIcon} alt="send" />
+        </button>
       </div>
     </div>
   )

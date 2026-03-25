@@ -34,10 +34,7 @@ export default function Report() {
   }
 
   return (
-    <div
-      className="report-page"
-      style={{ backgroundImage: `url(${pageBg}) no-repeat top center / cover` }}
-    >
+    <div className="report-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
       <NavBar />
       <div className="report-content-wrap">
         <div className="report-grid">
@@ -70,7 +67,7 @@ export default function Report() {
         </div>
 
         <button type="button" className="report-submit-btn" onClick={handleSubmit}>
-          Submit
+          SUBMIT
         </button>
       </div>
     </div>

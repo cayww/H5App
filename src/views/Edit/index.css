@@ -14,15 +14,16 @@
   font-weight: 700;
   flex: 1;
   align-items: start;
-  color: rgba(36, 24, 24, 1);
+  color: rgba(211, 238, 241, 1);
+  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
   margin-left: calc(100vw * 16 / 375);
+  text-transform: uppercase;
 }
 
 .edit-content {
   position: relative;
   width: 100vw;
   margin-top: calc(env(safe-area-inset-top) + calc(100vh * 25 / 812) + calc(100vw * 40 / 375));
-  height: calc(100% - calc(100vh * 98 / 812));
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -75,21 +76,22 @@
   font-size: calc(100vw * 20 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
-  color: #000;
+  text-transform: uppercase;
+  color: rgba(211, 238, 241, 1);
+  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
 }
 
 .edit-input-box {
   width: 100%;
   height: calc(100vh * 54 / 812);
   border-radius: calc(100vw * 16 / 375);
-  background:
-    linear-gradient(rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 100%) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   padding: 0 calc(100vw * 15 / 375);
-  box-sizing: border-box;
-  border: 2px solid transparent;
+  /* box-sizing: border-box;
+  border: 2px solid transparent; */
 }
 
 .edit-input-box input {
@@ -105,7 +107,7 @@
 }
 
 .edit-input-box input::placeholder {
-  color: rgba(105, 71, 65, 1);
+  color: rgba(153, 153, 153, 1);
 }
 
 .edit-third .edit-section {
@@ -141,12 +143,10 @@
 }
 
 .edit-save-btn {
-  width: calc(100vw * 229 / 375);
-  height: calc(100vh * 62 / 812);
+  width: calc(100vw * 198 / 375);
+  height: calc(100vh * 53 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background:
-    linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%) padding-box,
-    linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%) border-box;
+  background: rgba(25, 44, 65, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,5 +155,6 @@
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
   color: #fff;
-  border: 2px solid transparent;
+  text-transform: uppercase;
+  /* border: 2px solid transparent; */
 }
