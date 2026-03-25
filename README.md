@@ -79,7 +79,7 @@ npm run format
 - `sendCommentsToIOS(comments)`
 - `sendLogoutToIOS(isLogout)`
 - `sendPaymentToIOS(payKey)`
-- `goBackOrClose()`
+- `useBack()`
 
 同时支持 iOS 通过 JS 回调更新当前用户：
 

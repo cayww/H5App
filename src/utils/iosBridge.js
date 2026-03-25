@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 // Send updated users list to iOS
 export function sendUsersToIOS(users) {
   try {
@@ -107,15 +108,17 @@ export function sendLogoutToIOS(isLogout) {
 }
 
 // Handle page back or close action
-export function goBackOrClose() {
-  if (window.history.state.back) {
-    history.back()
-  } else {
-    // iOS WKWebView callback to close the page
-    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.close) {
-      window.webkit.messageHandlers.close.postMessage({})
+export function useBack() {
+  const navigate = useNavigate()
+
+  return () => {
+    const idx = window.history.state?.idx ?? 0
+    if (idx > 0) {
+      navigate(-1)
     } else {
-      console.warn('WebKit close handler not found')
+      if (window.webkit?.messageHandlers?.close) {
+        window.webkit.messageHandlers.close.postMessage({})
+      }
     }
   }
 }

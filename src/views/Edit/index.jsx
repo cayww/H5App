@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import NavBar from '@/components/NavBar'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 import { uploadSingleImage } from '@/utils/ossUpload'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
@@ -17,7 +17,7 @@ export default function Edit() {
   const currentUser = useCurrentUserStore((s) => s.currentUser)
   const ui = useUIStore()
   const updateUser = useUserStore((s) => s.updateUser)
-
+  const goBack = useBack()
   const [topBlockImage, setTopBlockImage] = useState(avatarIcon)
   const [name, setName] = useState('')
   const [aboutMe, setAboutMe] = useState('')
@@ -75,7 +75,7 @@ export default function Edit() {
         })
 
         ui.hideLoading()
-        goBackOrClose()
+        goBack()
         ui.showToast('Profile updated')
       }, delay)
     } catch (e) {

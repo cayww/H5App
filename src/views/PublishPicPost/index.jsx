@@ -5,7 +5,7 @@ import { useUIStore } from '@/stores/ui'
 import { usePostStore } from '@/stores/post'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { uploadMultipleImages } from '@/utils/ossUpload.js'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 import uploadIcon from '@/assets/uploadpic.png'
 import './index.css'
 export default function PublishPicPost() {
@@ -14,7 +14,7 @@ export default function PublishPicPost() {
   const addPost = usePostStore((s) => s.addPost)
   const posts = usePostStore((s) => s.posts)
   const currentUser = useCurrentUserStore((s) => s.currentUser)
-
+  const goBack = useBack()
   const maxImages = 5
   const fileInputRef = useRef(null)
 
@@ -77,7 +77,7 @@ export default function PublishPicPost() {
 
       addPost(newPost)
       ui.showToast('Post released successfully')
-      goBackOrClose()
+      goBack()
     } catch (err) {
       console.error('upload failed', err)
       ui.showToast('Upload failed, please check your network.')
@@ -91,7 +91,12 @@ export default function PublishPicPost() {
       <NavBar />
       <div className="content">
         <div className="textarea-box">
-          <textarea placeholder='Please enter' className="textarea" value={text} onChange={(e) => setText(e.target.value)} />
+          <textarea
+            placeholder="Please enter"
+            className="textarea"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
           <div className="text-count">{text.length}/150</div>
         </div>
 

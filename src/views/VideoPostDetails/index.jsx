@@ -10,7 +10,7 @@ import { useUserStore } from '@/stores/user'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useCommentsStore } from '@/stores/comment'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 
 import './index.css'
 import playIcon from '@/assets/videopluse.png'
@@ -130,7 +130,7 @@ export default function VideoPostDetails() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }

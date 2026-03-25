@@ -11,7 +11,7 @@ import { useMessagesStore } from '@/stores/message'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { uploadSingleImage } from '@/utils/ossUpload'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 import pageBg from '@/assets/pagebgc.png'
 import './index.css'
 import picIcon from '@/assets/chatpicicon.png'
@@ -22,7 +22,7 @@ export default function Chat() {
   const { chatId: rawChatId } = useParams()
   const chatId = String(rawChatId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const chatsStore = useChatsStore()
   const getUserById = useUserStore((s) => s.getUserById)
   const getOtherUserInChat = useUserStore((s) => s.getOtherUserInChat)
@@ -145,7 +145,7 @@ export default function Chat() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }
