@@ -55,8 +55,8 @@ export default function AiDetails() {
       <div className="ai-content">
         <div className="ai-card">
           <div className="ai-desc">
-            Hi! I’m Saze AI, your friendly travel companion here to chat about all things travel and
-            adventure. Whether you’re dreaming of exploring vibrant cities, relaxing on serene
+            Hi! I’m Kopee AI, your friendly travel companion here to chat about all things travel
+            and adventure. Whether you’re dreaming of exploring vibrant cities, relaxing on serene
             beaches, hiking through breathtaking landscapes, or immersing yourself in new cultures,
             I’m here to share tips, plan your trips, and keep your travel journey exciting and
             unforgettable. Ready to explore the world and create amazing memories together? Let’s
