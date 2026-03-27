@@ -2,10 +2,8 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
+  background: url('@/assets/pagebgc.png') no-repeat top center / cover;
 }
 
 .publish-scroll {
@@ -29,7 +27,7 @@
   box-sizing: border-box;
   border-radius: calc(100vw * 16 / 375);
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .publish-text-box textarea {
@@ -61,8 +59,7 @@
   font-family: YesevaOne, sans-serif;
   font-size: calc(100vw * 20 / 375);
   font-weight: 700;
-  color: rgba(211, 238, 241, 1);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
+  color: rgba(0, 0, 0, 1);
 }
 
 .publish-upload {
@@ -75,8 +72,8 @@
 }
 
 .upload-box {
-  width: calc(100vw * 106 / 375);
-  height: calc(100vw * 106 / 375);
+  width: calc(100vw * 108 / 375);
+  height: calc(100vw * 108 / 375);
   flex-shrink: 0;
   border-radius: calc(100vw * 20 / 375);
   background: rgba(255, 255, 255, 0.16);
@@ -89,8 +86,7 @@
   overflow: hidden;
   box-sizing: border-box;
   border: 2px solid transparent;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
   backdrop-filter: blur(20px);
 }
 
@@ -128,14 +124,14 @@
 }
 
 .publish-btn {
-  width: calc(100vw * 198 / 375);
-  height: calc(100vh * 53 / 812);
-  border-radius: calc(100vw * 40 / 375);
+  width: calc(100vw * 190 / 375);
+  height: calc(100vh * 54 / 812);
+  border-radius: calc(100vw * 100 / 375);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: YesevaOne, sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: calc(100vw * 18 / 375);
   font-weight: 400;
   line-height: calc(100vw * 23.1 / 375);
   color: #fff;
@@ -144,5 +140,5 @@
   border: 2px solid transparent;
   box-sizing: border-box;
   font-weight: 700;
-  background: rgba(25, 44, 65, 1);
+  background: rgba(92, 201, 159, 1);
 }

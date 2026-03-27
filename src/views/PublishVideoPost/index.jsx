@@ -5,7 +5,6 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 import { uploadSingleImage, uploadVideo } from '@/utils/ossUpload'
 import { useBack } from '@/utils/iosBridge'
 import NavBar from '@/components/NavBar'
-import pageBg from '@/assets/pagebgc.png'
 import uploadIcon from '@/assets/uploadvid.png'
 
 import './index.css'
@@ -113,7 +112,7 @@ export default function PublishVideoPost() {
   }
 
   return (
-    <div className="publish" style={{ background: 'rgba(214, 223, 239, 1)' }}>
+    <div className="publish">
       <NavBar />
       <div className="publish-scroll">
         <div className="publish-text-box">
@@ -151,7 +150,7 @@ export default function PublishVideoPost() {
         </div>
 
         <div className="publish-btn" onClick={handleRelease}>
-          RELEASE
+          Release
         </div>
       </div>
     </div>

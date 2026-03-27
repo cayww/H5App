@@ -161,13 +161,14 @@
 
 .vpd-action-buttons {
   position: absolute;
-  bottom: calc(100vh * 112 / 812);
-  right: calc(100vw * 20 / 375);
+  bottom: calc(calc(100vh * 89 / 812) + env(safe-area-inset-bottom));
+  right: calc(100vw * 50 / 375);
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 13 / 812);
+  gap: calc(100vh * 32 / 812);
   z-index: 4;
-  font-size: calc(100vw * 14 / 375);
+  font-size: calc(100vw * 16 / 375);
+  line-height: calc(100vh * 23 / 812);
   font-weight: 700;
 }
 .vpd-action-wrapper {
@@ -175,13 +176,19 @@
 }
 .vpd-action-item-bg {
   position: absolute;
+  left: 50%;
   width: calc(100vw * 100 / 375);
   height: calc(100vh * 53 / 812);
   background: rgba(255, 255, 255, 0.2);
   border-radius: calc(100vw * 20 / 375);
   bottom: 0;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
 }
 .vpd-action-button {
+  position: relative;
+  z-index: 1;
   /* width: calc(100vw * 30 / 375);
   height: calc(100vh * 58 / 812);
   border-radius: calc(100vw * 12 / 375); */
@@ -192,7 +199,7 @@
   flex-direction: column;
   /* border: 2px solid rgba(255, 255, 255, 1); */
   gap: calc(100vw * 2 / 375);
-  color: rgba(25, 44, 65, 1);
+  color: white;
   cursor: pointer;
   font-family: 'Archivo', sans-serif;
 }
@@ -210,22 +217,37 @@
   box-sizing: border-box;
 }
 
-.vpd-comment-title {
+.vpd-comments-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.vpd-comments-line {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin: calc(100vh * 32 / 812) calc(100vw * 20 / 375) calc(100vh * 20 / 812);
+}
+.vpd-comments-line:first-child {
+  flex: 0.5;
+}
+.vpd-comments-line:last-child {
+  flex: 3;
+}
+.vpd-comments-title-text {
   font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 700;
-  line-height: calc(100vw * 25 / 375);
-  -webkit-text-stroke: rgba(0, 0, 0, 1) 2px;
-  color: rgba(211, 238, 241, 1);
+  font-size: calc(100vw * 16 / 375);
+  /* font-weight: 700; */
+  line-height: calc(100vw * 17 / 375);
+  color: rgba(0, 0, 0, 1);
+  /* -webkit-text-stroke: #000 2px; */
+  /* margin: 0 12px; */
   /* padding: 8px 16px; */
   /* background: linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%); */
-  width: fit-content;
+  /* display: inline-block; */
   /* border-radius: 14px; */
-  margin-left: calc(100vw * 20 / 375);
+  /* margin-left: calc(100vw * 20 / 375);
   margin-bottom: calc(100vh * 16 / 812);
-  margin-top: calc(100vh * 20 / 812);
+  margin-top: calc(100vh * 30 / 812); */
 }
-
 .vpd-comment-list {
   flex: 1;
   overflow: auto;
@@ -236,7 +258,7 @@
 }
 
 .vpd-comment-item {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   border-radius: calc(100vw * 20 / 375);
   padding: calc(100vh * 14 / 812) calc(100vw * 16 / 375);
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -244,27 +266,27 @@
 }
 
 .vpd-comment-name {
-  color: #000;
+  color: rgba(13, 13, 13, 1);
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .vpd-comment-content {
-  color: #000;
+  color: rgba(5, 5, 5, 1);
   font-family: 'Archivo', sans-serif;
-  font-size: calc(100vw * 12 / 375);
+  font-size: calc(100vw * 14 / 375);
   margin-top: 4px;
 }
 
 .vpd-comment-input {
   display: flex;
-  background: rgba(169, 251, 194, 1);
+  background: rgba(247, 249, 247, 1);
   padding: calc(100vh * 9 / 812) calc(100vw * 10 / 375);
   border-radius: calc(100vw * 40 / 375);
   margin: 0 calc(100vw * 20 / 375);
   align-items: center;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
   margin-bottom: calc(env(safe-area-inset-bottom));
 }
 
@@ -277,17 +299,17 @@
 }
 
 .vpd-comment-input button {
-  background: rgba(25, 44, 65, 1);
+  /* background: rgba(25, 44, 65, 1); */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
+  width: calc(100vw * 32 / 375);
+  height: calc(100vw * 32 / 375);
 }
 .vpd-comment-input button img {
-  width: 77%;
-  height: 77%;
+  width: 100%;
+  height: 100%;
 }
 .vpd-not-found {
   display: flex;

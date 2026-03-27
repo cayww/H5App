@@ -245,12 +245,17 @@ export default function VideoPostDetails() {
         onMaskClick={() => setShowComment(false)}
         bodyStyle={{
           height: '60vh',
-          borderRadius: '40px 40px 0px 0px',
-          background: 'rgba(214, 223, 239, 1)',
+          borderRadius: '24px 24px 0px 0px',
+          background:
+            'radial-gradient(84.53% 20.81% at 100% 0%, rgba(148, 255, 241, 1) 0%, rgba(0, 230, 92, 0.01) 100%), radial-gradient(95.73% 72.53% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%), rgba(249, 249, 249, 1)',
         }}
       >
         <div className="vpd-comment-sheet">
-          <div className="vpd-comment-title">Comments</div>
+          <div className="vpd-comments-box">
+            <div className="vpd-comments-line" />
+            <div className="vpd-comments-title-text">Comments</div>
+            <div className="vpd-comments-line" />
+          </div>
           <div className="vpd-comment-list">
             {comments.length ? (
               filteredComments.map((c) => (
