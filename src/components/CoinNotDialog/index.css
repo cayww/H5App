@@ -1,15 +1,32 @@
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(100vh * 20 / 812);
+}
 .coin-dialog {
-  width: calc(100vw * 277 / 375);
-  height: calc(100vh * 317 / 812);
+  width: calc(100vw * 280 / 375);
+  height: calc(100vh * 157 / 812);
+  /* background-image: url('@/assets/coinnot.png');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: calc(100vw * 24 / 375);
+  justify-content: end;
+  background:
+    radial-gradient(
+      105.36% 52.87% at 100% -7.006369426751593%,
+      rgba(148, 255, 241, 1) 0%,
+      rgba(0, 230, 92, 0.01) 100%
+    ),
+    radial-gradient(33.93% 60.51% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
+    rgba(249, 249, 249, 1);
 }
-.coin-left-zs {
+/* .coin-left-zs {
   position: absolute;
   top: calc(100vh * 64 / 812);
   left: calc(100vw * -20 / 375);
@@ -22,32 +39,35 @@
   right: calc(100vw * -61 / 375);
   width: calc(100vw * 134 / 375);
   height: calc(100vw * 134 / 375);
-}
+} */
 .coin-cry {
-  width: calc(100vw * 100 / 375);
-  height: calc(100vw * 100 / 375);
-  margin-top: calc(100vh * 20 / 812);
-  margin-bottom: calc(100vh * 6 / 812);
+  position: absolute;
+  top: calc(-100vh * 33 / 812);
+  width: calc(100vw * 86 / 375);
+  height: calc(100vw * 86 / 375);
+  /* margin-top: calc(100vh * 20 / 812);
+  margin-bottom: calc(100vh * 6 / 812); */
 }
 .coin-title {
   font-family: YesevaOne, sans-serif;
-  font-size: calc(100vw * 24 / 375);
-  line-height: calc(100vw * 30 / 375);
-  color: rgba(0, 0, 0, 1);
+  font-size: calc(100vw * 20 / 375);
+  line-height: calc(100vw * 21 / 375);
+  color: rgba(14, 8, 15, 1);
 }
 .coin-desc {
+  margin-top: calc(100vh * 16 / 812);
+  margin-bottom: calc(100vh * 32 / 812);
   font-family: YesevaOne, sans-serif;
-  font-size: calc(100vw * 16 / 375);
-  line-height: calc(100vw * 30 / 375);
-  color: rgba(51, 51, 51, 1);
+  font-size: calc(100vw * 14 / 375);
+  line-height: calc(100vw * 17 / 375);
+  color: rgba(14, 8, 15, 0.6);
   text-align: center;
 }
 /* 按钮 */
 .coin-dialog-btn {
-  margin-top: calc(100vh * 20 / 812);
-  width: calc(100vw * 164 / 375);
-  height: calc(100vh * 56 / 812);
-  border-radius: calc(100vw * 40 / 375);
+  width: calc(100vw * 190 / 375);
+  height: calc(100vh * 54 / 812);
+  border-radius: calc(100vw * 100 / 375);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +75,8 @@
   font-size: calc(100vw * 20 / 375);
   line-height: calc(100vw * 25 / 375);
   color: #fff;
-  /* ✅ 核心：渐变圆角边框 */
-  background: rgba(25, 44, 65, 1);
+  background: rgba(92, 201, 159, 1);
   cursor: pointer;
+  font-weight: 700;
+  font-size: calc(100vw * 18 / 375);
 }

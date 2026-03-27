@@ -9,7 +9,7 @@ import aibgc from '@/assets/pagebgc.png'
 import aiusermodel from '@/assets/aiusermodel.png'
 import aichatmodel from '@/assets/aichatmodel.png'
 import coinIcon from '@/assets/coin.png'
-
+import aiChatForward from '@/assets/aiChatForward.png'
 import './index.css'
 
 export default function AiDetails() {
@@ -47,20 +47,19 @@ export default function AiDetails() {
 
       {/* <div className="ai-chat-img" style={{ backgroundImage: `url(${aichatmodel})` }} /> */}
       <div className="ai-user-img" style={{ backgroundImage: `url(${aiusermodel})` }} />
-      <div className="ai-text-title">
+      {/* <div className="ai-text-title">
         AI Photo
         <br />
         Inspiration
-      </div>
+      </div> */}
       <div className="ai-content">
+        <div className="ai-title">Kopee AI</div>
         <div className="ai-card">
           <div className="ai-desc">
-            Hi! I’m Kopee AI, your friendly travel companion here to chat about all things travel
-            and adventure. Whether you’re dreaming of exploring vibrant cities, relaxing on serene
-            beaches, hiking through breathtaking landscapes, or immersing yourself in new cultures,
-            I’m here to share tips, plan your trips, and keep your travel journey exciting and
-            unforgettable. Ready to explore the world and create amazing memories together? Let’s
-            travel, discover, and experience the beauty of life every step of the way!
+            Hi! I’m Kopee, your friendly AI companion here to chat about all your passions and
+            interests. Whether you love fashion, art, music, or anything in between, I’m here to
+            explore ideas, share tips, and keep the conversation fun and inspiring. Ready to dive
+            into your favorite hobbies together? Let’s talk and discover something new every day!
           </div>
 
           <div className="ai-btn" onClick={handlePurchaseClick}>
@@ -69,7 +68,13 @@ export default function AiDetails() {
               <span>X {needCoinCount}</span>
             </div>
 
-            <div className="ai-btn-right">Chat</div>
+            <div className="ai-btn-right">
+              <p>Chat</p>
+              <div
+                className="ai-chat-forward"
+                style={{ backgroundImage: `url(${aiChatForward})` }}
+              />
+            </div>
           </div>
         </div>
       </div>

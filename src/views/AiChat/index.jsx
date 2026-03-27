@@ -4,7 +4,7 @@ import { useUIStore } from '@/stores/ui'
 import { aiChat } from '@/utils/ai'
 import { decryptAES } from '@/utils/aes'
 import NavBar from '@/components/NavBar'
-import aibgc from '@/assets/pagebgc.png'
+
 import aiusermodel from '@/assets/aiusermodel.png'
 import aichatmodel from '@/assets/aichatmodel.png'
 import aiAvatar from '@/assets/aiavator.png'
@@ -82,24 +82,24 @@ export default function AiChat() {
   }
 
   return (
-    <div className="ai-chat" style={{ background: `url(${aibgc}) no-repeat top center / cover` }}>
-      <NavBar />
-      {/* <div className="ai-chat-model" style={{ backgroundImage: `url(${aichatmodel})` }} /> */}
+    <div className="ai-chat">
+      <NavBar>
+        <p className="ai-chat-title">Kopee AI</p>
+      </NavBar>
+      <div className="ai-chat-model" style={{ backgroundImage: `url(${aichatmodel})` }} />
       {/* <div className="ai-chat-user" style={{ backgroundImage: `url(${aiusermodel})` }} /> */}
-      <div className="ai-chat-user" style={{ backgroundImage: `url(${aiusermodel})` }} />
-      <div className="ai-text-title">
+      {/* <div className="ai-text-title">
         AI Photo
         <br />
         Inspiration
-      </div>
-      {/* <div className="ai-chat-quick">
+      </div> */}
+      <div className="ai-chat-quick">
         {messages.map((item, i) => (
           <div key={i} className="quick-item" onClick={() => sendMessage(item)}>
             {item}
           </div>
         ))}
-      </div> */}
-
+      </div>
       <div className="ai-chat-panel">
         <div ref={listRef} className="ai-chat-list">
           {bottomItems.map((item, i) => (

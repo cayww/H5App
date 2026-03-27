@@ -3,8 +3,16 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+  /* background: url('@/assets/pagebgc.png') no-repeat top center / cover; */
+  background: rgba(92, 201, 159, 1);
 }
-
+.ai-chat-title {
+  align-items: start;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
+  flex: 1;
+}
 /* 背景 */
 .ai-chat-user {
   position: absolute;
@@ -28,19 +36,20 @@
 .ai-chat-model {
   position: absolute;
   right: 0;
-  top: calc(env(safe-area-inset-top) + calc(100vh * 20 / 812));
-  width: calc(100vw * 338 / 375);
-  height: calc(100vh * 343 / 812);
+  top: calc(env(safe-area-inset-top) + calc(100vh * 35 / 812));
+  width: calc(100vw * 163 / 375);
+  height: calc(100vh * 214 / 812);
   background-size: cover;
 }
 
 /* 快捷消息 */
 .ai-chat-quick {
-  margin-top: calc(100vh * 41 / 812);
-  margin-left: calc(100vw * 187 / 375);
+  position: absolute;
+  top: calc(env(safe-area-inset-top) + calc(100vh * 89 / 812));
+  left: calc(100vw * 20 / 375);
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 12 / 812);
+  gap: calc(100vh * 8 / 812);
   z-index: 10;
 }
 
@@ -49,22 +58,23 @@
   height: calc(100vh * 36 / 812);
   display: flex;
   align-items: center;
-  border-radius: calc(100vw * 40 / 375);
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: calc(100vw * 32 / 375);
+  background: rgba(13, 8, 13, 0.2);
   backdrop-filter: blur(10px);
   color: #fff;
   cursor: pointer;
+  font-size: calc(100vw * 14 / 375);
 }
 
 /* 面板 */
 .ai-chat-panel {
   position: absolute;
-  top: calc(calc(100vh * 193 / 812) + env(safe-area-inset-top) + calc(100vw * 52 / 375));
+  top: calc(calc(100vh * 197 / 812) + env(safe-area-inset-top) + calc(100vw * 45 / 375));
   bottom: 0;
   left: 0;
   right: 0;
   background: #fff;
-  border-radius: calc(100vw * 20 / 375) calc(100vw * 20 / 375) 0 0;
+  /* border-radius: calc(100vw * 20 / 375) calc(100vw * 20 / 375) 0 0; */
 }
 
 .ai-chat-list {
@@ -105,7 +115,7 @@
   width: calc(100vw * 44 / 375);
   height: calc(100vw * 44 / 375);
   border-radius: 50%;
-  border: 1px solid rgba(109, 44, 236, 1);
+  /* border: 1px solid rgba(109, 44, 236, 1); */
 }
 
 .avatar-wrap img {
@@ -116,18 +126,18 @@
 
 /* 气泡 */
 .bubble {
-  padding: 10px;
-  border-radius: 10px;
+  padding: calc(100vw * 13 / 375) calc(100vw * 16 / 375);
+  border-radius: calc(100vw * 24 / 375);
   font-size: calc(100vw * 14 / 375);
 }
 
 .bubble.ai {
-  background: rgba(169, 251, 194, 1);
+  background: rgba(247, 249, 247, 1);
   color: rgba(0, 0, 0, 1);
 }
 
 .bubble.me {
-  background: rgba(255, 138, 122, 1);
+  background: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
 }
 
@@ -141,8 +151,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(169, 251, 194, 1);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(247, 249, 247, 1);
   border-radius: calc(100vw * 40 / 375);
   padding: 0 calc(100vw * 8 / 375);
 }
@@ -152,25 +161,24 @@
   border: none;
   background: transparent;
   outline: none;
-  font-size: 30px;
+  font-size: calc(100vw * 14 / 375);
 }
 
 .ai-chat-input input::placeholder {
-  font-size: 30px;
+  font-size: calc(100vw * 14 / 375);
 }
 
 .chat-send-btn {
-  width: calc(100vw * 36 / 375);
-  height: calc(100vw * 36 / 375);
-  border-radius: 50%;
-  background: #000;
-  padding: 0;
+  width: calc(100vw * 32 / 375);
+  height: calc(100vw * 32 / 375);
+  /* border-radius: 50%;
+  background: #000; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .chat-send-btn img {
-  width: 77%;
-  height: 77%;
+  width: 100%;
+  height: 100%;
 }
