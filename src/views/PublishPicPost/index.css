@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: rgba(214, 223, 239, 1);
+  background: url('@/assets/pagebgc.png') no-repeat top center / cover;
   overflow: hidden;
 }
 
@@ -22,10 +22,9 @@
   margin: calc(100vh * 20 / 812) calc(100vw * 20 / 375) 0;
   height: calc(100vh * 174 / 812);
   padding: calc(100vw * 12 / 375);
-  box-sizing: border-box;
-  border-radius: calc(100vw * 16 / 375);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  /* box-sizing: border-box; */
+  border-radius: calc(100vw * 20 / 375);
+  background: rgba(255, 255, 255, 1);
 }
 
 .textarea {
@@ -57,8 +56,8 @@
   margin-left: calc(100vw * 20 / 375);
   font-family: YesevaOne, sans-serif;
   font-size: calc(100vw * 20 / 375);
-  color: rgba(211, 238, 241, 1);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
 }
 
 /* theme */
@@ -84,15 +83,15 @@
   cursor: pointer;
   box-sizing: border-box;
   border-radius: calc(100vw * 20 / 375);
-  border: 1px solid rgba(255, 255, 255, 1);
+  /* border: 1px solid rgba(255, 255, 255, 1); */
   background: rgba(255, 255, 255, 1);
-  color: rgba(153, 153, 153, 1);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .theme-item.active {
-  border: 1px solid rgba(255, 255, 255, 1);
-  background: rgba(169, 251, 194, 1);
-  color: rgba(25, 44, 65, 1);
+  /* border: 1px solid rgba(255, 255, 255, 1); */
+  background: rgba(92, 201, 159, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 /* 上传 */
@@ -101,7 +100,7 @@
   overflow-x: auto;
   margin-top: calc(100vh * 20 / 812);
   padding: 0 calc(100vw * 20 / 375);
-  gap: calc(100vw * 10 / 375);
+  gap: calc(100vw * 5 / 375);
 }
 
 .upload-item {
@@ -114,12 +113,11 @@
   overflow: hidden;
   border-radius: calc(100vw * 20 / 375);
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
 }
 .upload-item img {
-  width: 20%;
-  height: 20%;
+  width: 37%;
+  height: 37%;
 }
 /* 上传按钮 */
 .upload-btn {

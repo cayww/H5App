@@ -100,7 +100,7 @@ export default function PublishPicPost() {
           <div className="text-count">{text.length}/150</div>
         </div>
 
-        <div className="section-title">Theme</div>
+        <div className="section-title">Topic</div>
 
         <div className="theme-list">
           {themes.map((theme, index) => (
