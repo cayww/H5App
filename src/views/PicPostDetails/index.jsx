@@ -53,10 +53,7 @@ export default function PicPostDetails() {
   if (!post) {
     return (
       <div className="ppd-page">
-        <NavBar
-          showMore={post.userId !== currentUser.userId}
-          onMoreClick={() => setShowPostReport(true)}
-        />
+        <NavBar />
         <div className="ppd-not-found">The post was not found.</div>
       </div>
     )
@@ -210,27 +207,32 @@ export default function PicPostDetails() {
                 >
                   {postUser?.name}
                 </div>
-              </div>
-              <div className="ppd-second-box">
-                <div className="ppd-post-desc">{post.dynamicDesc}</div>
                 <div className="ppd-tag-box">
                   <div className="ppd-tag-text"># {postTag}</div>
                 </div>
               </div>
-              <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
-                <img
-                  src={liked ? likeImage : disLikeImage}
-                  alt="like"
-                  className="ppd-like-icon-img"
-                />
-                <div className="ppd-like-count">{likeCount}</div>
+              <div className="ppd-second-box">
+                <div className="ppd-post-desc">{post.dynamicDesc}</div>
               </div>
             </div>
           </div>
+          <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
+            <div className="ppd-like-wrapper">
+              <img
+                src={liked ? likeImage : disLikeImage}
+                alt="like"
+                className="ppd-like-icon-img"
+              />
+            </div>
+            <div className="ppd-like-count">{likeCount}</div>
+          </div>
         </div>
 
-        {/* <div className="ppd-comments-line" /> */}
-        <div className="ppd-comments-title-text">COMMENTS</div>
+        <div className="ppd-comments-box">
+          <div className="ppd-comments-line" />
+          <div className="ppd-comments-title-text">Comments</div>
+          <div className="ppd-comments-line" />
+        </div>
 
         <div className="ppd-comments-list">
           {comments.length ? (
