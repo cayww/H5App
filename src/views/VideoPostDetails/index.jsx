@@ -219,18 +219,24 @@ export default function VideoPostDetails() {
       </div>
 
       <div className="vpd-action-buttons">
-        <div className="vpd-action-button" onClick={toggleLike} role="button" tabIndex={0}>
-          <img src={liked ? likeImage : disLikeImage} alt="like" />
-          <span>{likeCount}</span>
+        <div className="vpd-action-wrapper">
+          <div className="vpd-action-item-bg"></div>
+          <div className="vpd-action-button" onClick={toggleLike} role="button" tabIndex={0}>
+            <img src={liked ? likeImage : disLikeImage} alt="like" />
+            <span>{likeCount}</span>
+          </div>
         </div>
-        <div
-          className="vpd-action-button"
-          onClick={() => setShowComment(true)}
-          role="button"
-          tabIndex={0}
-        >
-          <img src={commentIcon} alt="comment" />
-          <span>{post.dynamicCommentCount || 0}</span>
+        <div className="vpd-action-wrapper">
+          <div className="vpd-action-item-bg"></div>
+          <div
+            className="vpd-action-button"
+            onClick={() => setShowComment(true)}
+            role="button"
+            tabIndex={0}
+          >
+            <img src={commentIcon} alt="comment" />
+            <span>{post.dynamicCommentCount || 0}</span>
+          </div>
         </div>
       </div>
 
