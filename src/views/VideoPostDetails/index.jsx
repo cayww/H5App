@@ -102,11 +102,16 @@ export default function VideoPostDetails() {
   }
 
   function toggleLike() {
-    const postLikeIds = currentUser.postLikeIds ? [...currentUser.postLikeIds] : []
-    const idx = postLikeIds.indexOf(post.dynamicId)
-    if (idx === -1) postLikeIds.push(post.dynamicId)
-    else postLikeIds.splice(idx, 1)
-    updateUser(currentUser.userId, { postLikeIds })
+    const videoPostLikeIds = currentUser.videoPostLikeIds ? [...currentUser.videoPostLikeIds] : []
+    const idx = videoPostLikeIds.indexOf(post.dynamicId)
+    if (idx === -1) {
+      videoPostLikeIds.push(post.dynamicId)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) + 1 })
+    } else {
+      videoPostLikeIds.splice(idx, 1)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) - 1 })
+    }
+    updateUser(currentUser.userId, { videoPostLikeIds })
   }
 
   function postReportSelect(value) {
@@ -149,7 +154,7 @@ export default function VideoPostDetails() {
     setCommentInput('')
   }
 
-  const liked = (currentUser.postLikeIds || []).includes(post.dynamicId)
+  const liked = (currentUser.videoPostLikeIds || []).includes(post.dynamicId)
   const likeCount = (post.dynamicLikeCount || 0) + (liked ? 1 : 0)
 
   return (

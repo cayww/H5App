@@ -20,11 +20,10 @@ export const useUserStore = create((set, get) => ({
 
   updateUser: (userId, newData) => {
     const { users } = get()
-    const next = users.map((u) =>
-      u.userId === userId ? { ...u, ...newData } : u,
-    )
+    const next = users.map((u) => (u.userId === userId ? { ...u, ...newData } : u))
     set({ users: next })
     window.userList = next
+    console.log(next)
 
     // 同步 currentUser
     const { currentUser, setCurrentUser } = useCurrentUserStore.getState()

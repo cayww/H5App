@@ -14,3 +14,4 @@ window.updateCurrentUser = function (user) {
   const { setCurrentUser } = useCurrentUserStore.getState()
   setCurrentUser(user)
 }
+ 
