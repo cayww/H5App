@@ -11,9 +11,7 @@ export const useCommentsStore = create((set, get) => ({
     const { currentUser } = useCurrentUserStore.getState()
     const blockList = currentUser?.blockList || []
 
-    const filtered = comment.filter(
-      (c) => c.dynamicId == postId && !blockList.includes(c.userId),
-    )
+    const filtered = comment.filter((c) => c.dynamicId == postId && !blockList.includes(c.userId))
     return filtered.reverse()
   },
 

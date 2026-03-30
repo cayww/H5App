@@ -2,20 +2,18 @@ import React, { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Swiper } from 'antd-mobile'
 
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
-import ReportDialog from '@/components/ReportDialog.jsx'
+import ReportDialog from '@/components/ReportDialog/index.jsx'
 import Empty from '@/components/Empty.jsx'
-
+import NavBar from '@/components/NavBar'
 import { usePostStore } from '@/stores/post'
 import { useUserStore } from '@/stores/user'
 import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useCommentsStore } from '@/stores/comment'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 
-import './picPostDetails.css'
+import './index.css'
 import likeImage from '@/assets/likepic.png'
 import disLikeImage from '@/assets/dislikepic.png'
 import commentMoreImage from '@/assets/postpiccommentreport.png'
@@ -25,7 +23,7 @@ export default function PicPostDetails() {
   const { postId: rawPostId } = useParams()
   const postId = String(rawPostId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const ui = useUIStore()
   const post = usePostStore((s) => s.getPostById(postId))
   const updatePostById = usePostStore((s) => s.updatePostById)
@@ -38,19 +36,24 @@ export default function PicPostDetails() {
 
   const postUser = useMemo(() => (post ? getUserById(post.userId) : null), [getUserById, post])
   const images = useMemo(() => (post?.dynamicPic || []).filter(Boolean), [post])
-  const postTag = useMemo(() => (post ? getTagByIndex(post.dynamicTitleType) : ''), [getTagByIndex, post])
+  const postTag = useMemo(
+    () => (post ? getTagByIndex(post.dynamicTitleType) : ''),
+    [getTagByIndex, post],
+  )
 
   const [commentInput, setCommentInput] = useState('')
   const [showPostReport, setShowPostReport] = useState(false)
   const [showCommentReport, setShowCommentReport] = useState(false)
   const [reportCommentUserId, setReportCommentUserId] = useState(null)
 
-  const blockListKey = (currentUser?.blockList || []).join('|')
-  const comments = useMemo(() => getCommentsById(postId) || [], [getCommentsById, postId, blockListKey])
+  const comments = getCommentsById(postId) || []
+  const blockSet = new Set(currentUser?.blockList || [])
+  const filteredComments = comments.filter((item) => !blockSet.has(item.userId))
 
   if (!post) {
     return (
       <div className="ppd-page">
+        <NavBar />
         <div className="ppd-not-found">The post was not found.</div>
       </div>
     )
@@ -62,12 +65,17 @@ export default function PicPostDetails() {
   }
 
   function toggleLike() {
-    const postLikeIds = currentUser.postLikeIds ? [...currentUser.postLikeIds] : []
-    const idx = postLikeIds.indexOf(postId)
-    if (idx === -1) postLikeIds.push(postId)
-    else postLikeIds.splice(idx, 1)
-
-    updateUser(currentUser.userId, { postLikeIds })
+    const picPostLikeIds = currentUser.picPostLikeIds ? [...currentUser.picPostLikeIds] : []
+    const idx = picPostLikeIds.indexOf(postId)
+    if (idx === -1) {
+      picPostLikeIds.push(postId)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) + 1 })
+    } else {
+      picPostLikeIds.splice(idx, 1)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) - 1 })
+    }
+    console.log(picPostLikeIds)
+    updateUser(currentUser.userId, { picPostLikeIds })
   }
 
   function postReportSelect(value) {
@@ -91,7 +99,7 @@ export default function PicPostDetails() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }
@@ -144,21 +152,28 @@ export default function PicPostDetails() {
     setCommentInput('')
   }
 
-  const liked = (currentUser.postLikeIds || []).includes(postId)
-  const likeCount = (post.dynamicLikeCount || 0) + (liked ? 1 : 0)
+  const liked = (currentUser.picPostLikeIds || []).includes(postId)
+  const likeCount = post.dynamicLikeCount || 0
 
   return (
     <div className="ppd-page">
+      <NavBar
+        showMore={post.userId !== currentUser.userId}
+        onMoreClick={() => setShowPostReport(true)}
+      />
       <div className="ppd-page-content">
         <div className="ppd-swipe-wrapper">
           {images.length ? (
-            <Swiper loop={false} indicator={(total, current) => (
-              <div className="ppd-indicator-wrapper">
-                {Array.from({ length: total }).map((_, i) => (
-                  <span key={i} className={`ppd-indicator ${i === current ? 'active' : ''}`} />
-                ))}
-              </div>
-            )}>
+            <Swiper
+              loop={false}
+              indicator={(total, current) => (
+                <div className="ppd-indicator-wrapper">
+                  {Array.from({ length: total }).map((_, i) => (
+                    <span key={i} className={`ppd-indicator ${i === current ? 'active' : ''}`} />
+                  ))}
+                </div>
+              )}
+            >
               {images.map((src, idx) => (
                 <Swiper.Item key={idx}>
                   <div className="ppd-swipe-item">
@@ -170,68 +185,78 @@ export default function PicPostDetails() {
           ) : (
             <div className="ppd-swipe-empty" />
           )}
-
-          <div className="ppd-top-btn">
-            <BackButton />
-            {post.userId !== currentUser.userId ? <MoreButton onClick={() => setShowPostReport(true)} /> : <div />}
-          </div>
         </div>
 
         <div className="ppd-post-content">
           <div className="ppd-post-row">
             <div className="ppd-post-content-row">
               <div className="ppd-user-box">
-                <div className="ppd-avatar" onClick={() => goOtherHome(postUser?.userId)} role="button" tabIndex={0}>
+                <div
+                  className="ppd-avatar"
+                  onClick={() => goOtherHome(postUser?.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
                   <div
                     className="ppd-avatar-img"
                     style={{
-                      backgroundImage: postUser?.avator ? `url(${postUser.avator})` : undefined,
+                      backgroundImage: postUser?.avatar ? `url(${postUser.avatar})` : undefined,
                     }}
                   />
                 </div>
-                <div className="ppd-user-name" onClick={() => goOtherHome(postUser?.userId)} role="button" tabIndex={0}>
+                <div
+                  className="ppd-user-name"
+                  onClick={() => goOtherHome(postUser?.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
                   {postUser?.name}
                 </div>
-              </div>
-
-              <div className="ppd-second-box">
-                <div className="ppd-post-desc">{post.dynamicDesc}</div>
                 <div className="ppd-tag-box">
                   <div className="ppd-tag-text"># {postTag}</div>
                 </div>
               </div>
+              <div className="ppd-second-box">
+                <div className="ppd-post-desc">{post.dynamicDesc}</div>
+              </div>
             </div>
-
-            <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
+          </div>
+          <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
+            <div className="ppd-like-wrapper">
               <img
                 src={liked ? likeImage : disLikeImage}
                 alt="like"
                 className="ppd-like-icon-img"
               />
-              <div className="ppd-like-count">{likeCount}</div>
             </div>
+            <div className="ppd-like-count">{likeCount}</div>
           </div>
         </div>
 
-        <div className="ppd-comments-title">
-          <div className="ppd-comments-box1" />
+        <div className="ppd-comments-box">
+          <div className="ppd-comments-line" />
           <div className="ppd-comments-title-text">Comments</div>
-          <div className="ppd-comments-box2" />
+          <div className="ppd-comments-line" />
         </div>
 
         <div className="ppd-comments-list">
           {comments.length ? (
-            comments.map((comment) => (
+            filteredComments.map((comment) => (
               <div key={comment.commentId} className="ppd-comment-item">
                 <div className="ppd-comment-list-top">
-                  <div className="ppd-comment-list-user" onClick={() => goOtherHome(comment.userId)} role="button" tabIndex={0}>
+                  <div
+                    className="ppd-comment-list-user"
+                    onClick={() => goOtherHome(comment.userId)}
+                    role="button"
+                    tabIndex={0}
+                  >
                     <div className="ppd-comment-avatar">
                       <div
                         className="ppd-comment-avatar-img"
                         style={{
                           backgroundImage: (() => {
                             const u = getUserById(comment.userId)
-                            return u?.avator ? `url(${u.avator})` : undefined
+                            return u?.avatar ? `url(${u.avatar})` : undefined
                           })(),
                         }}
                       />
@@ -271,9 +296,16 @@ export default function PicPostDetails() {
         </div>
       </div>
 
-      <ReportDialog open={showPostReport} onClose={() => setShowPostReport(false)} onSelect={postReportSelect} />
-      <ReportDialog open={showCommentReport} onClose={() => setShowCommentReport(false)} onSelect={commentReportSelect} />
+      <ReportDialog
+        open={showPostReport}
+        onClose={() => setShowPostReport(false)}
+        onSelect={postReportSelect}
+      />
+      <ReportDialog
+        open={showCommentReport}
+        onClose={() => setShowCommentReport(false)}
+        onSelect={commentReportSelect}
+      />
     </div>
   )
 }
-

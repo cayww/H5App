@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-
-import BackButton from '@/components/BackButton.jsx'
+import NavBar from '@/components/NavBar'
 import { useUIStore } from '@/stores/ui'
 import { useUserStore } from '@/stores/user'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { sendLogoutToIOS } from '@/utils/iosBridge'
 
-import './setting.css'
-import pageBg from '@/assets/pagebgc.png'
+import './index.css'
 
 export default function Setting() {
   const nav = useNavigate()
@@ -21,8 +19,8 @@ export default function Setting() {
       { text: 'Privacy Policy', path: '/privacyPolicy' },
       { text: 'User Agreement', path: '/userAgreement' },
       { text: 'Blacklist', path: '/block' },
-      { text: 'Wallet', path: '/coins' },
-      { text: 'Edit personal information', path: '/edit' },
+      // { text: 'Wallet', path: '/coins' },
+      // { text: 'Edit personal information', path: '/edit' },
     ],
     [],
   )
@@ -43,12 +41,10 @@ export default function Setting() {
   }
 
   return (
-    <div className="setting-page" style={{ backgroundImage: `url(${pageBg})` }}>
-      <div className="setting-header">
-        <BackButton />
+    <div className="setting-page">
+      <NavBar>
         <h1 className="setting-title">Setting</h1>
-      </div>
-
+      </NavBar>
       <main className="setting-options-list">
         {options.map((option, index) => (
           <div
@@ -77,4 +73,3 @@ export default function Setting() {
     </div>
   )
 }
-

@@ -2,42 +2,34 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: #000;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-}
-
-.edit-top-header {
-  display: flex;
-  align-items: center;
-  gap: calc(100vw * 16 / 375);
-  padding: calc(100vh * 58 / 812) calc(100vw * 20 / 375) 0;
+  background:
+    radial-gradient(
+      85.33% 16.5% at 100% 0%,
+      rgba(148, 255, 241, 1) 0%,
+      rgba(0, 230, 92, 0.01) 100%
+    ),
+    radial-gradient(57.07% 26.35% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
+    rgba(249, 249, 249, 1);
 }
 
 .edit-title {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  flex: 1;
+  align-items: start;
+  color: rgba(0, 0, 0, 1);
+  margin-left: calc(100vw * 16 / 375);
 }
 
 .edit-content {
   position: relative;
   width: 100vw;
-  height: calc(100% - calc(100vh * 98 / 812));
+  margin-top: calc(env(safe-area-inset-top) + calc(100vh * 25 / 812) + calc(100vw * 40 / 375));
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
@@ -56,7 +48,7 @@
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  border: calc(100vw * 1 / 375) solid #fff;
+  border: 4px solid rgba(255, 255, 255, 0.6);
   position: relative;
   margin-top: calc(100vh * 20 / 812);
   cursor: pointer;
@@ -64,12 +56,12 @@
 
 .edit-camera-corner {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   width: calc(100vw * 28 / 375);
   height: calc(100vw * 28 / 375);
   border-radius: 50%;
-  background: #fff;
+  background: rgba(92, 201, 159, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,28 +71,31 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: calc(100vh * 10 / 812);
-  width: calc(100% - calc(100vh * 40 / 812));
+  gap: calc(100vh * 9 / 812);
+  width: calc(100% - calc(100vw * 40 / 375));
   margin-top: calc(100vh * 44 / 812);
 }
 
 .edit-label {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 23.1 / 375);
-  color: #fff;
+  font-weight: 700;
+  line-height: calc(100vw * 29 / 375);
+
+  color: rgba(0, 0, 0, 1);
 }
 
 .edit-input-box {
   width: 100%;
   height: calc(100vh * 54 / 812);
   border-radius: calc(100vw * 16 / 375);
-  background: #fff;
+  background: rgba(255, 255, 255, 1);
   display: flex;
   align-items: center;
   padding: 0 calc(100vw * 15 / 375);
-  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  /* box-sizing: border-box;
+  border: 2px solid transparent; */
 }
 
 .edit-input-box input {
@@ -116,7 +111,7 @@
 }
 
 .edit-input-box input::placeholder {
-  color: rgba(105, 71, 65, 1);
+  color: rgba(153, 153, 153, 1);
 }
 
 .edit-third .edit-section {
@@ -152,29 +147,15 @@
 }
 
 .edit-save-btn {
-  width: calc(100vw * 229 / 375);
-  height: calc(100vh * 62 / 812);
+  width: calc(100vw * 198 / 375);
+  height: calc(100vh * 53 / 812);
   border-radius: calc(100vw * 40 / 375);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 159, 142, 1) 0%,
-    rgba(241, 213, 160, 1) 32.13%,
-    rgba(201, 255, 221, 1) 67.84%,
-    rgba(157, 255, 255, 1) 100%
-  );
-  box-shadow:
-    inset calc(100vw * -2 / 375) calc(100vw * -2 / 375) calc(100vw * 2 / 375)
-      rgba(255, 255, 255, 0.6),
-    inset calc(100vw * 2 / 375) calc(100vw * 2 / 375) calc(100vw * 2 / 375)
-      rgba(255, 255, 255, 0.5);
+  background: rgba(92, 201, 159, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 20 / 375);
+  font-size: calc(100vw * 18 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 23.1 / 375);
-  color: rgba(74, 32, 25, 1);
-  border: none;
+  color: #fff;
 }
-

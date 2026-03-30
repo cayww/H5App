@@ -1,0 +1,105 @@
+.video-call {
+  position: relative;
+  width: 100%;
+  height: 100dvh; /* ✅ 关键 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  gap: calc(100vh * 20 / 812);
+}
+
+.video-call > *:not(.bg-gradient) {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(
+      66.4% 16.48% at 100% 0%,
+      rgba(148, 255, 241, 1) 0%,
+      rgba(0, 230, 92, 0.01) 100%
+    ),
+    radial-gradient(44.27% 26.31% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
+    rgba(249, 249, 249, 1);
+}
+
+/* Avatar */
+/* .avatar-outer {
+  width: calc(100vw * 162 / 375);
+  height: calc(100vw * 162 / 375);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-inner {
+  width: calc(100vw * 144 / 375);
+  height: calc(100vw * 144 / 375);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+} */
+.avatar-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-inner img {
+  width: calc(100vw * 80 / 375);
+  height: calc(100vw * 80 / 375);
+  object-fit: cover;
+  border-radius: 50%;
+  border: 11px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Bottom panel */
+.call-panel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: calc(100vh * 12 / 812);
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: calc(env(safe-area-inset-bottom) + calc(100vh * 80 / 812));
+}
+
+.user-name {
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 700;
+  margin-top: calc(env(safe-area-inset-top));
+  color: rgba(0, 0, 0, 1);
+}
+
+.calling-text {
+  font-size: calc(100vw * 14 / 375);
+  color: rgba(0, 0, 0, 0.4);
+  margin-top: calc(100vh * 4 / 812);
+}
+
+.hangup-btn {
+  width: calc(100vw * 60 / 375);
+  height: calc(100vw * 60 / 375);
+  border-radius: 50%;
+  background: rgba(255, 60, 46, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hangup-btn img {
+  width: calc(100vw * 28 / 375);
+  height: calc(100vw * 28 / 375);
+}

@@ -19,7 +19,6 @@ const PublishPicPost = lazy(() => import('@/views/PublishPicPost/index.jsx'))
 const PublishVideoPost = lazy(() => import('@/views/PublishVideoPost/index.jsx'))
 const AiDetails = lazy(() => import('@/views/AiDetails/index.jsx'))
 const AiChat = lazy(() => import('@/views/AiChat/index.jsx'))
-
 export const routes = [
   { path: '/', element: <Home /> },
 
@@ -46,4 +45,3 @@ export const routes = [
 
   { path: '*', element: <Navigate to="/" replace /> },
 ]
-

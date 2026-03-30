@@ -1,0 +1,178 @@
+.coins-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.coins-title {
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 20 / 375);
+  font-weight: 700;
+  flex: 1;
+  align-items: start;
+  color: rgba(0, 0, 0, 1);
+  margin-left: calc(100vw * 16 / 375);
+}
+
+.coins-box {
+  width: auto;
+  height: calc(100vh * 111 / 812);
+  border-radius: calc(100vw * 20 / 375);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 calc(100vw * 20 / 375);
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: calc(100vh * 32 / 812);
+  padding-left: calc(100vw * 13 / 375);
+  box-sizing: border-box;
+  background: rgba(92, 201, 159, 1);
+  margin-top: calc(env(safe-area-inset-top) + calc(100vh * 25 / 812) + calc(100vw * 40 / 375));
+  padding-left: calc(100vw * 32 / 375);
+  overflow: hidden;
+}
+
+.coins-box-header {
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 16 / 375);
+  font-weight: 500;
+  line-height: calc(100vw * 20.79 / 375);
+  color: #fff;
+}
+
+.coins-box-content {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  /* gap: calc(100vw * 6 / 375); */
+  width: fit-content;
+  max-width: 100%;
+}
+
+.coins-icon-img {
+  width: calc(100vw * 78 / 375);
+  height: calc(100vw * 78 / 375);
+  z-index: 1;
+}
+
+.coins-bgc {
+  position: absolute;
+  top: calc(-100vh * 46 / 812);
+  left: calc(-100vw * 15 / 375);
+  width: calc(100vw * 186 / 375);
+  height: calc(100vh * 171 / 812);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.coins-number {
+  font-family: 'Archivo', sans-serif;
+  font-size: calc(100vw * 24 / 375);
+  font-weight: 900;
+  line-height: calc(100vw * 23.25 / 375);
+  color: rgba(255, 255, 255, 1);
+}
+
+.coins-list-wrap {
+  height: calc(100% - calc(100vh * 350 / 812));
+  margin-top: calc(100vh * 30 / 812);
+  padding: 0 calc(100vw * 20 / 375) calc(100vh * 34 / 812);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.coins-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(100vh * 12 / 812);
+}
+
+.coins-item {
+  min-height: calc(100vh * 100 / 812);
+  border-radius: calc(100vw * 24 / 375);
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(100vh * 8 / 812);
+  padding: calc(100vh * 12 / 812) calc(100vw * 8 / 375);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.coins-item-selected {
+  background: rgba(92, 201, 159, 1);
+}
+
+.coins-item-top {
+  display: flex;
+  align-items: center;
+  gap: calc(100vw * 8 / 375);
+}
+
+.coins-item-icon-img {
+  width: calc(100vw * 24 / 375);
+  height: calc(100vw * 24 / 375);
+}
+
+.coins-count {
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 16 / 375);
+  font-weight: 700;
+  line-height: calc(100vw * 18.48 / 375);
+  color: rgba(0, 0, 0, 1);
+}
+
+.coins-count-selected {
+  color: #fff;
+}
+
+.coins-recharge-wrap {
+  margin: calc(100vh * 143 / 812) 0 calc(100vh * 34 / 812);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.coins-recharge-btn {
+  width: calc(100vw * 190 / 375);
+  height: calc(100vh * 47 / 812);
+  border-radius: calc(100vw * 40 / 375);
+  background: rgba(92, 201, 159, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'YesevaOne', sans-serif;
+  font-size: calc(100vw * 18 / 375);
+  font-weight: 700;
+  color: #fff;
+
+  /* border: 2px solid transparent; */
+}
+
+.coins-price {
+  font-family: 'Archivo', sans-serif;
+  font-size: calc(100vw * 14 / 375);
+  font-weight: 700;
+  line-height: calc(100vw * 15.23 / 375);
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+}
+
+.coins-price-selected {
+  color: rgba(255, 255, 255, 0.7);
+}

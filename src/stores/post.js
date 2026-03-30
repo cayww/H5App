@@ -1,4 +1,4 @@
-import postData from '../data/posts.json'  // 本地 JSON
+import postData from '../data/posts.json' // 本地 JSON
 import { sendPostsToIOS } from '@/utils/iosBridge'
 import { create } from 'zustand'
 
@@ -17,9 +17,7 @@ export const usePostStore = create((set, get) => ({
 
   updatePostById: (postId, newData) => {
     const { posts } = get()
-    const next = posts.map((p) =>
-      p.dynamicId === String(postId) ? { ...p, ...newData } : p,
-    )
+    const next = posts.map((p) => (p.dynamicId === String(postId) ? { ...p, ...newData } : p))
     set({ posts: next })
     window.postList = next
     sendPostsToIOS(next)

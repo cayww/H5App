@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react'
 
-import BackButton from '@/components/BackButton.jsx'
+import NavBar from '@/components/NavBar'
 import Empty from '@/components/Empty.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
 import { useUIStore } from '@/stores/ui'
-
-import './fan.css'
+import removeIcon from '@/assets/removeIcon.png'
+import './index.css'
 
 export default function Fan() {
   const currentUser = useCurrentUserStore((s) => s.currentUser)
@@ -49,10 +49,9 @@ export default function Fan() {
 
   return (
     <div className="fan-page">
-      <div className="fan-top-header">
-        <BackButton />
-        <span className="fan-title">Fans</span>
-      </div>
+      <NavBar>
+        <h1 className="fan-title">Fans</h1>
+      </NavBar>
 
       <div className="fan-container">
         {fans.length > 0 ? (
@@ -67,8 +66,8 @@ export default function Fan() {
                           className="fan-avatar-fallback"
                           style={{
                             background:
-                              item.avator && item.avator.startsWith('http')
-                                ? `url(${item.avator}) center/cover no-repeat`
+                              item.avatar && item.avatar.startsWith('http')
+                                ? `url(${item.avatar}) center/cover no-repeat`
                                 : undefined,
                           }}
                           aria-hidden="true"
@@ -79,9 +78,13 @@ export default function Fan() {
                   </div>
                   <div className="fan-user-intro">{item.about}</div>
                 </div>
-
-                <div className="fan-right" onClick={() => addFollow(item.userId)} role="button" tabIndex={0}>
-                  Follow
+                <div
+                  className="fan-right"
+                  onClick={() => addFollow(item.userId)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <img src={removeIcon} alt="remove-icon" />
                 </div>
               </div>
             ))}
@@ -95,4 +98,3 @@ export default function Fan() {
     </div>
   )
 }
-

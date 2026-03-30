@@ -2,19 +2,17 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Popup } from 'antd-mobile'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
-import ReportDialog from '@/components/ReportDialog.jsx'
+import ReportDialog from '@/components/ReportDialog/index.jsx'
 import Empty from '@/components/Empty.jsx'
-
+import NavBar from '@/components/NavBar'
 import { usePostStore } from '@/stores/post'
 import { useUserStore } from '@/stores/user'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useCommentsStore } from '@/stores/comment'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 
-import './videoPostDetails.css'
+import './index.css'
 import playIcon from '@/assets/videopluse.png'
 import followIcon from '@/assets/follow.png'
 import likeImage from '@/assets/likepic.png'
@@ -26,7 +24,7 @@ export default function VideoPostDetails() {
   const { postId: rawPostId } = useParams()
   const postId = String(rawPostId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const post = usePostStore((s) => s.getPostById(postId))
   const updatePostById = usePostStore((s) => s.updatePostById)
   const getUserById = useUserStore((s) => s.getUserById)
@@ -44,9 +42,9 @@ export default function VideoPostDetails() {
   const [showComment, setShowComment] = useState(false)
 
   const [commentInput, setCommentInput] = useState('')
-  const blockListKey = (currentUser?.blockList || []).join('|')
-  const comments = useMemo(() => getCommentsById(postId) || [], [getCommentsById, postId, blockListKey])
-
+  const comments = getCommentsById(postId) || []
+  const blockSet = new Set(currentUser?.blockList || [])
+  const filteredComments = comments.filter((item) => !blockSet.has(item.userId))
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
@@ -65,6 +63,7 @@ export default function VideoPostDetails() {
   if (!post) {
     return (
       <div className="vpd-page">
+        <NavBar />
         <div className="vpd-not-found">The post was not found.</div>
       </div>
     )
@@ -103,11 +102,16 @@ export default function VideoPostDetails() {
   }
 
   function toggleLike() {
-    const postLikeIds = currentUser.postLikeIds ? [...currentUser.postLikeIds] : []
-    const idx = postLikeIds.indexOf(post.dynamicId)
-    if (idx === -1) postLikeIds.push(post.dynamicId)
-    else postLikeIds.splice(idx, 1)
-    updateUser(currentUser.userId, { postLikeIds })
+    const videoPostLikeIds = currentUser.videoPostLikeIds ? [...currentUser.videoPostLikeIds] : []
+    const idx = videoPostLikeIds.indexOf(post.dynamicId)
+    if (idx === -1) {
+      videoPostLikeIds.push(post.dynamicId)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) + 1 })
+    } else {
+      videoPostLikeIds.splice(idx, 1)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) - 1 })
+    }
+    updateUser(currentUser.userId, { videoPostLikeIds })
   }
 
   function postReportSelect(value) {
@@ -131,7 +135,7 @@ export default function VideoPostDetails() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }
@@ -150,11 +154,15 @@ export default function VideoPostDetails() {
     setCommentInput('')
   }
 
-  const liked = (currentUser.postLikeIds || []).includes(post.dynamicId)
+  const liked = (currentUser.videoPostLikeIds || []).includes(post.dynamicId)
   const likeCount = (post.dynamicLikeCount || 0) + (liked ? 1 : 0)
 
   return (
     <div className="vpd-page">
+      <NavBar
+        showMore={post.userId !== currentUser.userId}
+        onMoreClick={() => setShowPostReport(true)}
+      />
       <video
         ref={videoRef}
         className="vpd-video"
@@ -176,19 +184,19 @@ export default function VideoPostDetails() {
       <div className="vpd-bottom-shadow" />
 
       <div className="vpd-content">
-        <div className="vpd-top-actions">
-          <BackButton />
-          {post.userId !== currentUser.userId ? <MoreButton onClick={() => setShowPostReport(true)} /> : <div />}
-        </div>
-
         <div className="vpd-bottom-info">
           <div className="vpd-user-left">
             <div className="vpd-avatar-wrap">
-              <div className="vpd-avatar" onClick={() => goOtherHome(post.userId)} role="button" tabIndex={0}>
+              <div
+                className="vpd-avatar"
+                onClick={() => goOtherHome(post.userId)}
+                role="button"
+                tabIndex={0}
+              >
                 <div
                   className="vpd-avatar-img"
                   style={{
-                    backgroundImage: postUser?.avator ? `url(${postUser.avator})` : undefined,
+                    backgroundImage: postUser?.avatar ? `url(${postUser.avatar})` : undefined,
                   }}
                 />
               </div>
@@ -201,7 +209,12 @@ export default function VideoPostDetails() {
             </div>
 
             <div className="vpd-user-text">
-              <div className="vpd-username" onClick={() => goOtherHome(post.userId)} role="button" tabIndex={0}>
+              <div
+                className="vpd-username"
+                onClick={() => goOtherHome(post.userId)}
+                role="button"
+                tabIndex={0}
+              >
                 {postUser?.name}
               </div>
               <div className="vpd-desc">{post.dynamicDesc}</div>
@@ -211,22 +224,46 @@ export default function VideoPostDetails() {
       </div>
 
       <div className="vpd-action-buttons">
-        <div className="vpd-action-button" onClick={toggleLike} role="button" tabIndex={0}>
-          <img src={liked ? likeImage : disLikeImage} alt="like" />
-          <span>{likeCount}</span>
+        <div className="vpd-action-wrapper">
+          <div className="vpd-action-item-bg"></div>
+          <div className="vpd-action-button" onClick={toggleLike} role="button" tabIndex={0}>
+            <img src={liked ? likeImage : disLikeImage} alt="like" />
+            <span>{likeCount}</span>
+          </div>
         </div>
-        <div className="vpd-action-button" onClick={() => setShowComment(true)} role="button" tabIndex={0}>
-          <img src={commentIcon} alt="comment" />
-          <span>{post.dynamicCommentCount || 0}</span>
+        <div className="vpd-action-wrapper">
+          <div className="vpd-action-item-bg"></div>
+          <div
+            className="vpd-action-button"
+            onClick={() => setShowComment(true)}
+            role="button"
+            tabIndex={0}
+          >
+            <img src={commentIcon} alt="comment" />
+            <span>{post.dynamicCommentCount || 0}</span>
+          </div>
         </div>
       </div>
 
-      <Popup visible={showComment} onMaskClick={() => setShowComment(false)} bodyStyle={{ height: '60vh' }}>
+      <Popup
+        visible={showComment}
+        onMaskClick={() => setShowComment(false)}
+        bodyStyle={{
+          height: '60vh',
+          borderRadius: '24px 24px 0px 0px',
+          background:
+            'radial-gradient(84.53% 20.81% at 100% 0%, rgba(148, 255, 241, 1) 0%, rgba(0, 230, 92, 0.01) 100%), radial-gradient(95.73% 72.53% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%), rgba(249, 249, 249, 1)',
+        }}
+      >
         <div className="vpd-comment-sheet">
-          <div className="vpd-comment-title">Comments</div>
+          <div className="vpd-comments-box">
+            <div className="vpd-comments-line" />
+            <div className="vpd-comments-title-text">Comments</div>
+            <div className="vpd-comments-line" />
+          </div>
           <div className="vpd-comment-list">
             {comments.length ? (
-              comments.map((c) => (
+              filteredComments.map((c) => (
                 <div key={c.commentId} className="vpd-comment-item">
                   <div className="vpd-comment-name">{getUserById(c.userId)?.name}</div>
                   <div className="vpd-comment-content">{c.content}</div>
@@ -237,7 +274,11 @@ export default function VideoPostDetails() {
             )}
           </div>
           <div className="vpd-comment-input">
-            <input value={commentInput} onChange={(e) => setCommentInput(e.target.value)} placeholder="Say something" />
+            <input
+              value={commentInput}
+              onChange={(e) => setCommentInput(e.target.value)}
+              placeholder="Say something"
+            />
             <button type="button" onClick={sendComment}>
               <img src={commentSendImage} alt="send" />
             </button>
@@ -245,8 +286,11 @@ export default function VideoPostDetails() {
         </div>
       </Popup>
 
-      <ReportDialog open={showPostReport} onClose={() => setShowPostReport(false)} onSelect={postReportSelect} />
+      <ReportDialog
+        open={showPostReport}
+        onClose={() => setShowPostReport(false)}
+        onSelect={postReportSelect}
+      />
     </div>
   )
 }
-

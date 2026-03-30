@@ -1,46 +1,68 @@
 import React, { useMemo, useState } from 'react'
 
-import BackButton from '@/components/BackButton.jsx'
+import NavBar from '@/components/NavBar'
 import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
+import { useUIStore } from '@/stores/ui'
 import { sendPaymentToIOS } from '@/utils/iosBridge'
 
-import './coins.css'
+import './index.css'
 import pageBg from '@/assets/pagebgc.png'
 import coinIcon from '@/assets/coin.png'
-import coinBoxBg from '@/assets/coinbgc.png'
 import coinsBg from '@/assets/coinsbgc.png'
 
 export default function Coins() {
   const other = useOtherStore((s) => s.other)
   const coins = useCurrentUserStore((s) => s.currentUser?.coins ?? 0)
+  const ui = useUIStore()
+
   const [selectedIndex, setSelectedIndex] = useState(-1)
 
   const list = useMemo(() => other?.coinsSetting || [], [other])
 
-  function handleCoinClick(item, index) {
+  // ✅ 只负责选中
+  function handleSelect(index) {
     setSelectedIndex(index)
+  }
+
+  // ✅ 点击按钮才支付
+  function handleRecharge() {
+    if (selectedIndex === -1) {
+      ui.showToast?.('Please select a package')
+      return
+    }
+
+    const item = list[selectedIndex]
+    if (!item) return
+
     const payKey = item.key
     sendPaymentToIOS(payKey)
   }
 
   return (
-    <div className="coins-page" style={{ backgroundImage: `url(${pageBg})` }}>
-      <div className="coins-top-header">
-        <BackButton />
+    <div
+      className="coins-page"
+      style={{ background: `url(${pageBg}) no-repeat top center / cover` }}
+    >
+      <NavBar>
         <span className="coins-title">My diamonds</span>
-      </div>
+      </NavBar>
 
-      <div className="coins-box" style={{ backgroundImage: `url(${coinBoxBg})` }}>
-        <div className="coins-box-header">My diamonds</div>
+      {/* 顶部余额 */}
+      <div className="coins-box">
+        <div
+          className="coins-bgc"
+          style={{ backgroundImage: `url(${coinsBg})` }}
+          aria-hidden="true"
+        />
+        <img className="coins-icon-img" src={coinIcon} alt="coin" />
         <div className="coins-box-content">
-          <img className="coins-icon-img" src={coinIcon} alt="coin" />
+          <div className="coins-box-header">My Coins</div>
           <span className="coins-number">{coins}</span>
         </div>
       </div>
 
-      <div className="coins-bgc" style={{ backgroundImage: `url(${coinsBg})` }} aria-hidden="true" />
-
+      {/* 列表 */}
       <div className="coins-list-wrap">
         <div className="coins-list">
           {list.map((item, index) => {
@@ -49,29 +71,30 @@ export default function Coins() {
               <div
                 key={index}
                 className={`coins-item ${selected ? 'coins-item-selected' : ''}`}
-                onClick={() => handleCoinClick(item, index)}
+                onClick={() => handleSelect(index)}
                 role="button"
                 tabIndex={0}
               >
-                <div className="coins-left">
+                <div className="coins-item-top">
                   <img className="coins-item-icon-img" src={coinIcon} alt="coin" />
                   <span className={`coins-count ${selected ? 'coins-count-selected' : ''}`}>
                     {item.cions}
                   </span>
                 </div>
 
-                <div className="coins-right">
-                  <span className={`coins-price ${selected ? 'coins-price-selected' : ''}`}>
-                    {item.money}
-                  </span>
-                  <div className={`coins-radio ${selected ? 'coins-radio-selected' : ''}`} />
+                <div className={`coins-price ${selected ? 'coins-price-selected' : ''}`}>
+                  {item.money}$
                 </div>
               </div>
             )
           })}
         </div>
       </div>
+      <div className="coins-recharge-wrap">
+        <button type="button" className="coins-recharge-btn" onClick={handleRecharge}>
+          Recharge
+        </button>
+      </div>
     </div>
   )
 }
-

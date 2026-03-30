@@ -1,16 +1,15 @@
 import React, { useMemo, useState } from 'react'
-
-import BackButton from '@/components/BackButton.jsx'
+import NavBar from '@/components/NavBar'
 import { useOtherStore } from '@/stores/other'
 import { useUIStore } from '@/stores/ui'
-import { goBackOrClose } from '@/utils/iosBridge'
-
-import './report.css'
+import { useBack } from '@/utils/iosBridge'
+import pageBg from '@/assets/pagebgc.png'
+import './index.css'
 
 export default function Report() {
   const reportContent = useOtherStore((s) => s.other?.reportContent || [])
   const ui = useUIStore()
-
+  const goBack = useBack()
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [inputText, setInputText] = useState('')
 
@@ -28,19 +27,15 @@ export default function Report() {
       ui.hideLoading()
       ui.showToast('Report successful')
 
-      // 这里目前不落库，保持与原 Vue 一致
       void selectedLabel
       void inputText
-      goBackOrClose()
+      goBack()
     }, delay)
   }
 
   return (
     <div className="report-page">
-      <div className="report-back">
-        <BackButton />
-      </div>
-
+      <NavBar />
       <div className="report-content-wrap">
         <div className="report-grid">
           {reportContent.map((item, index) => (
@@ -51,9 +46,6 @@ export default function Report() {
               role="button"
               tabIndex={0}
             >
-              <div className="report-choose-box">
-                {selectedIndex === index ? <div className="report-check-icon" /> : null}
-              </div>
               <div className="report-item-text">{item}</div>
             </div>
           ))}
@@ -78,4 +70,3 @@ export default function Report() {
     </div>
   )
 }
-

@@ -1,13 +1,1 @@
-[
-    {
-        "chatId": "1",
-        "chatUserIds": [
-            "1",
-            "3"
-        ],
-        "lastSendContent": "OK, if you have anything you want to know, you can ask me",
-        "lastSendTime": "2026-03-08T11:33:29",
-        "unreadMsgCount": 1,
-        "lastSendUserId": "3"
-    }
-]
+[]

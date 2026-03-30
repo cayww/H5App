@@ -1,9 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-
-import BackButton from '@/components/BackButton.jsx'
-import MoreButton from '@/components/MoreButton.jsx'
-import ReportDialog from '@/components/ReportDialog.jsx'
+import NavBar from '@/components/NavBar'
+import ReportDialog from '@/components/ReportDialog/index.jsx'
 import Empty from '@/components/Empty.jsx'
 
 import { useUserStore } from '@/stores/user'
@@ -12,21 +10,22 @@ import { useOtherStore } from '@/stores/other'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useChatsStore } from '@/stores/chat'
-import { goBackOrClose } from '@/utils/iosBridge'
+import { useBack } from '@/utils/iosBridge'
 
-import './otherHome.css'
-import pageBg from '@/assets/pagebgc.png'
+import './index.css'
 import followIcon from '@/assets/follow.png'
 import chatIcon from '@/assets/chaticon.png'
 import likeIcon from '@/assets/likepic.png'
-import commentIcon from '@/assets/chaticon.png'
-import reportIcon from '@/assets/postpiccommentreport.png'
+import unLikeIcon from '@/assets/dislikepic.png'
+import picIcon from '@/assets/picIcon.png'
+// import commentIcon from '@/assets/chaticon.png'
+// import reportIcon from '@/assets/postpiccommentreport.png'
 
 export default function OtherHome() {
   const { userId: rawUserId } = useParams()
   const userId = String(rawUserId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const getUserById = useUserStore((s) => s.getUserById)
   const updateUser = useUserStore((s) => s.updateUser)
   const getPostsByUserId = usePostStore((s) => s.getPostsByUserId)
@@ -60,23 +59,37 @@ export default function OtherHome() {
       setTimeout(() => {
         ui.hideLoading()
         ui.showToast('Blocking successful')
-        goBackOrClose()
+        goBack()
       }, delay)
     }
   }
 
   function handleFollow() {
     const currentUserId = currentUser.userId
+    const targetUserId = userId
 
     const currentUserFollow = currentUser.follow ? [...currentUser.follow] : []
-    if (!currentUserFollow.includes(userId)) currentUserFollow.unshift(userId)
-
     const postUserFans = profile.fans ? [...profile.fans] : []
-    if (!postUserFans.includes(currentUserId)) postUserFans.unshift(currentUserId)
 
-    updateUser(currentUserId, { follow: currentUserFollow })
-    updateUser(userId, { fans: postUserFans })
-    ui.showToast('Followed successfully')
+    const isFollowed = currentUserFollow.includes(targetUserId)
+
+    if (isFollowed) {
+      const newFollow = currentUserFollow.filter((id) => id !== targetUserId)
+      const newFans = postUserFans.filter((id) => id !== currentUserId)
+
+      updateUser(currentUserId, { follow: newFollow })
+      updateUser(targetUserId, { fans: newFans })
+
+      ui.showToast('Unfollowed')
+    } else {
+      currentUserFollow.unshift(targetUserId)
+      postUserFans.unshift(currentUserId)
+
+      updateUser(currentUserId, { follow: currentUserFollow })
+      updateUser(targetUserId, { fans: postUserFans })
+
+      ui.showToast('Followed successfully')
+    }
   }
 
   function handleChat() {
@@ -118,41 +131,47 @@ export default function OtherHome() {
   }
 
   const canFollow =
-    userId &&
-    userId !== currentUser.userId &&
-    !(currentUser.follow || []).includes(userId)
+    userId && userId !== currentUser.userId && !(currentUser.follow || []).includes(userId)
 
   return (
-    <div className="other-home-page" style={{ backgroundImage: `url(${pageBg})` }}>
+    <div className="other-home-page">
+      <NavBar showMore={userId !== currentUser.userId} onMoreClick={() => setShowReport(true)} />
+      {/* 
       <div
         className="other-home-avatar-bg"
         style={{
-          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.14)), url(${profile.avator || ''})`,
+          backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.14)), url(${profile.avatar || ''})`,
         }}
-      />
-
+      /> 
+      */}
       <div className="other-home-scroll">
         <div className="other-home-top">
           <div
             className="other-home-avatar"
             style={{
-              ['--avatar-url']: profile.avator ? `url(${profile.avator})` : 'none',
+              ['--avatar-url']: profile.avatar ? `url(${profile.avatar})` : 'none',
             }}
           >
-            {canFollow ? (
-              <div className="other-home-follow-btn" onClick={handleFollow} role="button" tabIndex={0}>
+            {/* {canFollow ? (
+              <div
+                className="other-home-follow-btn"
+                onClick={handleFollow}
+                role="button"
+                tabIndex={0}
+              >
                 <img src={followIcon} alt="follow" />
               </div>
-            ) : null}
+            ) : null} */}
+          </div>
+          <div className="other-home-nd">
+            <div className="other-home-name">{profile.name}</div>
+            <div className="other-home-about">{profile.about}</div>
           </div>
         </div>
-
-        <div className="other-home-name">{profile.name}</div>
-
         <div className="other-home-stats">
           <div className="other-home-stat">
             <div className="n">{userPosts.length || 0}</div>
-            <div className="l">Works</div>
+            <div className="l">Posts</div>
           </div>
           <div className="other-home-stat">
             <div className="n">{(profile.fans || []).length || 0}</div>
@@ -163,9 +182,12 @@ export default function OtherHome() {
             <div className="l">Follow</div>
           </div>
         </div>
-
         <div className="other-home-intro-chat">
-          <div className="other-home-intro">{profile.about}</div>
+          {/* <div className="other-home-intro">{profile.about}</div> */}
+          <div className="other-home-follow-btn" onClick={handleFollow} role="button" tabIndex={0}>
+            {!canFollow ? null : <img src={followIcon} alt="follow" />}
+            <div className="other-follow-btn-text">{!canFollow ? 'Unfollow' : 'follow'}</div>
+          </div>
           {userId !== currentUser.userId ? (
             <div className="other-home-chat-btn" onClick={handleChat} role="button" tabIndex={0}>
               <img src={chatIcon} alt="chat" />
@@ -175,12 +197,43 @@ export default function OtherHome() {
             <div className="other-home-chat-btn-hidden" />
           )}
         </div>
-
         <div className="other-home-post-title">Post</div>
-
         <div className="other-home-post-list">
           {userPosts.length > 0 ? (
             userPosts.map((post) => (
+              // <div
+              //   key={post.dynamicId}
+              //   className="other-home-post-item"
+              //   onClick={() => toPostDetail(post.dynamicId, post.dynamicType)}
+              //   role="button"
+              //   tabIndex={0}
+              // >
+              //   <div className="other-home-post-top">
+              //     <div className="other-home-post-username">{profile.name}</div>
+              //   </div>
+
+              //   <div
+              //     className="other-home-post-image"
+              //     style={{
+              //       backgroundImage: post.dynamicPic?.[0]
+              //         ? `url(${post.dynamicPic[0]})`
+              //         : undefined,
+              //     }}
+              //   >
+              //     <div className="other-home-post-overlay">
+              //       <div className="other-home-overlay-pill">
+              //         <img src={likeIcon} alt="like" className="other-home-overlay-icon" />
+              //         <span>{post.dynamicLikeCount || 0}</span>
+              //       </div>
+              //       <div className="other-home-overlay-pill">
+              //         {/* <img src={commentIcon} alt="comment" className="other-home-overlay-icon" /> */}
+              //         <span>{post.dynamicCommentCount || 0}</span>
+              //       </div>
+              //     </div>
+              //   </div>
+
+              //   <div className="other-home-post-type">{post.dynamicDesc}</div>
+              // </div>
               <div
                 key={post.dynamicId}
                 className="other-home-post-item"
@@ -189,40 +242,48 @@ export default function OtherHome() {
                 tabIndex={0}
               >
                 <div className="other-home-post-top">
+                  <div
+                    className="other-home-post-top-avatar"
+                    style={{
+                      ['--avatar-url']: profile.avatar ? `url(${profile.avatar})` : 'none',
+                    }}
+                  ></div>
                   <div className="other-home-post-username">{profile.name}</div>
-                  {userId !== currentUser.userId ? (
-                    <button
-                      type="button"
-                      className="other-home-post-report"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setShowReport(true)
-                      }}
-                    >
-                      <img src={reportIcon} alt="more" />
-                    </button>
-                  ) : null}
                 </div>
-
                 <div
                   className="other-home-post-image"
                   style={{
-                    backgroundImage: post.dynamicPic?.[0] ? `url(${post.dynamicPic[0]})` : undefined,
+                    backgroundImage: post.dynamicPic?.[0]
+                      ? `url(${post.dynamicPic[0]})`
+                      : undefined,
                   }}
                 >
-                  <div className="other-home-post-overlay">
-                    <div className="other-home-overlay-pill">
-                      <img src={likeIcon} alt="like" className="other-home-overlay-icon" />
-                      <span>{post.dynamicLikeCount || 0}</span>
-                    </div>
-                    <div className="other-home-overlay-pill">
-                      <img src={commentIcon} alt="comment" className="other-home-overlay-icon" />
-                      <span>{post.dynamicCommentCount || 0}</span>
+                  <div className="other-home-post-item-top">
+                    <img src={picIcon} alt="picicon" className="other-home-post-item-pic-icon" />
+                    <div className="other-home-post-item-pic-text">
+                      # {getTagByIndex(post.dynamicTitleType)}
                     </div>
                   </div>
+                  <div className="other-home-post-type">{post.dynamicDesc}</div>
+                  <div className="other-home-post-overlay">
+                    <div className="other-home-overlay-pill">
+                      <img
+                        src={
+                          !currentUser.picPostLikeIds.includes(post.dynamicId)
+                            ? unLikeIcon
+                            : likeIcon
+                        }
+                        alt="like"
+                        className="other-home-overlay-icon"
+                      />
+                      <span>{post.dynamicLikeCount || 0}</span>
+                    </div>
+                    {/* <div className="other-home-overlay-pill">
+                      <img src={commentIcon} alt="comment" className="other-home-overlay-icon" />
+                      <span>{post.dynamicCommentCount || 0}</span>
+                    </div> */}
+                  </div>
                 </div>
-
-                <div className="other-home-post-type"># {getTagByIndex(post.dynamicTitleType)}</div>
               </div>
             ))
           ) : (
@@ -231,13 +292,11 @@ export default function OtherHome() {
         </div>
       </div>
 
-      <div className="other-home-top-btn">
-        <BackButton />
-        {userId !== currentUser.userId ? <MoreButton onClick={() => setShowReport(true)} /> : <div />}
-      </div>
-
-      <ReportDialog open={showReport} onClose={() => setShowReport(false)} onSelect={reportSelect} />
+      <ReportDialog
+        open={showReport}
+        onClose={() => setShowReport(false)}
+        onSelect={reportSelect}
+      />
     </div>
   )
 }
-

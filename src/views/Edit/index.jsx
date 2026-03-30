@@ -1,23 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import BackButton from '@/components/BackButton.jsx'
-import { goBackOrClose } from '@/utils/iosBridge'
+import NavBar from '@/components/NavBar'
+import { useBack } from '@/utils/iosBridge'
 import { uploadSingleImage } from '@/utils/ossUpload'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useUserStore } from '@/stores/user'
-import pageBg from '@/assets/pagebgc.png'
 import avatarIcon from '@/assets/avataricon.png'
 import cameraIcon from '@/assets/cameraicon.png'
 
-import './edit.css'
+import './index.css'
 
 export default function Edit() {
   const fileInputRef = useRef(null)
   const currentUser = useCurrentUserStore((s) => s.currentUser)
   const ui = useUIStore()
   const updateUser = useUserStore((s) => s.updateUser)
-
+  const goBack = useBack()
   const [topBlockImage, setTopBlockImage] = useState(avatarIcon)
   const [name, setName] = useState('')
   const [aboutMe, setAboutMe] = useState('')
@@ -27,7 +26,7 @@ export default function Edit() {
     if (!currentUser) return
     setName(currentUser.name || '')
     setAboutMe(currentUser.about || '')
-    setTopBlockImage(currentUser.avator || avatarIcon)
+    setTopBlockImage(currentUser.avatar || avatarIcon)
   }, [currentUser])
 
   function chooseAvatar() {
@@ -69,13 +68,13 @@ export default function Edit() {
       const delay = avatarFile ? 0 : Math.floor(Math.random() * 1500) + 500
       setTimeout(() => {
         updateUser(currentUser.userId, {
-          avator: avatarUrl,
+          avatar: avatarUrl,
           name,
           about: aboutMe,
         })
 
         ui.hideLoading()
-        goBackOrClose()
+        goBack()
         ui.showToast('Profile updated')
       }, delay)
     } catch (e) {
@@ -86,12 +85,10 @@ export default function Edit() {
   }
 
   return (
-    <div className="edit-page" style={{ backgroundImage: `url(${pageBg})` }}>
-      <div className="edit-top-header">
-        <BackButton />
-        <span className="edit-title">Edit</span>
-      </div>
-
+    <div className="edit-page">
+      <NavBar>
+        <h1 className="edit-title">Edit</h1>
+      </NavBar>
       <div className="edit-content">
         <div className="edit-top">
           <div
@@ -106,7 +103,11 @@ export default function Edit() {
             tabIndex={0}
           >
             <div className="edit-camera-corner" aria-hidden="true">
-              <img src={cameraIcon} alt="camera" style={{ width: 'calc(100vw * 14 / 375)', height: 'calc(100vw * 14 / 375)' }} />
+              <img
+                src={cameraIcon}
+                alt="camera"
+                style={{ width: 'calc(100vw * 14 / 375)', height: 'calc(100vw * 14 / 375)' }}
+              />
             </div>
           </div>
         </div>
@@ -123,7 +124,11 @@ export default function Edit() {
           <div className="edit-section">
             <div className="edit-label">Name</div>
             <div className="edit-input-box">
-              <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Please enter" />
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Please enter"
+              />
             </div>
           </div>
         </div>
@@ -132,7 +137,11 @@ export default function Edit() {
           <div className="edit-section">
             <div className="edit-label">About me</div>
             <div className="edit-input-box edit-about-me-box">
-              <textarea value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder="Please enter" />
+              <textarea
+                value={aboutMe}
+                onChange={(e) => setAboutMe(e.target.value)}
+                placeholder="Please enter"
+              />
             </div>
           </div>
         </div>
@@ -146,4 +155,3 @@ export default function Edit() {
     </div>
   )
 }
-
