@@ -68,12 +68,16 @@ export default function PicPostDetails() {
   }
 
   function toggleLike() {
-    const postLikeIds = currentUser.postLikeIds ? [...currentUser.postLikeIds] : []
-    const idx = postLikeIds.indexOf(postId)
-    if (idx === -1) postLikeIds.push(postId)
-    else postLikeIds.splice(idx, 1)
-
-    updateUser(currentUser.userId, { postLikeIds })
+    const picPostLikeIds = currentUser.picPostLikeIds ? [...currentUser.picPostLikeIds] : []
+    const idx = picPostLikeIds.indexOf(postId)
+    if (idx === -1) {
+      picPostLikeIds.push(postId)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) + 1 })
+    } else {
+      picPostLikeIds.splice(idx, 1)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) - 1 })
+    }
+    updateUser(currentUser.userId, { picPostLikeIds })
   }
 
   function postReportSelect(value) {

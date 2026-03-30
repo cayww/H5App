@@ -100,13 +100,17 @@ export default function VideoPostDetails() {
     updateUser(postUserId, { fans: postUserFans })
     ui.showToast('Followed successfully')
   }
-
   function toggleLike() {
-    const postLikeIds = currentUser.postLikeIds ? [...currentUser.postLikeIds] : []
-    const idx = postLikeIds.indexOf(post.dynamicId)
-    if (idx === -1) postLikeIds.push(post.dynamicId)
-    else postLikeIds.splice(idx, 1)
-    updateUser(currentUser.userId, { postLikeIds })
+    const videoPostLikeIds = currentUser.videoPostLikeIds ? [...currentUser.videoPostLikeIds] : []
+    const idx = videoPostLikeIds.indexOf(postId)
+    if (idx === -1) {
+      videoPostLikeIds.push(postId)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) + 1 })
+    } else {
+      videoPostLikeIds.splice(idx, 1)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) - 1 })
+    }
+    updateUser(currentUser.userId, { videoPostLikeIds })
   }
 
   function postReportSelect(value) {
