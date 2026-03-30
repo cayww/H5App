@@ -49,23 +49,17 @@ export default function Coins() {
       </NavBar>
 
       {/* 顶部余额 */}
-      <div
-        className="coins-box"
-        // style={{
-        //   background:
-        //     'linear-gradient(90deg, rgba(165, 237, 57, 1) 0%, rgba(48, 234, 255, 1) 100%)',
-        // }}
-      >
-        <div className="coins-box-header">Wallet Balance:</div>
-        <div className="coins-box-content">
-          <img className="coins-icon-img" src={coinIcon} alt="coin" />
-          <span className="coins-number">{coins}</span>
-        </div>
+      <div className="coins-box">
         <div
           className="coins-bgc"
           style={{ backgroundImage: `url(${coinsBg})` }}
           aria-hidden="true"
         />
+        <img className="coins-icon-img" src={coinIcon} alt="coin" />
+        <div className="coins-box-content">
+          <div className="coins-box-header">My Coins</div>
+          <span className="coins-number">{coins}</span>
+        </div>
       </div>
 
       {/* 列表 */}
@@ -73,7 +67,6 @@ export default function Coins() {
         <div className="coins-list">
           {list.map((item, index) => {
             const selected = selectedIndex === index
-
             return (
               <div
                 key={index}
