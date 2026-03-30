@@ -24,7 +24,7 @@ export default function VideoPostDetails() {
   const { postId: rawPostId } = useParams()
   const postId = String(rawPostId || '')
   const nav = useNavigate()
-
+  const goBack = useBack()
   const post = usePostStore((s) => s.getPostById(postId))
   const updatePostById = usePostStore((s) => s.updatePostById)
   const getUserById = useUserStore((s) => s.getUserById)
@@ -102,11 +102,16 @@ export default function VideoPostDetails() {
   }
 
   function toggleLike() {
-    const postLikeIds = currentUser.postLikeIds ? [...currentUser.postLikeIds] : []
-    const idx = postLikeIds.indexOf(post.dynamicId)
-    if (idx === -1) postLikeIds.push(post.dynamicId)
-    else postLikeIds.splice(idx, 1)
-    updateUser(currentUser.userId, { postLikeIds })
+    const videoPostLikeIds = currentUser.videoPostLikeIds ? [...currentUser.videoPostLikeIds] : []
+    const idx = videoPostLikeIds.indexOf(postId)
+    if (idx === -1) {
+      videoPostLikeIds.push(postId)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) + 1 })
+    } else {
+      videoPostLikeIds.splice(idx, 1)
+      updatePostById(postId, { dynamicLikeCount: (post.dynamicLikeCount || 0) - 1 })
+    }
+    updateUser(currentUser.userId, { videoPostLikeIds })
   }
 
   function postReportSelect(value) {

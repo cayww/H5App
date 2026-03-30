@@ -9,7 +9,7 @@ import './index.css'
 export default function Report() {
   const reportContent = useOtherStore((s) => s.other?.reportContent || [])
   const ui = useUIStore()
-
+  const goBack = useBack()
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [inputText, setInputText] = useState('')
 
