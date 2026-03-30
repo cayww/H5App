@@ -3,7 +3,14 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: rgba(214, 223, 239, 1);
+  background:
+    radial-gradient(
+      85.33% 16.5% at 100% 0%,
+      rgba(148, 255, 241, 1) 0%,
+      rgba(0, 230, 92, 0.01) 100%
+    ),
+    radial-gradient(57.07% 26.35% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
+    rgba(249, 249, 249, 1);
   color: #fff;
 }
 
@@ -21,7 +28,7 @@
   flex: 1;
   overflow-y: auto;
   padding: calc(100vh * 20 / 812) calc(100vw * 20 / 375);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(calc(100vw * 10 / 375));
   border-radius: 0;
   margin-top: calc(env(safe-area-inset-top) + calc(100vh * 25 / 812) + calc(100vw * 40 / 375));

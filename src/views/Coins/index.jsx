@@ -75,18 +75,15 @@ export default function Coins() {
                 role="button"
                 tabIndex={0}
               >
-                <div className="coins-left">
+                <div className="coins-item-top">
                   <img className="coins-item-icon-img" src={coinIcon} alt="coin" />
                   <span className={`coins-count ${selected ? 'coins-count-selected' : ''}`}>
                     {item.cions}
                   </span>
                 </div>
 
-                <div className="coins-right">
-                  <span className={`coins-price ${selected ? 'coins-price-selected' : ''}`}>
-                    {item.money}
-                  </span>
-                  <div className={`coins-radio ${selected ? 'coins-radio-selected' : ''}`} />
+                <div className={`coins-price ${selected ? 'coins-price-selected' : ''}`}>
+                  {item.money}$
                 </div>
               </div>
             )
