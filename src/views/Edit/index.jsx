@@ -6,7 +6,6 @@ import { uploadSingleImage } from '@/utils/ossUpload'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { useUserStore } from '@/stores/user'
-import pageBg from '@/assets/pagebgc.png'
 import avatarIcon from '@/assets/avataricon.png'
 import cameraIcon from '@/assets/cameraicon.png'
 
@@ -86,7 +85,7 @@ export default function Edit() {
   }
 
   return (
-    <div className="edit-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
+    <div className="edit-page">
       <NavBar>
         <h1 className="edit-title">Edit</h1>
       </NavBar>

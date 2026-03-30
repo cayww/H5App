@@ -6,6 +6,14 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  background:
+    radial-gradient(
+      85.33% 16.5% at 100% 0%,
+      rgba(148, 255, 241, 1) 0%,
+      rgba(0, 230, 92, 0.01) 100%
+    ),
+    radial-gradient(57.07% 26.35% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
+    rgba(249, 249, 249, 1);
 }
 
 .setting-title {
@@ -14,33 +22,30 @@
   font-weight: 700;
   flex: 1;
   align-items: start;
-  color: rgba(211, 238, 241, 1);
+  color: rgba(0, 0, 0, 1);
   margin-left: calc(100vw * 16 / 375);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
 }
 
 .setting-options-list {
   flex: 1;
   padding: 0 calc(100vw * 20 / 375) 0;
   overflow-y: auto;
-  margin-top: calc(env(safe-area-inset-top) + calc(100vh * 20 / 812) + calc(100vw * 40 / 375));
+  margin-top: calc(env(safe-area-inset-top) + calc(100vh * 30 / 812) + calc(100vw * 40 / 375));
   display: flex;
   flex-direction: column;
   gap: calc(100vh * 16 / 812);
 }
 
 .setting-option {
-  height: calc(100vh * 56 / 812);
+  height: calc(100vh * 46 / 812);
   border-radius: calc(100vw * 40 / 375);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 calc(100vw * 10 / 375);
+  padding: 0 calc(100vw * 16 / 375);
   cursor: pointer;
   box-sizing: border-box;
-  border: 2px solid transparent;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
 }
 
 .setting-option-text {
@@ -48,7 +53,6 @@
   color: #000;
   font-size: calc(100vw * 16 / 375);
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 .setting-arrow-placeholder {
@@ -69,23 +73,20 @@
 }
 
 .setting-btn {
-  width: calc(100vw * 198 / 375);
-  height: calc(100vh * 53 / 812);
+  width: calc(100vw * 190 / 375);
+  height: calc(100vh * 54 / 812);
   border-radius: calc(100vw * 40 / 375);
   font-family: 'YesevaOne', sans-serif;
-  font-size: calc(100vw * 20 / 375);
-  font-weight: 400;
-  border: none;
+  font-size: calc(100vw * 18 / 375);
+  font-weight: 700;
 }
 
 .setting-delete-btn {
-  background: rgba(25, 44, 65, 1);
+  background: rgba(0, 0, 0, 1);
   color: #fff;
-  text-transform: uppercase;
 }
 
 .setting-logout-btn {
-  background: rgba(169, 251, 194, 1);
-  color: #000;
-  text-transform: uppercase;
+  background: rgba(92, 201, 159, 1);
+  color: #fff;
 }

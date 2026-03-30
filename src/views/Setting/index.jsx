@@ -7,7 +7,6 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 import { sendLogoutToIOS } from '@/utils/iosBridge'
 
 import './index.css'
-import pageBg from '@/assets/pagebgc.png'
 
 export default function Setting() {
   const nav = useNavigate()
@@ -21,7 +20,7 @@ export default function Setting() {
       { text: 'User Agreement', path: '/userAgreement' },
       { text: 'Blacklist', path: '/block' },
       // { text: 'Wallet', path: '/coins' },
-      { text: 'Edit personal information', path: '/edit' },
+      // { text: 'Edit personal information', path: '/edit' },
     ],
     [],
   )
@@ -42,9 +41,9 @@ export default function Setting() {
   }
 
   return (
-    <div className="setting-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
+    <div className="setting-page">
       <NavBar>
-        <h1 className="setting-title">SETTING</h1>
+        <h1 className="setting-title">Setting</h1>
       </NavBar>
       <main className="setting-options-list">
         {options.map((option, index) => (

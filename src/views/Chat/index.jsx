@@ -162,7 +162,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="chat-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
+    <div className="chat-page">
       <NavBar
         showMore={otherUser.userId !== currentUser.userId}
         onMoreClick={() => setShowReport(true)}
