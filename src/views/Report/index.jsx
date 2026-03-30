@@ -34,7 +34,7 @@ export default function Report() {
   }
 
   return (
-    <div className="report-page" style={{ background: 'rgba(214, 223, 239, 1)' }}>
+    <div className="report-page">
       <NavBar />
       <div className="report-content-wrap">
         <div className="report-grid">
@@ -46,9 +46,6 @@ export default function Report() {
               role="button"
               tabIndex={0}
             >
-              <div className="report-choose-box">
-                {selectedIndex === index ? <div className="report-check-icon" /> : null}
-              </div>
               <div className="report-item-text">{item}</div>
             </div>
           ))}
@@ -67,7 +64,7 @@ export default function Report() {
         </div>
 
         <button type="button" className="report-submit-btn" onClick={handleSubmit}>
-          SUBMIT
+          Submit
         </button>
       </div>
     </div>
