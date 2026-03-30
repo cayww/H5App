@@ -19,7 +19,7 @@ import likeIcon from '@/assets/likepic.png'
 import unLikeIcon from '@/assets/dislikepic.png'
 import picIcon from '@/assets/picIcon.png'
 // import commentIcon from '@/assets/chaticon.png'
-import reportIcon from '@/assets/postpiccommentreport.png'
+// import reportIcon from '@/assets/postpiccommentreport.png'
 
 export default function OtherHome() {
   const { userId: rawUserId } = useParams()
