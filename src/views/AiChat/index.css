@@ -29,8 +29,8 @@
   position: absolute;
   top: calc(env(safe-area-inset-top) + calc(100vw * 40 / 375) + calc(100vh * 30 / 812));
   font-size: calc(100vw * 24 / 375);
-  color: rgba(211, 238, 241, 1);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
+  color: rgba(0, 0, 0, 1);
+
   left: calc(100vw * 22 / 375);
 }
 .ai-chat-model {

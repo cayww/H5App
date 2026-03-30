@@ -13,9 +13,8 @@
   font-weight: 700;
   flex: 1;
   align-items: start;
-  color: rgba(211, 238, 241, 1);
+  color: rgba(0, 0, 0, 1);
   margin-left: calc(100vw * 16 / 375);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
 }
 
 .agreement-content {

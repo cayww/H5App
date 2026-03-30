@@ -5,7 +5,7 @@ import Empty from '@/components/Empty.jsx'
 import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
 import { useUIStore } from '@/stores/ui'
-
+import removeIcon from '@/assets/removeIcon.png'
 import './index.css'
 
 export default function Fan() {
@@ -84,7 +84,7 @@ export default function Fan() {
                   role="button"
                   tabIndex={0}
                 >
-                  Follow
+                  <img src={removeIcon} alt="remove-icon" />
                 </div>
               </div>
             ))}

@@ -44,7 +44,7 @@
   font-size: calc(100vw * 16 / 375);
   font-weight: 400;
   line-height: calc(100vw * 18.48 / 375);
-  color: rgba(211, 238, 241, 1);
+  color: rgba(0, 0, 0, 1);
   -webkit-text-stroke: #000 2px;
   max-width: calc(100vw * 180 / 375);
   white-space: nowrap;

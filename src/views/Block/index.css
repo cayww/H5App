@@ -6,7 +6,14 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background: rgba(214, 223, 239, 1);
+  background:
+    radial-gradient(
+      85.33% 16.5% at 100% 0%,
+      rgba(148, 255, 241, 1) 0%,
+      rgba(0, 230, 92, 0.01) 100%
+    ),
+    radial-gradient(57.07% 26.35% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
+    rgba(249, 249, 249, 1);
 }
 
 .block-title {
@@ -15,9 +22,8 @@
   font-weight: 700;
   flex: 1;
   align-items: start;
-  color: rgba(211, 238, 241, 1);
+  color: rgba(0, 0, 0, 1);
   margin-left: calc(100vw * 16 / 375);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
 }
 
 .block-container {
@@ -39,12 +45,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: calc(100vh * 76 / 812);
+  height: calc(100vh * 82 / 812);
   border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   box-sizing: border-box;
   padding: 0 calc(100vw * 16 / 375);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
 .block-left {
@@ -93,10 +98,9 @@
 .block-user-name {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 18.48 / 375);
-  color: rgba(211, 238, 241, 1);
-  -webkit-text-stroke: rgba(25, 44, 65, 1) 2px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -106,30 +110,26 @@
   font-family: 'Archivo', sans-serif;
   font-size: calc(100vw * 14 / 375);
   font-weight: 400;
-  line-height: calc(100vw * 15.23 / 375);
-  color: rgba(102, 102, 102, 1);
+  color: rgba(0, 0, 0, 1);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .block-right {
-  width: calc(100vw * 70 / 375);
-  height: calc(100vh * 33 / 812);
-  border-radius: calc(100vw * 20 / 375);
-  background: #000;
-  font-family: 'Archivo', sans-serif;
-  font-size: calc(100vw * 14 / 375);
-  font-weight: 400;
-  line-height: calc(100vw * 13.06 / 375);
-  color: #fff;
+  width: calc(100vw * 24 / 375);
+  height: calc(100vw * 24 / 375);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   flex-shrink: 0;
 }
-
+.block-right img {
+  width: 100%;
+  height: 100%;
+}
 .block-empty {
   display: flex;
   align-items: center;
