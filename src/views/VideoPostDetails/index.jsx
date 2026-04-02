@@ -155,14 +155,40 @@ export default function VideoPostDetails() {
   }
 
   const liked = (currentUser.videoPostLikeIds || []).includes(post.dynamicId)
-  const likeCount = (post.dynamicLikeCount || 0) + (liked ? 1 : 0)
+  const likeCount = post.dynamicLikeCount || 0
 
   return (
     <div className="vpd-page">
       <NavBar
         showMore={post.userId !== currentUser.userId}
         onMoreClick={() => setShowPostReport(true)}
-      />
+      >
+        <div className="vpd-title">
+          <div className="vpd-avatar-wrap">
+            <div
+              className="vpd-avatar"
+              onClick={() => goOtherHome(post.userId)}
+              role="button"
+              tabIndex={0}
+            >
+              <div
+                className="vpd-avatar-img"
+                style={{
+                  backgroundImage: postUser?.avatar ? `url(${postUser.avatar})` : undefined,
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="vpd-username"
+            onClick={() => goOtherHome(post.userId)}
+            role="button"
+            tabIndex={0}
+          >
+            {postUser?.name}
+          </div>
+        </div>
+      </NavBar>
       <video
         ref={videoRef}
         className="vpd-video"
@@ -186,7 +212,7 @@ export default function VideoPostDetails() {
       <div className="vpd-content">
         <div className="vpd-bottom-info">
           <div className="vpd-user-left">
-            <div className="vpd-avatar-wrap">
+            {/* <div className="vpd-avatar-wrap">
               <div
                 className="vpd-avatar"
                 onClick={() => goOtherHome(post.userId)}
@@ -206,17 +232,17 @@ export default function VideoPostDetails() {
                   <img src={followIcon} alt="follow" />
                 </div>
               ) : null}
-            </div>
+            </div> */}
 
             <div className="vpd-user-text">
-              <div
+              {/* <div
                 className="vpd-username"
                 onClick={() => goOtherHome(post.userId)}
                 role="button"
                 tabIndex={0}
               >
                 {postUser?.name}
-              </div>
+              </div> */}
               <div className="vpd-desc">{post.dynamicDesc}</div>
             </div>
           </div>
@@ -225,14 +251,14 @@ export default function VideoPostDetails() {
 
       <div className="vpd-action-buttons">
         <div className="vpd-action-wrapper">
-          <div className="vpd-action-item-bg"></div>
+          {/* <div className="vpd-action-item-bg"></div> */}
           <div className="vpd-action-button" onClick={toggleLike} role="button" tabIndex={0}>
             <img src={liked ? likeImage : disLikeImage} alt="like" />
             <span>{likeCount}</span>
           </div>
         </div>
         <div className="vpd-action-wrapper">
-          <div className="vpd-action-item-bg"></div>
+          {/* <div className="vpd-action-item-bg"></div> */}
           <div
             className="vpd-action-button"
             onClick={() => setShowComment(true)}
