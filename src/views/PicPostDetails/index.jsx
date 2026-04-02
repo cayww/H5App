@@ -160,7 +160,7 @@ export default function PicPostDetails() {
       <NavBar
         showMore={post.userId !== currentUser.userId}
         onMoreClick={() => setShowPostReport(true)}
-      />
+      ></NavBar>
       <div className="ppd-page-content">
         <div className="ppd-swipe-wrapper">
           {images.length ? (
@@ -188,9 +188,9 @@ export default function PicPostDetails() {
         </div>
 
         <div className="ppd-post-content">
-          <div className="ppd-post-row">
-            <div className="ppd-post-content-row">
-              <div className="ppd-user-box">
+          <div className="ppd-post-main">
+            <div className="ppd-user-box">
+              <div className="ppd-user-side">
                 <div
                   className="ppd-avatar"
                   onClick={() => goOtherHome(postUser?.userId)}
@@ -212,31 +212,29 @@ export default function PicPostDetails() {
                 >
                   {postUser?.name}
                 </div>
+              </div>
+              <div className="ppd-user-meta">
+                <div className="ppd-post-desc">{post.dynamicDesc}</div>
                 <div className="ppd-tag-box">
                   <div className="ppd-tag-text"># {postTag}</div>
                 </div>
               </div>
-              <div className="ppd-second-box">
-                <div className="ppd-post-desc">{post.dynamicDesc}</div>
+            </div>
+            <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
+              <div className="ppd-like-wrapper">
+                <img
+                  src={liked ? likeImage : disLikeImage}
+                  alt="like"
+                  className="ppd-like-icon-img"
+                />
               </div>
+              <div className="ppd-like-count">{likeCount}</div>
             </div>
-          </div>
-          <div className="ppd-like-box" onClick={toggleLike} role="button" tabIndex={0}>
-            <div className="ppd-like-wrapper">
-              <img
-                src={liked ? likeImage : disLikeImage}
-                alt="like"
-                className="ppd-like-icon-img"
-              />
-            </div>
-            <div className="ppd-like-count">{likeCount}</div>
           </div>
         </div>
 
         <div className="ppd-comments-box">
-          <div className="ppd-comments-line" />
           <div className="ppd-comments-title-text">Comments</div>
-          <div className="ppd-comments-line" />
         </div>
 
         <div className="ppd-comments-list">
@@ -278,14 +276,16 @@ export default function PicPostDetails() {
               </div>
             ))
           ) : (
-            <Empty />
+            <div className="ppd-empty-wrap">
+              <Empty />
+            </div>
           )}
         </div>
 
         <div className="ppd-input-box">
           <input
             type="text"
-            placeholder="Say something"
+            placeholder="Say something..."
             className="ppd-input-field"
             value={commentInput}
             onChange={(e) => setCommentInput(e.target.value)}

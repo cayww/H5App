@@ -1,8 +1,8 @@
 .nav-bar {
   position: fixed;
-  top: calc(env(safe-area-inset-top) + calc(100vw * 12 / 375));
-  left: calc(100vw * 20 / 375);
-  right: calc(100vw * 20 / 375);
+  top: calc(env(safe-area-inset-top) + calc(100vw * 8 / 375));
+  left: calc(100vw * 12 / 375);
+  right: calc(100vw * 12 / 375);
   display: flex;
   justify-content: space-between;
   align-items: center;

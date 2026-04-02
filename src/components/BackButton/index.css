@@ -11,8 +11,8 @@
 }
 
 .back-button-icon {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: calc(100vw * 32 / 375);
+  height: calc(100vw * 32 / 375);
   background-image: url('@/assets/back.png');
   background-size: cover;
   background-position: center;
