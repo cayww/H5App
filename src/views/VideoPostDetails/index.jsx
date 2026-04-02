@@ -277,21 +277,39 @@ export default function VideoPostDetails() {
         bodyStyle={{
           height: '60vh',
           borderRadius: '24px 24px 0px 0px',
-          background:
-            'radial-gradient(84.53% 20.81% at 100% 0%, rgba(148, 255, 241, 1) 0%, rgba(0, 230, 92, 0.01) 100%), radial-gradient(95.73% 72.53% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%), rgba(249, 249, 249, 1)',
+          background: 'rgba(24, 24, 24, 1)',
         }}
       >
         <div className="vpd-comment-sheet">
-          <div className="vpd-comments-box">
-            <div className="vpd-comments-line" />
-            <div className="vpd-comments-title-text">Comments</div>
-            <div className="vpd-comments-line" />
-          </div>
+          <div className="vpd-comments-title-text">Comments</div>
+          {/* <div className="vpd-comments-box"> */}
+          {/* <div className="vpd-comments-line" /> */}
+          {/* <div className="vpd-comments-line" /> */}
+          {/* </div> */}
           <div className="vpd-comment-list">
             {comments.length ? (
               filteredComments.map((c) => (
                 <div key={c.commentId} className="vpd-comment-item">
-                  <div className="vpd-comment-name">{getUserById(c.userId)?.name}</div>
+                  <div className="vpdcomment-item-head">
+                    <div className="vpd-avatar-wrap">
+                      <div
+                        className="vpd-avatar"
+                        onClick={() => goOtherHome(post.userId)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        <div
+                          className="vpd-avatar-img"
+                          style={{
+                            backgroundImage: postUser?.avatar
+                              ? `url(${postUser.avatar})`
+                              : undefined,
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="vpd-comment-name">{getUserById(c.userId)?.name}</div>
+                  </div>
                   <div className="vpd-comment-content">{c.content}</div>
                 </div>
               ))
