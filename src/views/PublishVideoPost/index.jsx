@@ -6,7 +6,7 @@ import { uploadSingleImage, uploadVideo } from '@/utils/ossUpload'
 import { useBack } from '@/utils/iosBridge'
 import NavBar from '@/components/NavBar'
 import uploadIcon from '@/assets/uploadvid.png'
-
+import { useNavigate } from 'react-router-dom'
 import './index.css'
 
 export default function PublishVideoPost() {
@@ -14,7 +14,7 @@ export default function PublishVideoPost() {
   const addPost = usePostStore((s) => s.addPost)
   const posts = usePostStore((s) => s.posts)
   const currentUser = useCurrentUserStore((s) => s.currentUser)
-  const goBack = useBack()
+  const nav = useNavigate()
   const fileInputRef = useRef(null)
 
   const [text, setText] = useState('')
@@ -85,13 +85,12 @@ export default function PublishVideoPost() {
 
     try {
       const videoUrl = await uploadVideo(uploadedVideo, 'template_development')
-
       const imageBlob = await (await fetch(videoFirstFrame)).blob()
       const imageFile = new File([imageBlob], 'first_frame.png', { type: 'image/png' })
       const imageUrl = await uploadSingleImage(imageFile, 'template_development')
-
+      let newDynamicID = 'd' + String((posts || []).length + 1)
       addPost({
-        dynamicId: 'd' + String((posts || []).length + 1),
+        dynamicId: newDynamicID,
         userId: currentUser.userId,
         dynamicType: 1,
         dynamicDesc: text,
@@ -101,9 +100,8 @@ export default function PublishVideoPost() {
         dynamicLikeCount: 0,
         dynamicCommentCount: 0,
       })
-
+      nav(`/videoPostDetails/${newDynamicID}`)
       ui.showToast('Post released successfully')
-      goBack()
     } catch {
       ui.showToast('Upload failed, please check your network.')
     } finally {

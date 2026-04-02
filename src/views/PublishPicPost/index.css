@@ -57,7 +57,7 @@
 .section-title {
   margin-top: calc(100vh * 24 / 812);
   margin-left: calc(100vw * 20 / 375);
-  font-family: YesevaOne, sans-serif;
+  font-family: sans-serif, YesevaOne;
   font-size: calc(100vw * 18 / 375);
   font-weight: 600;
   color: rgba(255, 255, 255, 1);

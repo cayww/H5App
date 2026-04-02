@@ -7,6 +7,7 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 import { uploadMultipleImages } from '@/utils/ossUpload.js'
 import { useBack } from '@/utils/iosBridge'
 import uploadIcon from '@/assets/uploadpic.png'
+import { useNavigate } from 'react-router-dom'
 import './index.css'
 export default function PublishPicPost() {
   const other = useOtherStore((s) => s.other)
@@ -14,7 +15,7 @@ export default function PublishPicPost() {
   const addPost = usePostStore((s) => s.addPost)
   const posts = usePostStore((s) => s.posts)
   const currentUser = useCurrentUserStore((s) => s.currentUser)
-  const goBack = useBack()
+  const nav = useNavigate()
   const maxImages = 5
   const fileInputRef = useRef(null)
 
@@ -62,9 +63,9 @@ export default function PublishPicPost() {
         files.map((x) => x.file),
         'template_development',
       )
-
+      let newDynamicID = 'd' + String((posts || []).length + 1)
       const newPost = {
-        dynamicId: 'd' + String((posts || []).length + 1),
+        dynamicId: newDynamicID,
         userId: currentUser.userId,
         dynamicType: 0,
         dynamicDesc: text,
@@ -74,10 +75,9 @@ export default function PublishPicPost() {
         dynamicLikeCount: 0,
         dynamicCommentCount: 0,
       }
-
       addPost(newPost)
+      nav(`/picPostDetails/${newDynamicID}`)
       ui.showToast('Post released successfully')
-      goBack()
     } catch (err) {
       console.error('upload failed', err)
       ui.showToast('Upload failed, please check your network.')
