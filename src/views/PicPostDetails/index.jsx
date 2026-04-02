@@ -155,7 +155,7 @@ export default function PicPostDetails() {
   }
 
   const liked = (currentUser.postLikeIds || []).includes(postId)
-  const likeCount = (post.dynamicLikeCount || 0) + (liked ? 1 : 0)
+  const likeCount = post.dynamicLikeCount || 0
 
   return (
     <div className="ppd-page">
