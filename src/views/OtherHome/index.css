@@ -7,14 +7,7 @@
   overflow: hidden;
   display: flex;
   /* background: url('@/assets/pagebgcother.png') no-repeat top center / cover; */
-  background:
-    radial-gradient(
-      85.33% 16.5% at 100% 0%,
-      rgba(148, 255, 241, 1) 0%,
-      rgba(0, 230, 92, 0.01) 100%
-    ),
-    radial-gradient(57.07% 26.35% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
-    rgba(249, 249, 249, 1);
+  background: rgba(14, 8, 15, 1);
 }
 
 /*
