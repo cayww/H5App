@@ -135,9 +135,9 @@ export default function PublishPicPost() {
             </div>
           ))}
         </div>
-
+        <div style={{ flex: 1 }}></div>
         <div className="release-btn" onClick={handleRelease}>
-          RELEASE
+          Release
         </div>
       </div>
     </div>
