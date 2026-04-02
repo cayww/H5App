@@ -182,21 +182,26 @@ export default function OtherHome() {
             <div className="l">Follow</div>
           </div>
         </div>
-        <div className="other-home-intro-chat">
-          {/* <div className="other-home-intro">{profile.about}</div> */}
-          <div className="other-home-follow-btn" onClick={handleFollow} role="button" tabIndex={0}>
-            {!canFollow ? null : <img src={followIcon} alt="follow" />}
-            <div className="other-follow-btn-text">{!canFollow ? 'Unfollow' : 'follow'}</div>
-          </div>
-          {userId !== currentUser.userId ? (
+        {userId !== currentUser.userId ? (
+          <div className="other-home-intro-chat">
+            {/* <div className="other-home-intro">{profile.about}</div> */}
+            <div
+              className="other-home-follow-btn"
+              onClick={handleFollow}
+              role="button"
+              tabIndex={0}
+            >
+              {!canFollow ? null : <img src={followIcon} alt="follow" />}
+              <div className="other-follow-btn-text">{!canFollow ? 'Unfollow' : 'follow'}</div>
+            </div>
             <div className="other-home-chat-btn" onClick={handleChat} role="button" tabIndex={0}>
               <img src={chatIcon} alt="chat" />
               <span className="other-home-chat-text">Chat</span>
             </div>
-          ) : (
-            <div className="other-home-chat-btn-hidden" />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="other-home-chat-btn-hidden" />
+        )}
         <div className="other-home-post-title">Post</div>
         <div className="other-home-post-list">
           {userPosts.length > 0 ? (
