@@ -155,8 +155,7 @@ export default function VideoPostDetails() {
   }
 
   const liked = (currentUser.videoPostLikeIds || []).includes(post.dynamicId)
-  const likeCount = (post.dynamicLikeCount || 0) + (liked ? 1 : 0)
-
+  const likeCount = post.dynamicLikeCount || 0
   return (
     <div className="vpd-page">
       <NavBar
