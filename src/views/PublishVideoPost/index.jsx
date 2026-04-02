@@ -92,11 +92,11 @@ export default function PublishVideoPost() {
       const imageUrl = await uploadSingleImage(imageFile, 'template_development')
 
       addPost({
-        dynamicId: String((posts || []).length + 1),
+        dynamicId: 'd' + String((posts || []).length + 1),
         userId: currentUser.userId,
         dynamicType: 1,
         dynamicDesc: text,
-        dynamicTitleType: '',
+        dynamicTitleType: 0,
         dynamicPic: [imageUrl],
         dynamicVideo: videoUrl,
         dynamicLikeCount: 0,
