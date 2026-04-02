@@ -4,13 +4,13 @@
   position: relative;
   overflow: hidden;
   /* background: url('@/assets/pagebgc.png') no-repeat top center / cover; */
-  background: rgba(92, 201, 159, 1);
+  background: rgba(24, 24, 24, 1);
 }
 .ai-chat-title {
   align-items: start;
   font-size: calc(100vw * 20 / 375);
   font-weight: 700;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
   flex: 1;
 }
 /* 背景 */
@@ -35,10 +35,10 @@
 }
 .ai-chat-model {
   position: absolute;
-  right: 0;
-  top: calc(env(safe-area-inset-top) + calc(100vh * 35 / 812));
-  width: calc(100vw * 163 / 375);
-  height: calc(100vh * 214 / 812);
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: calc(100vh * 281 / 812);
   background-size: cover;
 }
 
@@ -73,7 +73,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #fff;
+  background: rgba(24, 24, 24, 1);
   /* border-radius: calc(100vw * 20 / 375) calc(100vw * 20 / 375) 0 0; */
 }
 
@@ -127,17 +127,17 @@
 /* 气泡 */
 .bubble {
   padding: calc(100vw * 13 / 375) calc(100vw * 16 / 375);
-  border-radius: calc(100vw * 24 / 375);
-  font-size: calc(100vw * 14 / 375);
+  border-radius: calc(100vw * 16 / 375);
+  font-size: calc(100vw * 15 / 375);
 }
 
 .bubble.ai {
-  background: rgba(247, 249, 247, 1);
-  color: rgba(0, 0, 0, 1);
+  background: rgba(248, 1, 124, 1);
+  color: rgba(255, 255, 255, 1);
 }
 
 .bubble.me {
-  background: rgba(0, 0, 0, 1);
+  background: rgba(255, 255, 255, 0.2);
   color: rgba(255, 255, 255, 1);
 }
 
@@ -151,7 +151,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(247, 249, 247, 1);
+  background: rgba(43, 43, 43, 1);
   border-radius: calc(100vw * 40 / 375);
   padding: 0 calc(100vw * 8 / 375);
 }
@@ -169,16 +169,23 @@
 }
 
 .chat-send-btn {
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: calc(100vw * 40 / 375);
+  height: calc(100vw * 40 / 375);
   /* border-radius: 50%;
   background: #000; */
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(236, 86, 184, 1) 0%,
+    rgba(248, 1, 124, 1) 55.87%,
+    rgba(236, 86, 184, 1) 100%
+  );
+  border-radius: 50%;
 }
 
 .chat-send-btn img {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
 }

@@ -5,7 +5,6 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUserStore } from '@/stores/user'
 import { useUIStore } from '@/stores/ui'
 import NavBar from '@/components/NavBar'
-import aibgc from '@/assets/pagebgc.png'
 import aiusermodel from '@/assets/aiusermodel.png'
 import aichatmodel from '@/assets/aichatmodel.png'
 import coinIcon from '@/assets/coin.png'
@@ -39,12 +38,8 @@ export default function AiDetails() {
   }
 
   return (
-    <div
-      className="ai-container"
-      style={{ background: `url(${aibgc}) no-repeat top center / cover` }}
-    >
+    <div className="ai-container">
       <NavBar />
-
       {/* <div className="ai-chat-img" style={{ backgroundImage: `url(${aichatmodel})` }} /> */}
       <div className="ai-user-img" style={{ backgroundImage: `url(${aiusermodel})` }} />
       {/* <div className="ai-text-title">
@@ -53,27 +48,28 @@ export default function AiDetails() {
         Inspiration
       </div> */}
       <div className="ai-content">
-        <div className="ai-title">Kopee AI</div>
+        <div className="ai-title">Eiway AI</div>
         <div className="ai-card">
           <div className="ai-desc">
-            Hi! I’m Kopee, your friendly AI companion here to chat about all your passions and
-            interests. Whether you love fashion, art, music, or anything in between, I’m here to
-            explore ideas, share tips, and keep the conversation fun and inspiring. Ready to dive
-            into your favorite hobbies together? Let’s talk and discover something new every day!
+            Hi! I’m Eiway AI, your friendly fitness companion here to chat about all things movement
+            and strength. Whether you love full-body workouts, upper-body gains, lower-body burns,
+            or anything in between, I’m here to share tips, plan sessions, and keep your fitness
+            journey fun and motivating. Ready to crush your goals and build your best self together?
+            Let’s move and grow stronger every day!
           </div>
 
           <div className="ai-btn" onClick={handlePurchaseClick}>
             <div className="ai-btn-left">
               <div className="ai-coin" style={{ backgroundImage: `url(${coinIcon})` }} />
-              <span>X {needCoinCount}</span>
+              <span>{needCoinCount} Coins</span>
             </div>
 
             <div className="ai-btn-right">
               <p>Chat</p>
-              <div
+              {/* <div
                 className="ai-chat-forward"
                 style={{ backgroundImage: `url(${aiChatForward})` }}
-              />
+              /> */}
             </div>
           </div>
         </div>

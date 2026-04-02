@@ -17,9 +17,9 @@ export default function AiChat() {
   const ui = useUIStore()
 
   const [messages] = useState([
-    "I'm feeling great today.",
-    'Do you like reading?',
-    'Can you comfort me?',
+    'How to start working out?',
+    'How often to exercise?',
+    'How long per workout?',
   ])
   const [chatInput, setChatInput] = useState('')
   const listRef = useRef(null)
@@ -84,7 +84,7 @@ export default function AiChat() {
   return (
     <div className="ai-chat">
       <NavBar>
-        <p className="ai-chat-title">Kopee AI</p>
+        <p className="ai-chat-title">Eiway AI</p>
       </NavBar>
       <div className="ai-chat-model" style={{ backgroundImage: `url(${aichatmodel})` }} />
       {/* <div className="ai-chat-user" style={{ backgroundImage: `url(${aiusermodel})` }} /> */}
@@ -123,7 +123,6 @@ export default function AiChat() {
           ))}
         </div>
       </div>
-
       <div className="ai-chat-input">
         <input
           name="aiinput"

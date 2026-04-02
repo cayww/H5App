@@ -13,10 +13,10 @@ export default function CoinNotDialog({ onRecharge }) {
         <img src={coinCry} alt="coin cry" className="coin-cry" />
         <h1 className="coin-title">Sorry</h1>
         <p className="coin-desc">your current balance is insufficient</p>
+        <button type="button" className="coin-dialog-btn" onClick={onRecharge}>
+          Recharge
+        </button>
       </div>
-      <button type="button" className="coin-dialog-btn" onClick={onRecharge}>
-        Recharge
-      </button>
     </div>
   )
 }

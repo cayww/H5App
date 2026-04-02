@@ -9,12 +9,12 @@ export default function PrivacyPolicy() {
         <h1 className="agreement-title">Privacy Policy</h1>
       </NavBar>
       <div className="agreement-content">
-        <h1>Kopee Privacy Policy</h1>
+        <h1>Eiway Privacy Policy</h1>
         <p className="update-time">Last updated: 2026</p>
 
         <p>
-          Welcome to <strong>Kopee</strong>. Your privacy is very important to us. This Privacy
-          Policy explains how Kopee collects, uses, and protects your information when you use our
+          Welcome to <strong>Eiway</strong>. Your privacy is very important to us. This Privacy
+          Policy explains how Eiway collects, uses, and protects your information when you use our
           application and services.
         </p>
 
@@ -30,7 +30,7 @@ export default function PrivacyPolicy() {
         <h2>2. How We Use Information</h2>
         <p>The information we collect may be used to:</p>
         <ul>
-          <li>Provide and improve Kopee services</li>
+          <li>Provide and improve Eiway services</li>
           <li>Personalize user experience</li>
           <li>Ensure platform safety and prevent fraud</li>
           <li>Process payments and virtual item purchases</li>
@@ -39,7 +39,7 @@ export default function PrivacyPolicy() {
 
         <h2>3. Information Sharing</h2>
         <p>
-          Kopee does not sell or rent your personal information. We may share information only in
+          Eiway does not sell or rent your personal information. We may share information only in
           the following situations:
         </p>
         <ul>
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
 
         <h2>6. Children&apos;s Privacy</h2>
         <p>
-          Kopee is not intended for individuals under the age required by applicable law. We do not
+          Eiway is not intended for individuals under the age required by applicable law. We do not
           knowingly collect personal information from children.
         </p>
 
@@ -76,14 +76,14 @@ export default function PrivacyPolicy() {
 
         <h2>8. Changes to This Policy</h2>
         <p>
-          Kopee may update this Privacy Policy from time to time. Continued use of the service after
+          Eiway may update this Privacy Policy from time to time. Continued use of the service after
           changes indicates acceptance of the updated policy.
         </p>
 
         <h2>9. Contact Us</h2>
         <p>
           If you have questions about this Privacy Policy, please contact us through the support
-          channel provided within the Kopee application.
+          channel provided within the Eiway application.
         </p>
       </div>
     </div>
