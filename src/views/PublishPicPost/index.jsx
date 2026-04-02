@@ -64,7 +64,7 @@ export default function PublishPicPost() {
       )
 
       const newPost = {
-        dynamicId: String((posts || []).length + 1),
+        dynamicId: 'd' + String((posts || []).length + 1),
         userId: currentUser.userId,
         dynamicType: 0,
         dynamicDesc: text,
