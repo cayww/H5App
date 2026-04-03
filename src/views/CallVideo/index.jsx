@@ -8,6 +8,7 @@ export default function VideoCall({ userId, onHangup }) {
   const userInfo = getUserById(userId)
 
   const [callingText, setCallingText] = useState('Calling')
+  const [displayTime, setDisplayTime] = useState(formatDisplayTime())
 
   useEffect(() => {
     let dotCount = 0
@@ -16,6 +17,14 @@ export default function VideoCall({ userId, onHangup }) {
       dotCount = (dotCount + 1) % 4
       setCallingText('Calling' + '.'.repeat(dotCount))
     }, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDisplayTime(formatDisplayTime())
+    }, 60000)
 
     return () => clearInterval(timer)
   }, [])
@@ -31,22 +40,25 @@ export default function VideoCall({ userId, onHangup }) {
         backgroundImage: userInfo?.avatar ? `url(${userInfo.avatar})` : undefined,
       }}
     >
-      <div className="bg-gradient" />
-      <div></div>
-      <div className="avatar-panel">
-        <div className="avatar-outer">
-          <div className="avatar-inner">
-            <img src={userInfo?.avatar} alt="avatar" />
-          </div>
+      <div className="video-call-overlay" />
+
+      <div className="video-call-content">
+        <div className="call-info">
+          <div className="user-name">{userInfo?.name}</div>
+          <div className="calling-text">{callingText}</div>
         </div>
-        <div className="user-name">{userInfo?.name}</div>
-        <div className="calling-text">{callingText}</div>
-      </div>
-      <div className="call-panel">
-        <div className="hangup-btn" onClick={handleHangup}>
+
+        <button type="button" className="hangup-btn" onClick={handleHangup}>
           <img src={hangupIcon} alt="hangup" />
-        </div>
+        </button>
       </div>
     </div>
   )
+}
+
+function formatDisplayTime() {
+  const now = new Date()
+  const hours = now.getHours()
+  const minutes = String(now.getMinutes()).padStart(2, '0')
+  return `${hours}:${minutes}`
 }
