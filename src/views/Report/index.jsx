@@ -2,14 +2,11 @@ import React, { useMemo, useState } from 'react'
 import NavBar from '@/components/NavBar'
 import { useOtherStore } from '@/stores/other'
 import { useUIStore } from '@/stores/ui'
-import { useBack } from '@/utils/iosBridge'
-import pageBg from '@/assets/pagebgc.png'
 import './index.css'
 
 export default function Report() {
   const reportContent = useOtherStore((s) => s.other?.reportContent || [])
   const ui = useUIStore()
-  const goBack = useBack()
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [inputText, setInputText] = useState('')
 
@@ -29,7 +26,6 @@ export default function Report() {
 
       void selectedLabel
       void inputText
-      goBack()
     }, delay)
   }
 
