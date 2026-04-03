@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import BackButton from '@/components/BackButton/index.jsx'
@@ -12,7 +12,6 @@ import { useCurrentUserStore } from '@/stores/currentUser'
 import { useUIStore } from '@/stores/ui'
 import { uploadSingleImage } from '@/utils/ossUpload'
 import { useBack } from '@/utils/iosBridge'
-import pageBg from '@/assets/pagebgc.png'
 import './index.css'
 import picIcon from '@/assets/chatpicicon.png'
 import videoIcon from '@/assets/chatvideoicon.png'
@@ -26,9 +25,8 @@ export default function Chat() {
   const chatsStore = useChatsStore()
   const getUserById = useUserStore((s) => s.getUserById)
   const getOtherUserInChat = useUserStore((s) => s.getOtherUserInChat)
-  const getMessagesByChatId = useMessagesStore((s) => s.getMessagesByChatId)
+  const allMessages = useMessagesStore((s) => s.message)
   const addMessage = useMessagesStore((s) => s.addMessage)
-  const message = useMessagesStore((s) => s.message)
   const currentUser = useCurrentUserStore((s) => s.currentUser)
   const ui = useUIStore()
 
@@ -42,12 +40,19 @@ export default function Chat() {
   const [showCall, setShowCall] = useState(false)
   const [inputText, setInputText] = useState('')
   const [showReport, setShowReport] = useState(false)
+  const messagesRef = useRef(null)
   const fileInputRef = useRef(null)
 
   const messages = useMemo(
-    () => getMessagesByChatId(chatId) || [],
-    [getMessagesByChatId, chatId, message],
+    () => (allMessages || []).filter((item) => item.chatId === chatId),
+    [allMessages, chatId],
   )
+
+  useEffect(() => {
+    const container = messagesRef.current
+    if (!container) return
+    container.scrollTop = container.scrollHeight
+  }, [messages.length])
 
   function getUserAvatar(userId) {
     return getUserById(userId)?.avatar || ''
@@ -80,7 +85,7 @@ export default function Chat() {
       const url = await uploadSingleImage(file, 'template_development')
 
       addMessage?.({
-        msgId: String((message || []).length + 1),
+        msgId: String((useMessagesStore.getState().message || []).length + 1),
         chatId,
         userId: currentUserId,
         sendContent: '',
@@ -107,7 +112,7 @@ export default function Chat() {
     if (!inputText.trim()) return
 
     addMessage?.({
-      msgId: String((message || []).length + 1),
+      msgId: String((useMessagesStore.getState().message || []).length + 1),
       chatId,
       userId: currentUserId,
       sendContent: inputText,
@@ -168,71 +173,68 @@ export default function Chat() {
         onMoreClick={() => setShowReport(true)}
       >
         <div className="chat-top-content">
-          <div className="chat-left-part">
+          <div
+            className="chat-user-info"
+            onClick={() => goOtherHome(otherUser?.userId)}
+            role="button"
+            tabIndex={0}
+          >
             <div
-              className="chat-user-info"
-              onClick={() => goOtherHome(otherUser?.userId)}
-              role="button"
-              tabIndex={0}
-            >
-              <div
-                className="chat-avatar"
-                style={{
-                  backgroundImage: otherUser?.avatar ? `url(${otherUser.avatar})` : undefined,
-                }}
-                aria-hidden="true"
-              />
-              <span className="chat-username">{otherUser?.name}</span>
-            </div>
+              className="chat-avatar"
+              style={{
+                backgroundImage: otherUser?.avatar ? `url(${otherUser.avatar})` : undefined,
+              }}
+              aria-hidden="true"
+            />
+            <span className="chat-username">{otherUser?.name}</span>
           </div>
-
-          <div className="chat-right-part">
-            <div className="chat-icon-group">
-              <button type="button" className="chat-icon-btn" onClick={selectImage}>
-                <img src={picIcon} alt="image" />
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                style={{ display: 'none' }}
-                onChange={handleImageChange}
-              />
-              <button type="button" className="chat-icon-btn" onClick={() => setShowCall(true)}>
-                <img src={videoIcon} alt="video" />
-              </button>
-            </div>
+          <div className="chat-actions">
+            <button type="button" className="chat-icon-btn" onClick={selectImage}>
+              <img src={picIcon} alt="image" />
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={handleImageChange}
+            />
+            <button type="button" className="chat-icon-btn" onClick={() => setShowCall(true)}>
+              <img src={videoIcon} alt="video" />
+            </button>
           </div>
         </div>
       </NavBar>
-      <div className="chat-messages">
+      <div className="chat-messages" ref={messagesRef}>
         {messages.map((msg) => {
           const own = msg.userId === currentUserId
           return (
-            <div key={msg.msgId} className={`chat-item ${own ? 'own-message' : ''}`}>
-              <div
-                className="chat-msg-avatar"
-                onClick={() => goOtherHome(msg.userId)}
-                role="button"
-                tabIndex={0}
-                style={{
-                  backgroundImage: getUserAvatar(msg.userId)
-                    ? `url(${getUserAvatar(msg.userId)})`
-                    : undefined,
-                }}
-              />
+            <div key={msg.msgId} className="chat-message-block">
+              <div className="chat-time-divider">{formatTime(msg.sendTime)}</div>
+              <div className={`chat-item ${own ? 'own-message' : ''}`}>
+                <div
+                  className="chat-msg-avatar"
+                  onClick={() => goOtherHome(msg.userId)}
+                  role="button"
+                  tabIndex={0}
+                  style={{
+                    backgroundImage: getUserAvatar(msg.userId)
+                      ? `url(${getUserAvatar(msg.userId)})`
+                      : undefined,
+                  }}
+                />
 
-              <div className="chat-right">
-                {own && msg.sendPicUrl ? (
-                  <div className="chat-message-image">
-                    <div className="image-container">
-                      <img src={msg.sendPicUrl} alt="send" />
+                <div className="chat-right">
+                  {msg.sendPicUrl ? (
+                    <div className="chat-message-image">
+                      <div className="image-container">
+                        <img src={msg.sendPicUrl} alt="send" />
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="chat-message">{msg.sendContent}</div>
-                )}
-                <div className="chat-time">{formatTime(msg.sendTime)}</div>
+                  ) : (
+                    <div className="chat-message">{msg.sendContent}</div>
+                  )}
+                </div>
               </div>
             </div>
           )
@@ -242,7 +244,7 @@ export default function Chat() {
         <input
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          placeholder="Say something"
+          placeholder="Say something..."
         />
         <button type="button" className="chat-send-btn" onClick={sendMessage}>
           <img src={sendIcon} alt="send" />
@@ -254,11 +256,11 @@ export default function Chat() {
         onClose={() => setShowReport(false)}
         onSelect={reportSelect}
       />
-      {showCall && (
-        <div className={`call-wrapper ${showCall ? 'show' : ''}`}>
+      {showCall ? (
+        <div className="call-wrapper show">
           <CallVideo userId={otherUser?.userId} onHangup={() => setShowCall(false)} />
         </div>
-      )}
+      ) : null}
     </div>
   )
 }
