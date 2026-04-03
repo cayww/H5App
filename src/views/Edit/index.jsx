@@ -106,7 +106,7 @@ export default function Edit() {
               <img
                 src={cameraIcon}
                 alt="camera"
-                style={{ width: 'calc(100vw * 14 / 375)', height: 'calc(100vw * 14 / 375)' }}
+                style={{ width: 'calc(100vw * 20 / 375)', height: 'calc(100vw * 20 / 375)' }}
               />
             </div>
           </div>
