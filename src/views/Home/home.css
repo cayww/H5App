@@ -4,7 +4,7 @@
 }
 
 .home-bg-img {
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   object-fit: cover;
   display: block;
@@ -25,4 +25,3 @@
   border-radius: 1vw;
   font-size: 2vw;
 }
-
