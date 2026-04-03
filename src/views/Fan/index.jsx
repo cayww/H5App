@@ -76,7 +76,7 @@ export default function Fan() {
                     </div>
                     <div className="fan-user-name">{item.name}</div>
                   </div>
-                  <div className="fan-user-intro">{item.about}</div>
+                  {/* <div className="fan-user-intro">{item.about}</div> */}
                 </div>
                 <div
                   className="fan-right"

@@ -73,7 +73,7 @@ export default function Follow() {
                     </div>
                     <div className="follow-user-name">{item.name}</div>
                   </div>
-                  <div className="follow-user-intro">{item.about}</div>
+                  {/* <div className="follow-user-intro">{item.about}</div> */}
                 </div>
 
                 <div

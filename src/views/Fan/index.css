@@ -6,14 +6,7 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  background:
-    radial-gradient(
-      85.33% 16.5% at 100% 0%,
-      rgba(148, 255, 241, 1) 0%,
-      rgba(0, 230, 92, 0.01) 100%
-    ),
-    radial-gradient(57.07% 26.35% at 0% 0%, rgba(255, 248, 224, 1) 0%, rgba(255, 247, 219, 0) 100%),
-    rgba(249, 249, 249, 1);
+  background: rgba(14, 8, 15, 1);
 }
 
 .fan-title {
@@ -22,7 +15,7 @@
   font-weight: 700;
   flex: 1;
   align-items: start;
-  color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
   margin-left: calc(100vw * 16 / 375);
 }
 
@@ -37,7 +30,7 @@
   margin: 0 calc(100vw * 20 / 375);
   display: flex;
   flex-direction: column;
-  gap: calc(100vh * 16 / 812);
+  gap: calc(100vh * 24 / 812);
   padding-bottom: calc(100vh * 34 / 812);
 }
 
@@ -45,9 +38,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: calc(100vh * 82 / 812);
-  border-radius: calc(100vw * 20 / 375);
-  background: rgba(255, 255, 255, 1);
+  height: calc(100vh * 60 / 812);
+  border-radius: calc(100vw * 24 / 375);
+  background: rgba(43, 43, 43, 1);
   box-sizing: border-box;
   padding: 0 calc(100vw * 16 / 375);
 }
@@ -57,7 +50,7 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  gap: calc(100vh * 7 / 812);
+  gap: calc(100vh * 16 / 812);
   min-width: 0;
   margin-right: calc(100vw * 14 / 375);
 }
@@ -71,8 +64,8 @@
 
 .fan-avatar-box {
   flex-shrink: 0;
-  width: calc(100vw * 32 / 375);
-  height: calc(100vw * 32 / 375);
+  width: calc(100vw * 44 / 375);
+  height: calc(100vw * 44 / 375);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -98,9 +91,8 @@
 .fan-user-name {
   font-family: 'YesevaOne', sans-serif;
   font-size: calc(100vw * 16 / 375);
-  font-weight: 700;
-  color: rgba(0, 0, 0, 1);
-
+  font-weight: 600;
+  color: #fff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -117,8 +109,8 @@
 }
 
 .fan-right {
-  width: calc(100vw * 24 / 375);
-  height: calc(100vw * 24 / 375);
+  width: calc(100vw * 28 / 375);
+  height: calc(100vw * 28 / 375);
   border-radius: 50%;
   display: flex;
   align-items: center;

@@ -61,7 +61,7 @@ export default function Block() {
                     </div>
                     <div className="block-user-name">{item.name}</div>
                   </div>
-                  <div className="block-user-intro">{item.about}</div>
+                  {/* <div className="block-user-intro">{item.about}</div> */}
                 </div>
 
                 <div
