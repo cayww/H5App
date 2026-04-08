@@ -84,7 +84,7 @@ export default function AiChat() {
   return (
     <div className="ai-chat">
       <NavBar>
-        <p className="ai-chat-title">Eiway AI</p>
+        <p className="ai-chat-title">Comhe AI</p>
       </NavBar>
       <div className="ai-chat-model" style={{ backgroundImage: `url(${aichatmodel})` }} />
       {/* <div className="ai-chat-user" style={{ backgroundImage: `url(${aiusermodel})` }} /> */}

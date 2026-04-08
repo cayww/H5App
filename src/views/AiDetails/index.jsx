@@ -48,10 +48,10 @@ export default function AiDetails() {
         Inspiration
       </div> */}
       <div className="ai-content">
-        <div className="ai-title">Eiway AI</div>
+        <div className="ai-title">Comhe AI</div>
         <div className="ai-card">
           <div className="ai-desc">
-            Hi! I’m Eiway AI, your friendly fitness companion here to chat about all things movement
+            Hi! I’m Comhe AI, your friendly fitness companion here to chat about all things movement
             and strength. Whether you love full-body workouts, upper-body gains, lower-body burns,
             or anything in between, I’m here to share tips, plan sessions, and keep your fitness
             journey fun and motivating. Ready to crush your goals and build your best self together?
